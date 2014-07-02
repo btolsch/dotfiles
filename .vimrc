@@ -2,12 +2,18 @@ autocmd! bufwritepost .vimrc source %
 
 set tabstop=4
 set shiftwidth=4
-nnoremap th		:tabfirst<CR>
-nnoremap tj		:tabprevious<CR>
-nnoremap tk		:tabnext<CR>
-nnoremap tl		:tablast<CR>
-nnoremap tn		:tabnew<Space>
-nnoremap td		:tabdo<Space>
+nnoremap <silent> th :tabfirst<CR>
+nnoremap <silent> tj :tabprevious<CR>
+nnoremap <silent> tk :tabnext<CR>
+nnoremap <silent> tl :tablast<CR>
+nnoremap tn :tabnew<Space>
+nnoremap td :tabdo<Space>
+
+map <silent> <C-k> <C-W>k
+map <silent> <C-j> <C-W>j
+map <silent> + <C-W>+
+map <silent> - <C-W>-
+map <silent> = <C-W>=
 
 " filetype off
 " filetype plugin indent on
@@ -46,7 +52,7 @@ highlight ColorColumn ctermbg=white
 
 set hlsearch
 set ignorecase
-noremap <Leader>;	:nohl<CR>
+noremap <silent> <Leader>; :nohl<CR>
 
 " Line wrapping
 vmap Q gq
