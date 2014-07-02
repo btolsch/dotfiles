@@ -13,6 +13,12 @@ if [ -z "$rel" ]; then
 	exit
 fi
 
-for file in $(ls -A); do
-	ln -sf ${rel}/${file} ~/$file
+for file in $(ls -A | grep -v ".git*" | grep -v "install.sh"); do
+	if [ ! -e ~/$file ]; then
+		ln -s ${rel}/${file} ~/$file
+	fi
+done
+
+for script in $(ls | grep -E ".install\.sh"); do
+	. $script
 done

@@ -1,16 +1,19 @@
 autocmd! bufwritepost .vimrc source %
 
+nnoremap j gj
+nnoremap k gk
+
 set tabstop=4
 set shiftwidth=4
-nnoremap <silent> th :tabfirst<CR>
-nnoremap <silent> tj :tabprevious<CR>
-nnoremap <silent> tk :tabnext<CR>
-nnoremap <silent> tl :tablast<CR>
+nnoremap <silent> th :tabprevious<CR>
+nnoremap <silent> tj :tabfirst<CR>
+nnoremap <silent> tk :tablast<CR>
+nnoremap <silent> tl :tabnext<CR>
 nnoremap tn :tabnew<Space>
 nnoremap td :tabdo<Space>
 
-map <silent> <C-k> <C-W>k
-map <silent> <C-j> <C-W>j
+" map <silent> <C-k> <C-W>k
+" map <silent> <C-j> <C-W>j
 map <silent> + <C-W>+
 map <silent> - <C-W>-
 map <silent> = <C-W>=
@@ -43,12 +46,12 @@ nnoremap <C-v> "+p
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " au InsertLeave * match ExtraWhitespace /\s\+$/
 
-set nowrap
+" set nowrap
 set number
-set tw=79
-set fo-=t
-set colorcolumn=80
-highlight ColorColumn ctermbg=white
+" set tw=79
+" set fo-=t
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=1
 
 set hlsearch
 set ignorecase
@@ -71,6 +74,7 @@ call pathogen#infect()
 " Powerline
 " git clone git://github.com/Lokaltog/vim-powerline.git
 set laststatus=2
+" let g:Powerline_symbols = 'fancy'
 
 " CtrlP
 " git clone https://github.com/kien/ctrlp.cim.git
