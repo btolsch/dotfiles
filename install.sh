@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if [ -z $(pwd | sed -n 's#.*\(/dotfiles\)$#\1#p') ]; then
 	echo "run this script from the dotfiles directory"
@@ -13,12 +13,12 @@ if [ -z "$rel" ]; then
 	exit
 fi
 
-for file in $(ls -ld ".*" | grep -v ".git*" | grep -v "install.sh"); do
+for file in $(ls -d .* | grep -v ".git*" | grep -v "install.sh"); do
 	if [ ! -e ~/$file ]; then
 		ln -s ${rel}/${file} ~/$file
 	fi
 done
 
 for script in $(ls | grep -E ".install\.sh"); do
-	. $script
+	. ./$script
 done

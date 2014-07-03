@@ -45,7 +45,7 @@ ZSH_THEME="gitliorononomicon"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases git last-working-dir lol nyan pip python rand-quote sudo systemd tmux)
+plugins=(archlinux common-aliases git last-working-dir lol nyan pip python rand-quote sudo systemd tmux vi-mode)
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
