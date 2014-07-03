@@ -53,6 +53,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
 # export MANPATH="/usr/local/man:$MANPATH"
+source $HOME/.zshenv
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

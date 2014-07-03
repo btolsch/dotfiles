@@ -13,7 +13,7 @@ if [ -z "$rel" ]; then
 	exit
 fi
 
-for file in $(ls -A | grep -v ".git*" | grep -v "install.sh"); do
+for file in $(ls -ld ".*" | grep -v ".git*" | grep -v "install.sh"); do
 	if [ ! -e ~/$file ]; then
 		ln -s ${rel}/${file} ~/$file
 	fi
