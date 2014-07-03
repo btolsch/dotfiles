@@ -72,8 +72,13 @@ set noswapfile
 call pathogen#infect()
 
 " Powerline
-" git clone git://github.com/Lokaltog/vim-powerline.git
+" yaourt -S python-powerline-git
+let $PYTHONPATH='/usr/lib/python3.4/site-packages'
 set laststatus=2
+set noshowmode
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 " let g:Powerline_symbols = 'fancy'
 
 " CtrlP
