@@ -30,6 +30,9 @@ let mapleader = ","
 " Visual mode sort
 vnoremap <Leader>s :sort<CR>
 
+" Visual mode search
+vnoremap // y/<C-r>"<CR>
+
 " Better visual mode block indentation
 vnoremap > >gv
 vnoremap < <gv
@@ -76,6 +79,11 @@ call pathogen#infect()
 let $PYTHONPATH='/usr/lib/python3.4/site-packages'
 set laststatus=2
 set noshowmode
+set encoding=utf-8
+set term=xterm-256color
+set termencoding=utf-8
+set guifont=Inconsolata\ for\ Powerline:h15
+set t_Co=256
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
