@@ -57,6 +57,7 @@ set number
 " highlight ColorColumn ctermbg=1
 
 set hlsearch
+set incsearch
 set ignorecase
 noremap <silent> <Leader>; :nohl<CR>
 
