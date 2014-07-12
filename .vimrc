@@ -51,10 +51,11 @@ nnoremap <C-v> "+p
 
 " set nowrap
 set number
+set t_Co=256
 " set tw=79
 " set fo-=t
-" set colorcolumn=80
-" highlight ColorColumn ctermbg=1
+set colorcolumn=80
+highlight ColorColumn ctermbg=234
 
 set hlsearch
 set incsearch

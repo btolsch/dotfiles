@@ -79,3 +79,5 @@ source $HOME/.zshenv
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+bindkey "^R" history-incremental-search-backward
