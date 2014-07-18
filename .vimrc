@@ -1,29 +1,47 @@
 autocmd! bufwritepost .vimrc source %
 
+set timeoutlen=150 ttimeoutlen=0
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
 nnoremap j gj
 nnoremap k gk
 
 set tabstop=4
 set shiftwidth=4
-nnoremap <silent> th :tabprevious<CR>
-nnoremap <silent> tj :tabfirst<CR>
-nnoremap <silent> tk :tablast<CR>
-nnoremap <silent> tl :tabnext<CR>
-nnoremap tn :tabnew<Space>
-nnoremap td :tabdo<Space>
+nnoremap <silent> <A-h> :tabprevious<CR>
+nnoremap <silent> <A-j> :tabfirst<CR>
+nnoremap <silent> <A-k> :tablast<CR>
+nnoremap <silent> <A-l> :tabnext<CR>
+" Alt typically emulated as <Esc>
+nnoremap <silent> <Esc>h :tabprevious<CR>
+nnoremap <silent> <Esc>j :tabfirst<CR>
+nnoremap <silent> <Esc>k :tablast<CR>
+nnoremap <silent> <Esc>l :tabnext<CR>
+nnoremap <C-A-n> :tabnew<Space>
+nnoremap <Esc><C-n> :tabnew<Space>
 
 " map <silent> <C-k> <C-W>k
 " map <silent> <C-j> <C-W>j
-map <silent> + <C-W>+
-map <silent> - <C-W>-
-map <silent> = <C-W>=
+noremap <A-n> <C-w><
+noremap <A-m> <C-w>>
+noremap <Esc>n <C-w><
+noremap <Esc>m <C-w>>
+noremap + <C-W>+
+noremap - <C-W>-
+noremap = <C-W>=
 
-" filetype off
 " filetype plugin indent on
-" syntax on
+syntax on
+
+" set foldmethod=indent
+set foldmethod=syntax
+set foldnestmax=1
+nnoremap <space> za
 
 " fix backspace
-set bs=2
+set bs=indent,eol,start
 
 let mapleader = ","
 

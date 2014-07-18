@@ -1,10 +1,5 @@
 [global_config]
   title_transmit_bg_color = "#187bff"
-[keybindings]
-  go_up = <Alt>k
-  go_down = <Alt>j
-  go_right = <Alt>l
-  go_left = <Alt>h
 [profiles]
   [[default]]
     background_darkness = 0.83
