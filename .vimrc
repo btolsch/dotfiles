@@ -22,8 +22,14 @@ nnoremap <silent> <Esc>l :tabnext<CR>
 nnoremap <C-A-n> :tabnew<Space>
 nnoremap <Esc><C-n> :tabnew<Space>
 
-" map <silent> <C-k> <C-W>k
-" map <silent> <C-j> <C-W>j
+" Insert home key motion with Alt
+inoremap <Esc>h <Esc>i
+inoremap <Esc>j <Esc>jli
+inoremap <Esc>k <Esc>kli
+inoremap <Esc>l <Esc>lli
+
+" map <C-k> <C-W>k
+" map <C-j> <C-W>j
 noremap <A-n> <C-w><
 noremap <A-m> <C-w>>
 noremap <Esc>n <C-w><
@@ -66,6 +72,7 @@ nnoremap <C-v> "+p
 " MUST be inserted BEFORE the colorscheme command
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " au InsertLeave * match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
 
 " set nowrap
 set number
