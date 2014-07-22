@@ -23,10 +23,10 @@ nnoremap <C-A-n> :tabnew<Space>
 nnoremap <Esc><C-n> :tabnew<Space>
 
 " Insert home key motion with Alt
-inoremap <Esc>h <Esc>i
-inoremap <Esc>j <Esc>jli
-inoremap <Esc>k <Esc>kli
-inoremap <Esc>l <Esc>lli
+inoremap <Esc>h <C-o>h
+inoremap <Esc>j <C-o>j
+inoremap <Esc>k <C-o>k
+inoremap <Esc>l <C-o>l
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j
