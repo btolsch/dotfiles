@@ -73,7 +73,7 @@ vnoremap < <gv
 vnoremap <C-c> "+y
 
 " Normal paste
-nnoremap <C-v> "+p
+nnoremap <Esc><C-v> "+p
 
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
@@ -84,8 +84,9 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " set nowrap
 set number
 set t_Co=256
-" set tw=79
-" set fo-=t
+set tw=79
+set fo-=t
+set fo+=c
 set colorcolumn=80
 highlight ColorColumn ctermbg=234
 
@@ -110,17 +111,17 @@ call pathogen#infect()
 
 " Powerline
 " yaourt -S python-powerline-git
-let $PYTHONPATH='/usr/lib/python3.4/site-packages'
-set laststatus=2
-set noshowmode
-set encoding=utf-8
-set term=xterm-256color
-set termencoding=utf-8
-set guifont=Inconsolata\ for\ Powerline:h15
-set t_Co=256
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" let $PYTHONPATH='/usr/lib/python3.4/site-packages'
+" set laststatus=2
+" set noshowmode
+" set encoding=utf-8
+" set term=xterm-256color
+" set termencoding=utf-8
+" set guifont=Inconsolata\ for\ Powerline:h15
+" set t_Co=256
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
 " let g:Powerline_symbols = 'fancy'
 
 " CtrlP
@@ -307,5 +308,5 @@ function! WatchForChanges(bufname, ...)
   let @"=reg_saved
 endfunction
 
-let autoreadargs={'autoread':1}
+let autoreadargs={'autoread':1, 'more_events':0}
 execute WatchForChanges("*", autoreadargs)
