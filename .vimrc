@@ -1,29 +1,23 @@
-autocmd! bufwritepost .vimrc source %
-
-set timeoutlen=150 ttimeoutlen=0
-
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
-nnoremap j gj
 nnoremap k gk
+
+set hidden
 
 set tabstop=4
 set shiftwidth=4
-nnoremap <silent> <A-h> :tabprevious<CR>
-nnoremap <silent> <A-j> :tabfirst<CR>
-nnoremap <silent> <A-k> :tablast<CR>
-nnoremap <silent> <A-l> :tabnext<CR>
-nnoremap <silent> <A-<> :tabm -1<CR>
-nnoremap <silent> <A->> :tabm +1<CR>
 " Alt typically emulated as <Esc>
-nnoremap <silent> <Esc>h :tabprevious<CR>
-nnoremap <silent> <Esc>j :tabfirst<CR>
-nnoremap <silent> <Esc>k :tablast<CR>
-nnoremap <silent> <Esc>l :tabnext<CR>
+nnoremap <silent> <Esc>h :bprevious<CR>
+nnoremap <silent> <Esc>j :bfirst<CR>
+nnoremap <silent> <Esc>k :blast<CR>
+nnoremap <silent> <Esc>l :bnext<CR>
+nnoremap <silent> <leader>f :MBEbf<CR>
+nnoremap <silent> <leader>b :MBEbb<CR>
+nnoremap <silent> <leader>d :MBEbd<space>
+nnoremap <silent> <leader>h :tabprevious<CR>
+nnoremap <silent> <leader>j :tabfirst<CR>
+nnoremap <silent> <leader>k :tablast<CR>
+nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <Esc>< :tabm -1<CR>
 nnoremap <silent> <Esc>> :tabm +1<CR>
-nnoremap <C-A-n> :tabnew<Space>
 nnoremap <Esc><C-n> :tabnew<Space>
 
 " Insert home key motion with Alt
@@ -108,7 +102,22 @@ set noswapfile
 " curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 " Install plugins to ~/.vim/bundle/
 call pathogen#infect()
+Helptags
 
+" Bufferline and Airline
+" https://github.com/bling/vim-bufferline.git
+" https://github.com/bling/vim-airline.git
+set laststatus=2
+set noshowmode
+" let g:bufferline_echo = 0
+
+" Enable the list of buffers
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_buffers = 1
+" Show just the filename
+" let g:airline#extensions#tabline#fnamemod = ':t'
+
+let g:airline_powerline_fonts = 1
 " Powerline
 " yaourt -S python-powerline-git
 " let $PYTHONPATH='/usr/lib/python3.4/site-packages'
