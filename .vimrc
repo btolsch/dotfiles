@@ -1,6 +1,26 @@
+autocmd! bufwritepost .vimrc source %
+
+set timeoutlen=150 ttimeoutlen=0
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+hi MBENormal               ctermfg=8 ctermbg=0
+hi MBEChanged              ctermfg=9 ctermbg=0
+hi MBEVisibleNormal        ctermfg=6 ctermbg=0
+hi MBEVisibleChanged       ctermfg=1 ctermbg=0
+hi MBEVisibleActiveNormal  ctermfg=22 ctermbg=0
+hi MBEVisibleActiveChanged ctermfg=22 ctermbg=0
+
+nnoremap j gj
 nnoremap k gk
 
+let mapleader = ","
+
 set hidden
+set confirm
+set splitbelow
+set splitright
 
 set tabstop=4
 set shiftwidth=4
@@ -9,9 +29,15 @@ nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
+
 nnoremap <silent> <leader>f :MBEbf<CR>
 nnoremap <silent> <leader>b :MBEbb<CR>
 nnoremap <silent> <leader>d :MBEbd<space>
+nnoremap <silent> <leader>t :MBEToggle<CR>
+nnoremap <silent> <leader>e :MBEFocus<CR>
+
+nnoremap <silent> <leader>m <C-w>_
+
 nnoremap <silent> <leader>h :tabprevious<CR>
 nnoremap <silent> <leader>j :tabfirst<CR>
 nnoremap <silent> <leader>k :tablast<CR>
@@ -27,8 +53,8 @@ inoremap <Esc>k <C-o>k
 inoremap <Esc>l <C-o>l
 
 " Faster scrolling with cursor in the middle
-nnoremap <C-x> MztM
-nnoremap <C-c> MzbM
+" nnoremap <C-x> LztM
+" nnoremap <C-c> HzbM
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j
@@ -50,8 +76,6 @@ nnoremap <space> za
 
 " fix backspace
 set bs=indent,eol,start
-
-let mapleader = ","
 
 " Visual mode sort
 vnoremap <Leader>s :sort<CR>
@@ -109,13 +133,14 @@ Helptags
 " https://github.com/bling/vim-airline.git
 set laststatus=2
 set noshowmode
-" let g:bufferline_echo = 0
+let g:bufferline_echo = 0
 
 " Enable the list of buffers
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
 " Show just the filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme="badwolf"
 
 let g:airline_powerline_fonts = 1
 " Powerline
@@ -124,8 +149,8 @@ let g:airline_powerline_fonts = 1
 " set laststatus=2
 " set noshowmode
 " set encoding=utf-8
-" set term=xterm-256color
-" set termencoding=utf-8
+set term=xterm-256color
+set termencoding=utf-8
 " set guifont=Inconsolata\ for\ Powerline:h15
 " set t_Co=256
 " python3 from powerline.vim import setup as powerline_setup
