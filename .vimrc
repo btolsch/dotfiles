@@ -29,6 +29,7 @@ nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
+nnoremap <leader>g :buffers<CR>:b<space>
 
 nnoremap <silent> <leader>f :MBEbf<CR>
 nnoremap <silent> <leader>b :MBEbb<CR>

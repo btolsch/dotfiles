@@ -79,5 +79,7 @@ source $HOME/.zshenv
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 
 bindkey "^R" history-incremental-search-backward
+setopt extended_glob

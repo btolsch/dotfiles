@@ -1,2 +1,1 @@
-dropboxd &
 exec $1
