@@ -6,6 +6,6 @@ if [ -f $BG ]; then
 		mv $BG ${BG}.bak 2>/dev/null ||
 		  echo "You don't have permission to write to ${BG%background.jpg}" && exit 1
 	fi
-	ln -sf $NEWBG $BG 2>/dev/null || 
-	  echo "You don't have permission to write to ${BG%background.jpg}"
 fi
+ln -sf $NEWBG $BG 2>/dev/null || 
+  echo "You don't have permission to write to ${BG%background.jpg}"
