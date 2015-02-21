@@ -1,0 +1,12 @@
+#!/bin/sh
+IMAGE=/tmp/screen_locked.png
+
+xset b off
+
+scrot $IMAGE
+convert -blur 5x5 $IMAGE $IMAGE
+
+#BGIMAGE=~/pictures7/Wallpapers/Misc/linux-www-wallpaper-hd-computer-photo-linux-wallpaper.jpg
+#convert -format "png" $BGIMAGE $IMAGE
+
+/usr/bin/i3lock -i $IMAGE
