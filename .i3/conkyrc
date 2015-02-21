@@ -1,0 +1,52 @@
+background no
+out_to_x no
+own_window no
+out_to_console yes
+update_interval 1.0
+total_run_times 0
+
+# Network interface must have an ip address to be considered up
+if_up_strictness address
+
+short_units yes
+use_spacer left
+
+lua_load ~/.i3/conky.lua
+
+TEXT
+
+[
+{"name": "logo", "icon_color": "\#1793d1", \
+"full_text": "", "icon": "$HOME/.icons/dzen2/arch_10x10.xbm", "separator": false}, \
+
+${if_empty ${lua if_up 1}}
+${else}
+{"name": "lua_if1", "full_text": "${lua if_list 1} ${lua addr 1}", \
+"separator": true, "separator_block_width": 31}, \
+${endif}
+
+${if_empty ${lua if_up 2}}
+${else}
+{"name": "lua_if2", "full_text": "${lua if_list 2} ${lua addr 2}", \
+"separator": true, "separator_block_width": 31}, \
+${endif}
+
+{"name": "rootfree", \
+"color": "\#888888", "full_text": "/ ${fs_free /}", "separator": false}, \
+
+{"name": "homefree", \
+"color": "\#888888", "full_text": "/home ${fs_free /home}", "separator": true,
+"separator_block_width": 31}, \
+
+{"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", "separator": false}, \
+
+{"name": "mem", "color": "\#888888", "full_text": "mem: ${mem}/${memmax} ${memperc}%", \
+"separator": true, "separator_block_width": 31}, \
+
+#date
+{"name": "date", \
+"color": "\#888888","full_text": "${time %m.%d.%y} ","separator": false}, \
+
+#time
+{"name": "time", \
+"color": "\#888888","full_text": "${time %-l:%M %p}","separator": false}],
