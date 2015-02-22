@@ -122,6 +122,10 @@ bindsym $mod+Mod1+l workspace next
 bindsym $mod+Mod1+Shift+h move container to workspace prev
 bindsym $mod+Mod1+Shift+l move container to workspace next
 
+#scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -141,6 +145,11 @@ mode "resize" {
 	bindsym j resize shrink height 10 px or 10 ppt
 	bindsym k resize grow height 10 px or 10 ppt
 	bindsym l resize grow width 10 px or 10 ppt
+
+	bindsym Mod1+h resize shrink width 100 px or 100 ppt
+	bindsym Mod1+j resize shrink height 100 px or 100 ppt
+	bindsym Mod1+k resize grow height 100 px or 100 ppt
+	bindsym Mod1+l resize grow width 100 px or 100 ppt
 
 	# same bindings, but for the arrow keys
 	bindsym Left resize shrink width 10 px or 10 ppt
@@ -172,6 +181,8 @@ bar {
 exec_always ~/bin/autostart.sh
 
 bindsym $mod+Shift+Return workspace 2, exec google-chrome-stable
+
+bindsym $mod+Mod1+Return exec i3-sensible-terminal -e /bin/zsh -c "ranger"
 
 for_window [class="(?i)chrome"] border 1pixel
 assign [class="(?i)chrome"] 2
