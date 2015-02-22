@@ -31,22 +31,21 @@ ${else}
 "separator": true, "separator_block_width": 31}, \
 ${endif}
 
-{"name": "rootfree", \
-"color": "\#888888", "full_text": "/ ${fs_free /}", "separator": false}, \
+{"name": "rootfree", "full_text": "/ ${fs_free /}", "separator": false}, \
 
-{"name": "homefree", \
-"color": "\#888888", "full_text": "/home ${fs_free /home}", "separator": true,
+{"name": "homefree", "full_text": "/home ${fs_free /home}", "separator": true, \
 "separator_block_width": 31}, \
 
 {"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", "separator": false}, \
 
-{"name": "mem", "color": "\#888888", "full_text": "mem: ${mem}/${memmax} ${memperc}%", \
+{"name": "mem", "full_text": "mem: ${mem}/${memmax} ${memperc}%", \
 "separator": true, "separator_block_width": 31}, \
 
 #date
-{"name": "date", \
-"color": "\#888888","full_text": "${time %m.%d.%y} ","separator": false}, \
+{"name": "date", "full_text": "${time %m.%d.%y} ", "separator": false}, \
 
 #time
-{"name": "time", \
-"color": "\#888888","full_text": "${time %-l:%M %p}","separator": false}],
+{"name": "nm_time", "full_text": "${tztime America/Denver %-l:%M %p}", "separator": false},
+
+{"name": "time", "full_text": "${time %-l:%M %p}", "separator": false}
+],
