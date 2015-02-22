@@ -1,2 +1,2 @@
 #!/bin/zsh
-fc-cache -vf ~/.fonts
+fc-cache -vf ~/.fonts >/dev/null
