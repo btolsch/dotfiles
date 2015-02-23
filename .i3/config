@@ -171,6 +171,7 @@ bar {
 	position top
 	i3bar_command /usr/bin/i3bar-icons
 	status_command ~/bin/conkybar.sh
+	font pango:Terminess Powerline 8
 	colors {
 		separator #1793d1
 		statusline #888888
