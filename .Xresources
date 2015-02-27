@@ -1,4 +1,5 @@
 URxvt*termName: screen-256color
+URxvt*urgentOnBell: true
 URxvt*transparent: true
 URxvt*depth: 32
 !URxvt*background: #000000

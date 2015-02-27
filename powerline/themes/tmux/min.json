@@ -1,0 +1,29 @@
+{
+	"default_module": "powerline.segments.common",
+	"segment_data": {
+		"uptime": {
+			"before": "⇑  "
+		}
+	},
+	"segments": {
+		"right": [
+			{
+				"name": "uptime",
+				"priority": 50
+			},
+			{
+				"name": "date"
+			},
+			{
+				"name": "date",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+			{
+				"name": "hostname"
+			}
+		]
+	}
+}
