@@ -1,0 +1,6 @@
+#!/bin/zsh
+if [ -z "$1" ]; then
+	echo "gimme arg"
+	exit
+fi
+mpc add $(youtube-dl --prefer-insecure -g -f140 $@)

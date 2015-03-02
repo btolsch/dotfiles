@@ -24,10 +24,10 @@ do
 		f:close()
 		local words = {}
 		for word in s:gmatch("%w+") do table.insert(words, word) end
-		if conky_parse("${if_up " .. words[tonumber(index)] .. "}") then
-			return '1'
-		else
+		if words[tonumber(index)] and conky_parse("${if_up " .. words[tonumber(index)] .. "}") then
 			return ''
+		else
+			return '1'
 		end
 	end
 end

@@ -2,8 +2,9 @@ background no
 out_to_x no
 own_window no
 out_to_console yes
-update_interval 1.0
+update_interval 0.5
 total_run_times 0
+net_avg_samples 1
 
 # Network interface must have an ip address to be considered up
 if_up_strictness address
@@ -16,19 +17,32 @@ lua_load ~/.i3/conky.lua
 TEXT
 
 [
+${if_mpd_playing}
+{"name": "stopped", "full_text": "${mpd_status}", "separator": false}, \
+{"name": "track_no", "full_text": "${mpd_track}:", "separator": false}, \
+{"name": "artist", "full_text": "${mpd_artist} -", "separator": false}, \
+{"name": "song_title", "full_text": "${mpd_title}", "separator": true}, \
+{"name": "play_time", "full_text": "${mpd_elapsed}/${mpd_length}", "separator": false}, \
+
+{"name": "eq", "icon_color": "\#1793d1", \
+"full_text": "", "icon": "$HOME/.icons/dzen2/eq.xbm", "separator": false}, \
+{"name": "volume", "full_text": "vol: ${mpd_vol}% ", "separator": false}, \
+${endif}
+
 {"name": "logo", "icon_color": "\#1793d1", \
 "full_text": "", "icon": "$HOME/.icons/dzen2/arch_10x10.xbm", "separator": false}, \
 
 ${if_empty ${lua if_up 1}}
-${else}
 {"name": "lua_if1", "full_text": "${lua if_list 1} ${lua addr 1}", \
 "separator": true, "separator_block_width": 31}, \
-${endif}
-
 ${if_empty ${lua if_up 2}}
-${else}
 {"name": "lua_if2", "full_text": "${lua if_list 2} ${lua addr 2}", \
 "separator": true, "separator_block_width": 31}, \
+${endif}
+{"name": "downspeed", "full_text": "${downspeed ${lua if_list 1}}", "icon_color": "\#1793d1", \
+"icon": "$HOME/.icons/dzen2/net_down_01.xbm"}, \
+{"name": "downspeed", "full_text": "${upspeed ${lua if_list 1}}", "icon_color": "\#1793d1", \
+"icon": "$HOME/.icons/dzen2/net_up_01.xbm"}, \
 ${endif}
 
 {"name": "rootfree", "full_text": "/ ${fs_free /}", "separator": false}, \

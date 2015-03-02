@@ -31,3 +31,18 @@ done
 for script in $(ls | grep -E ".install\.sh"); do
 	. ./$script $2
 done
+
+config_dirs="powerline mpd"
+for config_dir in {powerline,mpd}; do
+	if [[ ! -e ~/.config/$config_dir ]]; then
+		mkdir -p ~/.config
+		ln -s ../$rel/$config_dir ~/.config/$config_dir
+	elif [ ! -L ~/.config/powerline ]; then
+		echo "~/.config/$config_dir exists and is not a link"
+		if [ -n "$1" ]; then
+			echo "overwriting ~/.config/$config_dir with link"
+			rm -rf ~/.config/$config_dir
+			ln -sf ../$rel/$config_dir ~/.config/$config_dir
+		fi
+	fi
+done

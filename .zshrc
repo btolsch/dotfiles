@@ -80,6 +80,9 @@ source $HOME/.zshenv
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
+alias rem="rm -rI"
 
 bindkey "^R" history-incremental-search-backward
 setopt extended_glob
+
+stty -ixon

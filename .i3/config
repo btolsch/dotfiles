@@ -30,7 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # lock the screen
-bindsym $mod+o exec i3lock
+bindsym $mod+o exec ~/bin/i3lock
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -132,6 +132,13 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

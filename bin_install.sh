@@ -1,4 +1,5 @@
 #!/bin/zsh
+mkdir -p ~/bin
 rel=$(pwd | sed -n "s#$HOME/\(.\+\)\$#\1#p" -)
 for file in bin/*; do
 	if [ ! -e ~/$file ]; then
