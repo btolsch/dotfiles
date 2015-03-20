@@ -1,0 +1,6 @@
+mpd/database
+mpd/log
+mpd/pid
+mpd/playlists
+mpd/state
+mpd/sticker.sql

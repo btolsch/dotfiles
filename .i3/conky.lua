@@ -30,4 +30,29 @@ do
 			return '1'
 		end
 	end
+
+	function conky_downspeed(index)
+		local f = io.popen(grep_crap)
+		local s = f:read("*a")
+		f:close()
+		local words = {}
+		for word in s:gmatch("%w+") do table.insert(words, word) end
+		return conky_parse("${downspeed " .. words[tonumber(index)] .. "}")
+	end
+
+	function conky_upspeed(index)
+		local f = io.popen(grep_crap)
+		local s = f:read("*a")
+		f:close()
+		local words = {}
+		for word in s:gmatch("%w+") do table.insert(words, word) end
+		return conky_parse("${upspeed " .. words[tonumber(index)] .. "}")
+	end
+
+	function conky_dbstatus(i)
+		local f = io.popen("/home/btolsch/bin/dropbox.py status")
+		local s = f:read("*a")
+		f:close()
+		return string.sub(s, 1, string.find(s, "\n") - 1):gsub('"', "'")
+	end
 end

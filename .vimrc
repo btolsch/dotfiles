@@ -38,6 +38,7 @@ nnoremap <silent> <leader>t :MBEToggle<CR>
 nnoremap <silent> <leader>e :MBEFocus<CR>
 
 nnoremap <silent> <leader>m <C-w>_
+nnoremap <silent> <leader>n <C-w>\|
 
 nnoremap <silent> <leader>h :tabprevious<CR>
 nnoremap <silent> <leader>j :tabfirst<CR>

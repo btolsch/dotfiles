@@ -86,3 +86,5 @@ bindkey "^R" history-incremental-search-backward
 setopt extended_glob
 
 stty -ixon
+
+[[ -f ~/bin/zbell.sh ]] && source ~/bin/zbell.sh
