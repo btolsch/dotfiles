@@ -32,7 +32,7 @@ for script in $(ls | grep -E ".install\.sh"); do
 	. ./$script $2
 done
 
-config_dirs="powerline mpd"
+config_dirs="powerline"
 for config_dir in {powerline,mpd}; do
 	if [[ ! -e ~/.config/$config_dir ]]; then
 		mkdir -p ~/.config
@@ -43,6 +43,23 @@ for config_dir in {powerline,mpd}; do
 			echo "overwriting ~/.config/$config_dir with link"
 			rm -rf ~/.config/$config_dir
 			ln -sf ../$rel/$config_dir ~/.config/$config_dir
+		fi
+	fi
+done
+
+typeset -A other_files
+other_files=("mpd.conf" ".config/mpd/")
+for file in ${(k)other_files}; do
+	dest_file=~/$(echo ${other_files[$file]} | sed 's#^/\?\(.*[^/]\)/\?$#\1#')/$file
+	dots=$(echo ${other_files[$file]} | sed 's#[^/]*\(/\|$\)#../#g' | sed 's#/$##')
+	if [[ ! -e $dest_file ]]; then
+		mkdir -p ${other_files[$file]}
+		ln -s $dots/$rel/$file $dest_file
+	elif [[ ! -L $dest_file ]]; then
+		echo "$dest_file exists and is not a link"
+		if [[ -n "$1" ]]; then
+			echo "overwriting $dest_file with link"
+			ln -sf $dots/$rel/$file $dest_file
 		fi
 	fi
 done

@@ -83,6 +83,9 @@ alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 alias rem="rm -rI"
 
 bindkey "^R" history-incremental-search-backward
+bindkey "^S" sudo-command-line
+bindkey -a "^S" sudo-command-line
+bindkey "^?" backward-delete-char
 setopt extended_glob
 
 stty -ixon

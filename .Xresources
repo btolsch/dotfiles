@@ -1,8 +1,8 @@
 URxvt*termName: screen-256color
 URxvt*urgentOnBell: true
-URxvt*transparent: true
+!URxvt*transparent: true
 URxvt*depth: 32
-!URxvt*background: #000000
+URxvt*background: rgba:0000/0000/0000/cccc
 !URxvt*foreground: #ffffff
 URxvt*shading: 20
 URxvt*scrollBar: false

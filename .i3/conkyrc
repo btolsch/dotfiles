@@ -15,27 +15,26 @@ use_spacer left
 lua_load ~/.i3/conky.lua
 
 TEXT
-
-[
+[\
 ${if_mpd_playing}
 {"name": "stopped", "full_text": "${mpd_status}", "separator": false}, \
 {"name": "track_no", "full_text": "${mpd_track}:", "separator": false}, \
 {"name": "artist", "full_text": "${mpd_artist} -", "separator": false}, \
 {"name": "song_title", "full_text": "${mpd_title}", "separator": true}, \
 {"name": "play_time", "full_text": "${mpd_elapsed}/${mpd_length}", "separator": false}, \
-
+\
 {"name": "eq", "icon_color": "\#1793d1", \
 "full_text": "", "icon": "$HOME/.icons/dzen2/eq.xbm", "separator": false}, \
 {"name": "volume", "full_text": "vol: ${mpd_vol}% ", "min_width": "vol: 100%", \
 "align": "right", "separator": false}, \
 ${endif}
-
+\
 {"name": "logo", "icon_color": "\#1793d1", \
 "full_text": "", "icon": "$HOME/.icons/dzen2/arch_10x10.xbm", "separator": false}, \
-
+\
 {"name": "dropbox", "full_text": "${lua dbstatus}", "separator": true, \
 "separator_block_width": 21}, \
-
+\
 ${if_empty ${lua if_up 1}}
 {"name": "lua_if1", "full_text": "${lua if_list 1} ${lua addr 1}", \
 "separator": true, "separator_block_width": 21}, \
@@ -48,24 +47,27 @@ ${endif}
 {"name": "downspeed", "full_text": "${lua upspeed 1}", "icon_color": "\#1793d1", \
 "icon": "$HOME/.icons/dzen2/net_up_01.xbm", "separator_block_width": 21}, \
 ${endif}
-
-{"name": "rootfree", "full_text": "/ ${fs_free /}", "separator": false}, \
-
-{"name": "homefree", "full_text": "/home ${fs_free /home}", "separator": true, \
+\
+{"name": "rootfree", "full_text": "/ ${fs_free /} ${fs_free_perc /}%", "separator": false}, \
+\
+{"name": "homefree", "full_text": "/home ${fs_free /home} ${fs_free_perc /home}%", "separator": true, \
 "separator_block_width": 21}, \
-
+\
 {"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", \
 "min_width": "cpu: 100%", "align": "right", "separator": false}, \
-
+\
+{"name": "cpu_temp", "full_text": "temp: ${exec sensors | grep -A 4 'Core 0:' | cut -c18-21 | sed '/^\$/d' | paste -d' ' -s}", \
+"separator": true, "separator_block_width": 21}, \
+#{"name": "gpu_temp", "full_text": "gpu temp: ${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}", 
+#"separator": true, "separator_block_width": 21}, 
+\
 {"name": "mem", "full_text": "mem: ${mem}/${memmax} ${memperc}%", \
 "min_width": "mem: 10.00G/10.00G 100%", "align": "right", "separator": true, \
 "separator_block_width": 21}, \
-
-#date
+\
 {"name": "date", "full_text": "${time %m.%d.%y} ", "separator": false}, \
-
-#time
-{"name": "nm_time", "full_text": "${tztime America/Denver %-l:%M %p}", "separator": false},
-
-{"name": "time", "full_text": "${time %-l:%M %p}", "separator": false}
+\
+{"name": "nm_time", "full_text": "${tztime America/Denver %-l:%M %p}", "separator": false},\
+\
+{"name": "time", "full_text": "${time %-l:%M %p}", "separator": false}\
 ],
