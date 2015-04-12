@@ -41,13 +41,26 @@ ZSH_THEME="gitliorononomicon"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+#part 1/2 of hack to fix lwd, will definitely break of zsh cache path changes
+#and/or last-working-dir changes name/lwd storage file
+#note: pushd is both cd + stack, so absolute paths are necessary for scripts
+#now (though always a good idea)
+if [[ -e $ZSH/cache/last-working-dir ]]; then
+	pushd $(cat $ZSH/cache/last-working-dir) &>/dev/null
+else
+	pushd $HOME &>/dev/null
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases git lol nyan pip python rand-quote sudo systemd tmux vi-mode)
+plugins=(archlinux common-aliases git lol last-working-dir nyan pip python rand-quote sudo systemd tmux vi-mode)
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
+
+#part 2/2 of hack to fix last-working-dir
+popd &>/dev/null
 
 # User configuration
 
