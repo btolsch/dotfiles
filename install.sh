@@ -33,7 +33,7 @@ for script in $(ls | grep -E ".install\.sh"); do
 done
 
 config_dirs="powerline"
-for config_dir in {powerline,mpd}; do
+for config_dir in $config_dirs; do
 	if [[ ! -e ~/.config/$config_dir ]]; then
 		mkdir -p ~/.config
 		ln -s ../$rel/$config_dir ~/.config/$config_dir
