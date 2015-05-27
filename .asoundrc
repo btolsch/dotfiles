@@ -1,0 +1,30 @@
+pcm.!default {
+    type pulse
+}
+ctl.!default {
+    type pulse
+}
+
+pcm.phononpulse
+{
+   type plug
+
+   slave.pcm
+   {
+      type pulse
+   }
+
+   hint
+   {
+      show on
+      description "PulseAudio"
+   }
+}
+
+pcm.pulse {
+    type pulse
+    hint {
+        show on
+        description "PulseAudio"
+    }
+}

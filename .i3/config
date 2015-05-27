@@ -133,8 +133,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q -c 1 set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q -c 1 set Master 2dB- unmute
 bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
@@ -194,6 +194,8 @@ exec_always --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
+
+for_window [class="^.*"] border pixel 1pixel
 
 bindsym $mod+Mod1+Return exec i3-sensible-terminal -depth 0 -e /bin/zsh -c "ranger"
 

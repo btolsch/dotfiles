@@ -12,6 +12,8 @@ hi MBEVisibleChanged       ctermfg=1 ctermbg=0
 hi MBEVisibleActiveNormal  ctermfg=22 ctermbg=0
 hi MBEVisibleActiveChanged ctermfg=22 ctermbg=0
 
+hi Visual ctermbg=8
+
 nnoremap j gj
 nnoremap k gk
 
@@ -23,6 +25,7 @@ set splitbelow
 set splitright
 
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 " Alt typically emulated as <Esc>
 nnoremap <silent> <Esc>h :bprevious<CR>
@@ -68,6 +71,8 @@ noremap + <C-W>+
 noremap - <C-W>-
 noremap = <C-W>=
 
+nmap <leader>o :on<CR><leader>t
+
 " filetype plugin indent on
 syntax on
 
@@ -78,6 +83,9 @@ nnoremap <space> za
 
 " fix backspace
 set bs=indent,eol,start
+
+" remove trailing space
+nnoremap <leader>w :%s/\s\+$//g<CR>
 
 " Visual mode sort
 vnoremap <Leader>s :sort<CR>
