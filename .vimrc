@@ -112,10 +112,10 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " set nowrap
 set number
 set t_Co=256
-set tw=79
+set tw=80
 set fo-=t
 set fo+=c
-set colorcolumn=80
+set colorcolumn=+1,+41
 highlight ColorColumn ctermbg=234
 
 set hlsearch

@@ -48,7 +48,18 @@ ZSH_THEME="gitliorononomicon"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases git lol last-working-dir nyan pip python rand-quote sudo systemd tmux vi-mode)
+plugins=(archlinux common-aliases git lol nyan pip python rand-quote sudo systemd tmux vi-mode)
+#remove lwd from shell spawned by ranger to preserve ranger-given working-dir
+#'two levels' because ranger->zsh->tmux->zsh
+if [[ ! $(ps -o  pid,comm x | grep $PPID | cut -d ' ' -f 2) = 'ranger' ]]; then
+	if [[ -a ~/.ranger_parent ]]; then
+		rm -f ~/.ranger_parent
+	else
+		plugins+=(last-working-dir)
+	fi
+else
+	touch ~/.ranger_parent
+fi
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
