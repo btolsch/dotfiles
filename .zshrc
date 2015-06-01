@@ -1,3 +1,6 @@
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+	startx && exit
+fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 

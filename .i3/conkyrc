@@ -29,6 +29,8 @@ ${if_mpd_playing}
 "align": "right", "separator": false}, \
 ${endif}
 \
+{"name": "battery", "full_text": "bat: ${battery_short} ${battery_time}", "min_width": "bat: 100%", \
+"align": "right", "separator": false}, \
 {"name": "logo", "icon_color": "\#1793d1", \
 "full_text": "", "icon": "$HOME/.icons/dzen2/arch_10x10.xbm", "separator": false}, \
 \
