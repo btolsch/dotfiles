@@ -1,6 +1,6 @@
 #!/bin/sh
 [[ -f /usr/bin/VBoxClient-all ]] && /usr/bin/VBoxClient-all
-eval `cat ~/.fehbg`
+source ~/.fehbg
 xset r rate 150 25
 systemctl --user start dropbox
 #and look into options like ncache and the repainting options
