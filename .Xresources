@@ -9,7 +9,7 @@ URxvt*scrollBar: false
 URxvt*cursorBlink: 1
 URxvt*secondaryScreen: 1
 URxvt*secondaryScroll: 2
-URxvt*font: xft:Terminess Powerline:size=13
+URxvt*font: xft:Terminess Powerline:size=9
 URxvt*perl-ext-common: vtwheel,clipboard
 URxvt*keysym.M-c: perl:clipboard:copy
 URxvt*keysym.M-v: perl:clipboard:paste
