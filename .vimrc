@@ -5,14 +5,15 @@ set timeoutlen=150 ttimeoutlen=0
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
-hi MBENormal               ctermfg=8 ctermbg=0
-hi MBEChanged              ctermfg=9 ctermbg=0
-hi MBEVisibleNormal        ctermfg=6 ctermbg=0
-hi MBEVisibleChanged       ctermfg=1 ctermbg=0
-hi MBEVisibleActiveNormal  ctermfg=22 ctermbg=0
-hi MBEVisibleActiveChanged ctermfg=22 ctermbg=0
+hi MBENormal               ctermfg=7
+hi MBEChanged              ctermfg=9
+hi MBEVisibleNormal        ctermfg=3
+hi MBEVisibleChanged       ctermfg=166
+hi MBEVisibleActiveNormal  ctermfg=27
+hi MBEVisibleActiveChanged ctermfg=53
 
-hi Visual ctermbg=8
+hi Visual ctermbg=8 cterm=NONE
+hi Folded ctermbg=0
 
 nnoremap j gj
 nnoremap k gk
@@ -78,7 +79,8 @@ syntax on
 
 " set foldmethod=indent
 set foldmethod=syntax
-set foldnestmax=1
+set foldnestmax=2
+set foldlevel=20
 nnoremap <space> za
 
 " fix backspace
@@ -144,13 +146,18 @@ Helptags
 set laststatus=2
 set noshowmode
 let g:bufferline_echo = 0
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+let g:bufferline_rotate = 1
+let g:bufferline_fixed_index = 0
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_buffers = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme="badwolf"
+let g:airline_theme="badwolfarch"
+let g:airline_detect_modified = 1
 
 let g:airline_powerline_fonts = 1
 " Powerline
