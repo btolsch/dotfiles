@@ -63,3 +63,5 @@ for file in ${(k)other_files}; do
 		fi
 	fi
 done
+
+ln -sf ../../../../badwolfarch.vim vim-airline/autoload/airline/themes/
