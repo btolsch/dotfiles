@@ -176,7 +176,7 @@ set termencoding=utf-8
 " let g:Powerline_symbols = 'fancy'
 
 " CtrlP
-" git clone https://github.com/kien/ctrlp.cim.git
+" git clone https://github.com/ctrlpvim/ctrlp.vim.git
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*.o
