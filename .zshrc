@@ -95,6 +95,7 @@ source $HOME/.zshenv
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 alias rem="rm -rI"
+alias dus="du -xh --max-depth=2 | sort -rh | less"
 
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" sudo-command-line

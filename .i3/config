@@ -119,6 +119,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Mod1+h workspace prev
 bindsym $mod+Mod1+l workspace next
 
+bindsym $mod+slash workspace back_and_forth
+
 bindsym $mod+Mod1+Shift+h move container to workspace prev
 bindsym $mod+Mod1+Shift+l move container to workspace next
 
@@ -193,8 +195,9 @@ exec --no-startup-id dunst
 exec --no-startup-id compton -b
 exec --no-startup-id conky
 exec --no-startup-id xscreensaver -nosplash
-exec --no-startup-id udiskie -2 --tray
+exec_always --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
+exec_always --no-startup-id pasystray
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
