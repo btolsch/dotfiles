@@ -1,12 +1,14 @@
-#!/bin/sh
-IMAGE=/tmp/screen_locked.png
-
+#!/bin/zsh
+source ~/bin/i3lockimg
 xset b off
 
 scrot $IMAGE
-convert -blur 5x5 $IMAGE $IMAGE
+convert -blur 5x5 "$IMAGE" "$IMAGE"
+#convert -scale 10% -scale 1000% "$IMAGE" "$IMAGE"
+
+convert "$IMAGE" ~/dotfiles/mooninites.png -gravity center -composite -matte "$IMAGE"
 
 #BGIMAGE=~/Wallpapers/Misc/linux-www-wallpaper-hd-computer-photo-linux-wallpaper.jpg
 #convert -format "png" $BGIMAGE $IMAGE
 
-/usr/bin/i3lock -i $IMAGE
+/usr/bin/i3lock -i "$IMAGE"

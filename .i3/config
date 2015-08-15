@@ -197,6 +197,7 @@ exec --no-startup-id conky
 exec --no-startup-id xscreensaver -nosplash
 exec_always --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
+#exec_always --no-startup-id nm-applet
 exec_always --no-startup-id pasystray
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
@@ -207,6 +208,8 @@ bindsym $mod+Mod1+Return exec i3-sensible-terminal -depth 0 -e /bin/zsh -c "rang
 
 bindsym $mod+c exec gsimplecal
 
+bindsym $mod+Control+s exec --no-startup-id ~/bin/xscreensaver-toggle
+
 mode "vnc-pass-through" {
 	bindsym $mod+t mode "default"
 }
@@ -216,3 +219,8 @@ for_window [class="(?i)chrome"] border 1pixel
 for_window [class="(?i)urxvt"] border 1pixel
 
 force_display_urgency_hint 1000 ms
+
+#smart_borders no_gaps
+#smart_gaps on
+#gaps inner 11
+#gaps outer 1

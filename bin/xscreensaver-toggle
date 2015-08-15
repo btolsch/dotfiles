@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+if ps cux | grep -q "xscreensaver$"; then
+	xscreensaver-command -exit
+	notify-send --urgency low "screensaver disabled"
+else
+	xscreensaver -no-splash &
+	disown
+	notify-send --urgency low "screensaver enabled"
+fi
