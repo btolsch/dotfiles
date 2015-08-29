@@ -209,6 +209,7 @@ bindsym $mod+Mod1+Return exec i3-sensible-terminal -depth 0 -e /bin/zsh -c "rang
 bindsym $mod+c exec gsimplecal
 
 bindsym $mod+Control+s exec --no-startup-id ~/bin/xscreensaver-toggle
+bindsym $mod+Mod1+s exec --no-startup-id /usr/bin/xscreensaver-command -activate
 
 mode "vnc-pass-through" {
 	bindsym $mod+t mode "default"

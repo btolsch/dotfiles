@@ -97,6 +97,9 @@ alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 alias rem="rm -rI"
 alias fuck='sudo $(fc -ln -1)'
 alias dus="du -xh --max-depth=2 | sort -rh | less"
+alias -s cpp=vim
+alias -s h=vim
+alias -s py=python
 
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" sudo-command-line

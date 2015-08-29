@@ -133,6 +133,14 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Vimux
+map <leader>vl :VimuxRunLasCommand<CR>
+map <leader>vq :VimuxCloseRunner<CR>
+map <leader>vc :VimuxInterruptRunner<CR>
+map <leader>vm :VimuxRunCommand("make")<CR>
+map <leader>vp :VimuxPromptCommand<CR>
+map <leader>vz :VimuxZoomRunner<CR>
+
 " Setup pathogen for plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
 " curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
