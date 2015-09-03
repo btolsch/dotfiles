@@ -134,7 +134,7 @@ set nowritebackup
 set noswapfile
 
 " Vimux
-map <leader>vl :VimuxRunLasCommand<CR>
+map <leader>vl :VimuxRunLastCommand<CR>
 map <leader>vq :VimuxCloseRunner<CR>
 map <leader>vc :VimuxInterruptRunner<CR>
 map <leader>vm :VimuxRunCommand("make")<CR>
