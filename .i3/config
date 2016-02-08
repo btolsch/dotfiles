@@ -30,7 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # lock the screen
-bindsym $mod+o exec --no-startup-id ~/bin/i3lock
+bindsym $mod+o exec --no-startup-id ~/bin/lock_suspend
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -195,10 +195,11 @@ exec --no-startup-id dunst
 exec --no-startup-id compton -b
 exec --no-startup-id conky
 exec --no-startup-id xscreensaver -nosplash
-exec_always --no-startup-id udiskie -2 --tray
+exec --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
 #exec_always --no-startup-id nm-applet
-exec_always --no-startup-id pasystray
+exec --no-startup-id pasystray
+exec --no-startup-id xautolock -locker "~/bin/i3lock -n" -corners --++ -cornerredelay 16 -detectsleep -notify 5 -notifier "notify-send --urgency=low LOCKING 'Going to lock screen in 5s'"
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 

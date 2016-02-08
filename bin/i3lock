@@ -11,4 +11,4 @@ convert "$IMAGE" ~/dotfiles/mooninites.png -gravity center -composite -matte "$I
 #BGIMAGE=~/Wallpapers/Misc/linux-www-wallpaper-hd-computer-photo-linux-wallpaper.jpg
 #convert -format "png" $BGIMAGE $IMAGE
 
-/usr/bin/i3lock -u -i "$IMAGE"
+/usr/bin/i3lock $@ -u -i "$IMAGE"

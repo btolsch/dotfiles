@@ -1,5 +1,7 @@
 autocmd! bufwritepost .vimrc source %
 
+let g:powerline_pycmd = 'py3'
+
 set timeoutlen=150 ttimeoutlen=0
 
 filetype plugin on
@@ -109,7 +111,7 @@ nnoremap <Esc><C-v> "+p
 " MUST be inserted BEFORE the colorscheme command
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " au InsertLeave * match ExtraWhitespace /\s\+$/
-highlight ExtraWhitespace ctermbg=red guibg=red
+" highlight ExtraWhitespace ctermbg=red guibg=red
 
 " set nowrap
 set number
