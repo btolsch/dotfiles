@@ -27,9 +27,20 @@ set confirm
 set splitbelow
 set splitright
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+nmap <silent> <C-i> :call FormatAll()<CR>
+vmap <silent> <C-i> :pyf /usr/share/clang/clang-format.py<CR>
+imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
+
+function FormatAll()
+  let l:lines="all"
+  pyf /usr/share/clang/clang-format.py
+endfunction
+
 " Alt typically emulated as <Esc>
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
