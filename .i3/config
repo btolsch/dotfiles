@@ -240,6 +240,9 @@ for_window [class="(?i)chrome"] border 1pixel
 for_window [class="(?i)urxvt"] border 1pixel
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
+for_window [class="URxvt" instance="floating"] floating enable
+
+bindsym $mod+Control+Return exec urxvt -name floating
 
 force_display_urgency_hint 1000 ms
 
