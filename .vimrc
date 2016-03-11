@@ -1,11 +1,23 @@
 autocmd! bufwritepost .vimrc source %
 
+set nocompatible
+
 let g:powerline_pycmd = 'py3'
 
 set timeoutlen=150 ttimeoutlen=0
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+" TODO: Possibly use the same idea for vimux make (<leader>vm).
+silent let git_dir = system("git rev-parse --show-toplevel")
+if strlen(git_dir)
+  let &makeprg = "make -C " . git_dir
+else
+  set makeprg=make
+endif
+nnoremap <leader><c-m> :silent !clear<cr>:redraw!<cr>:make<space>
+nnoremap <leader><c-n> :redraw!<cr>
 
 hi MBENormal               ctermfg=7
 hi MBEChanged              ctermfg=9
@@ -16,6 +28,9 @@ hi MBEVisibleActiveChanged ctermfg=53
 
 hi Visual ctermbg=8 cterm=NONE
 hi Folded ctermbg=0
+hi CursorLine ctermbg=234 cterm=NONE
+
+set cursorline
 
 nnoremap j gj
 nnoremap k gk
@@ -31,12 +46,17 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set cindent
+set cino=N-s,g0,(0,W2s,j1
 
-nmap <silent> <C-i> :call FormatAll()<CR>
-vmap <silent> <C-i> :pyf /usr/share/clang/clang-format.py<CR>
-imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
+autocmd FileType make setlocal noexpandtab
+map <silent> <leader>so :source $MYVIMRC<cr>
 
-function FormatAll()
+nmap <silent> <leader>c :call FormatAll()<CR>
+vmap <silent> <leader>c :pyf /usr/share/clang/clang-format.py<CR>
+" imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
+
+function! FormatAll()
   let l:lines="all"
   pyf /usr/share/clang/clang-format.py
 endfunction
@@ -153,6 +173,9 @@ map <leader>vc :VimuxInterruptRunner<CR>
 map <leader>vm :VimuxRunCommand("make")<CR>
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vz :VimuxZoomRunner<CR>
+command! -nargs=? VimuxOpenRunnerSelect :call VimuxOpenRunner(<f-args>)
+map <leader>vo :VimuxOpenRunnerSelect<space>
+map <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
 
 " Setup pathogen for plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -376,7 +399,7 @@ function! WatchForChanges(bufname, ...)
   elseif l:defined
     let msg = msg . 'Already watching ' . bufspec . ' for external updates'
   end
-  echo msg
+  " echo msg
   let @"=reg_saved
 endfunction
 

@@ -51,14 +51,14 @@ ZSH_THEME="gitliorononomicon"
 plugins=(archlinux common-aliases git lol nyan pip python rand-quote sudo systemd tmux vi-mode)
 #remove lwd from shell spawned by ranger to preserve ranger-given working-dir
 #'two levels' because ranger->zsh->tmux->zsh
-if [[ ! $(ps -o  pid,comm x | grep $PPID | cut -d ' ' -f 2) = 'ranger' ]]; then
+if ps -o  pid,comm x | grep $PPID | grep -q 'ranger'; then
+	touch ~/.ranger_parent
+else
 	if [[ -a ~/.ranger_parent ]]; then
 		rm -f ~/.ranger_parent
 	else
 		plugins+=(last-working-dir)
 	fi
-else
-	touch ~/.ranger_parent
 fi
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh

@@ -31,6 +31,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # lock the screen
 bindsym $mod+o exec --no-startup-id ~/bin/lock_suspend
+bindsym $mod+Shift+o exec --no-startup-id ~/bin/i3lock
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -141,6 +142,7 @@ bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioPlay exec mpc toggle
+bindsym $mod+XF86AudioPlay exec xdotool key --window "$(xdotool search --class mpv)" p
 
 bindsym XF86MonBrightnessUp exec sudo ~/bin/brightness.sh inc
 bindsym XF86MonBrightnessDown exec sudo ~/bin/brightness.sh dec
@@ -208,6 +210,9 @@ bar {
 	}
 }
 
+bindsym $mod+b bar mode invisible
+bindsym $mod+Shift+b bar mode dock
+
 exec --no-startup-id dunst
 exec --no-startup-id compton -b
 exec --no-startup-id conky
@@ -216,7 +221,6 @@ exec --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
 #exec_always --no-startup-id nm-applet
 exec --no-startup-id pasystray
-exec --no-startup-id xautolock -locker "~/bin/i3lock -n" -corners --++ -cornerredelay 16 -detectsleep -notify 5 -notifier "notify-send --urgency=low LOCKING 'Going to lock screen in 5s'"
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
@@ -241,6 +245,7 @@ for_window [class="(?i)urxvt"] border 1pixel
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="URxvt" instance="floating"] floating enable
+for_window [window_role="pop-up"] floating enable
 
 bindsym $mod+Control+Return exec urxvt -name floating
 
