@@ -47,7 +47,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set cindent
-set cino=N-s,g0,(0,W2s,j1
+set cino=N-s,g0,(0,W2s,j1,+2s
 
 autocmd FileType make setlocal noexpandtab
 map <silent> <leader>so :source $MYVIMRC<cr>
