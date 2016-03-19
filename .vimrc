@@ -251,8 +251,7 @@ map <leader>vc :VimuxInterruptRunner<CR>
 map <leader>vm :VimuxRunCommand("make")<CR>
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vz :VimuxZoomRunner<CR>
-command! -nargs=? VimuxOpenRunnerSelect :call VimuxOpenRunner(<f-args>)
-map <leader>vo :VimuxOpenRunnerSelect<space>
+map <leader>vo :let g:VimuxRunnerIndex =<space>
 map <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
 
 " Bufferline and Airline
