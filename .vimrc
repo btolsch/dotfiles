@@ -2,7 +2,77 @@ autocmd! bufwritepost .vimrc source %
 
 set nocompatible
 
+filetype off " required by vundle
+
 let g:powerline_pycmd = 'py3'
+
+" badwolfarch airline theme, not in a git repo so can't use Plugin
+set rtp+=~/dotfiles/badwolfarch-airline-theme
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'benmills/vimux'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
+
+nnoremap ; :
+
+let mapleader = ","
+" Leader keybindings
+"
+" ;     :nohl
+" c-m   clear, redraw, make
+" c-n   redraw
+" bs    bufdo vimgrepadd @pattern@g | cw
+" so    source .vimrc
+" cf    clang format
+" g     buffers and select buffer by number
+" f     MBE forward
+" b     MBE backward
+" d     MBE delete buffer
+" t     MBE toggle
+" e     MBE focus
+" m     max (width or height)
+" n     max (other one)
+" h     tab previous
+" j     tab first
+" k     tab last
+" l     tab next
+" o     only + MBE window
+" s     sort lines
+" vl    vimux run last command
+" vq    vimux close runner
+" vc    vimux interrupt runner
+" vm    vimux run make
+" vp    vimux prompt command
+" vz    vimux zoom runner
+" vo    vimux open runner select
+" tl    c-p and enter in runner
+" w     open vertical split window
+" v     select recently pasted text
+" wb    <c-w>b
+" wp    <c-w>p
+" pc    close preview window
+
+nnoremap <leader>w <c-w>v<c-w>l
+nnoremap <leader>v V']
+nnoremap <leader>wb <c-w>b
+nnoremap <leader>wp <c-w>p
+nnoremap <leader>pc :pc<cr>
+
+let g:ycm_always_populate_location_list = 1
+let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
 set timeoutlen=150 ttimeoutlen=0
 
@@ -19,6 +89,8 @@ endif
 nnoremap <leader><c-m> :silent !clear<cr>:redraw!<cr>:make<space>
 nnoremap <leader><c-n> :redraw!<cr>
 
+nnoremap <leader>bs :execute "MBEClose"<bar>cex []<bar>execute 'bufdo vimgrepadd @@g %'<bar>cw<s-left><s-left><right>
+
 hi MBENormal               ctermfg=7
 hi MBEChanged              ctermfg=9
 hi MBEVisibleNormal        ctermfg=3
@@ -29,13 +101,18 @@ hi MBEVisibleActiveChanged ctermfg=53
 hi Visual ctermbg=8 cterm=NONE
 hi Folded ctermbg=0
 hi CursorLine ctermbg=234 cterm=NONE
+hi Pmenu ctermbg=235 ctermfg=246 cterm=NONE
+hi PmenuSel ctermbg=238 ctermfg=246 cterm=NONE
+
+hi YcmErrorLine ctermbg=52 cterm=NONE
+hi YcmWarningLine ctermbg=94 cterm=NONE
+hi YcmErrorSection ctermbg=52 cterm=NONE
+hi YcmWarningSection ctermbg=94 cterm=NONE
 
 set cursorline
 
 nnoremap j gj
 nnoremap k gk
-
-let mapleader = ","
 
 set hidden
 set confirm
@@ -52,8 +129,8 @@ set cino=N-s,g0,(0,W2s,j1,+2s
 autocmd FileType make setlocal noexpandtab
 map <silent> <leader>so :source $MYVIMRC<cr>
 
-nmap <silent> <leader>c :call FormatAll()<CR>
-vmap <silent> <leader>c :pyf /usr/share/clang/clang-format.py<CR>
+nmap <silent> <leader>cf :call FormatAll()<CR>
+vmap <silent> <leader>cf :pyf /usr/share/clang/clang-format.py<CR>
 " imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
 
 function! FormatAll()
@@ -123,7 +200,7 @@ set bs=indent,eol,start
 nnoremap <leader>w :%s/\s\+$//g<CR>
 
 " Visual mode sort
-vnoremap <Leader>s :sort<CR>
+vnoremap <leader>s :sort<CR>
 
 " Visual mode search
 vnoremap // y/<C-r>"<CR>
@@ -156,7 +233,8 @@ highlight ColorColumn ctermbg=234
 set hlsearch
 set incsearch
 set ignorecase
-noremap <silent> <Leader>; :nohl<CR>
+set smartcase
+noremap <silent> <leader>; :nohl<CR>
 
 " Line wrapping
 vmap Q gq
@@ -176,13 +254,6 @@ map <leader>vz :VimuxZoomRunner<CR>
 command! -nargs=? VimuxOpenRunnerSelect :call VimuxOpenRunner(<f-args>)
 map <leader>vo :VimuxOpenRunnerSelect<space>
 map <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
-
-" Setup pathogen for plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
-" Install plugins to ~/.vim/bundle/
-call pathogen#infect()
-Helptags
 
 " Bufferline and Airline
 " https://github.com/bling/vim-bufferline.git

@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/vimux"]
 	path = .vim/bundle/vimux
 	url = https://github.com/benmills/vimux.git
+[submodule ".vim/bundle/vundle.vim"]
+	path = .vim/bundle/vundle.vim
+	url = https://github.com/vundlevim/vundle.vim.git

@@ -101,7 +101,7 @@ alias -s cpp=vim
 alias -s h=vim
 alias -s py=python
 
-bindkey "^R" history-incremental-search-backward
+bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" sudo-command-line
 bindkey -a "^S" sudo-command-line
 bindkey "^?" backward-delete-char
