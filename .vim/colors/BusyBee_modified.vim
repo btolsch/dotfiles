@@ -55,7 +55,7 @@ hi StatusLineNC guifg=#939395 guibg=#303030 guisp=#303030 gui=NONE ctermfg=246 c
 " hi NonText guifg=#808080 guibg=#202020 guisp=#202020 gui=NONE ctermfg=8 ctermbg=234 cterm=NONE
 hi NonText guifg=#808080 guibg=NONE guisp=#202020 gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
 hi DiffChange guibg=NONE gui=NONE ctermbg=NONE cterm=NONE
-hi DiffText guifg=NONE guibg=#0c2b52 guisp=#0c2b52 gui=NONE ctermfg=NONE ctermbg=17 cterm=NONE
+hi DiffText guifg=NONE guibg=#1859a8 guisp=#0c2b52 gui=NONE ctermfg=NONE ctermbg=25 cterm=NONE
 hi Debug guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
 hi PMenuSbar guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Identifier guifg=#b1d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
