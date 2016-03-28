@@ -100,16 +100,21 @@ def FlagsForClangComplete(root):
         return None
 
 def FlagsForInclude(root):
+    flags = []
     try:
         include_path = FindNearest(root, 'include')
-        flags = []
         for dirroot, dirnames, filenames in os.walk(include_path):
             for dir_path in dirnames:
                 real_path = os.path.join(dirroot, dir_path)
-                flags = flags + ["-I" +real_path]
-        return flags
+                flags = flags + ["-I" + real_path]
     except:
-        return None
+        pass
+    try:
+        src_path = FindNearest(root, 'src')
+        flags = flags + ["-I" + src_path]
+    except:
+        pass
+    return flags
 
 def FlagsForCompilationDatabase(root, filename):
     try:

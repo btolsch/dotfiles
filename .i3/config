@@ -214,7 +214,7 @@ bindsym $mod+b bar mode invisible
 bindsym $mod+Shift+b bar mode dock
 
 exec --no-startup-id dunst
-exec --no-startup-id compton -b
+exec_always --no-startup-id compton -b
 exec --no-startup-id conky
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id udiskie -2 --tray
@@ -224,7 +224,7 @@ exec --no-startup-id pasystray
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
-bindsym $mod+Mod1+Return exec st -e /bin/zsh -c "ranger"
+bindsym $mod+Mod1+Return exec st-noalpha -t "st-ranger" -e /bin/zsh -c "ranger"
 
 bindsym $mod+c exec gsimplecal
 
