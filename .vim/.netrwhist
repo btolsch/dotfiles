@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/btolsch/.vim'
 let g:netrw_dirhist_2='/home/btolsch/dotfiles/powerline'
 let g:netrw_dirhist_3='/home/btolsch/Dropbox/django/squirrel'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/btolsch/Dropbox'
 let g:netrw_dirhist_6='/home/btolsch/Dropbox/caffe_scripts'
 let g:netrw_dirhist_7='/home/btolsch/dotfiles'
 let g:netrw_dirhist_8='/home/btolsch/Dropbox/cmu/fall15/15640/15-440-p2/src/github.com/cmu440/tribbler/tests_cp'
+let g:netrw_dirhist_9='/home/btolsch/dotfiles/.vim'

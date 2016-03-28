@@ -4,3 +4,4 @@ export PATH=$CUDA_HOME/bin:$HOME/bin:$PATH
 export PYTHONPATH=$HOME/caffe-orig/python:$PYTHONPATH
 export LESS='-x 4 -R'
 export EDITOR=vim
+export TERMINAL=st

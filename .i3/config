@@ -224,9 +224,7 @@ exec --no-startup-id pasystray
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
-for_window [class="^.*"] border pixel 1pixel
-
-bindsym $mod+Mod1+Return exec i3-sensible-terminal -depth 0 -e /bin/zsh -c "ranger"
+bindsym $mod+Mod1+Return exec st -e /bin/zsh -c "ranger"
 
 bindsym $mod+c exec gsimplecal
 
@@ -240,14 +238,14 @@ mode "vnc-pass-through" {
 }
 bindsym $mod+t mode "vnc-pass-through"
 
-for_window [class="(?i)chrome"] border 1pixel
-for_window [class="(?i)urxvt"] border 1pixel
+for_window [class="^.*"] border pixel 1pixel
+
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
-for_window [class="URxvt" instance="floating"] floating enable
+for_window [class="st-256color" instance="floating"] floating enable
 for_window [window_role="pop-up"] floating enable
 
-bindsym $mod+Control+Return exec urxvt -name floating
+bindsym $mod+Control+Return exec st -c floating
 
 force_display_urgency_hint 1000 ms
 

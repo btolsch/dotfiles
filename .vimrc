@@ -1,7 +1,5 @@
 autocmd! bufwritepost .vimrc source %
 
-set nocompatible
-
 filetype off " required by vundle
 
 let g:powerline_pycmd = 'py3'
@@ -22,10 +20,15 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 
 call vundle#end()
 
 nnoremap ; :
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme BusyBee_modified
 
 let mapleader = ","
 " Leader keybindings
@@ -74,9 +77,13 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
+
 set timeoutlen=150 ttimeoutlen=0
 
 filetype plugin on
+syntax on
 set omnifunc=syntaxcomplete#Complete
 
 " TODO: Possibly use the same idea for vimux make (<leader>vm).
@@ -101,6 +108,7 @@ hi MBEVisibleActiveChanged ctermfg=53
 hi Visual ctermbg=8 cterm=NONE
 hi Folded ctermbg=0
 hi CursorLine ctermbg=234 cterm=NONE
+hi CursorLineNr guifg=#b2d631 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
 hi Pmenu ctermbg=235 ctermfg=246 cterm=NONE
 hi PmenuSel ctermbg=238 ctermfg=246 cterm=NONE
 
@@ -109,7 +117,24 @@ hi YcmWarningLine ctermbg=94 cterm=NONE
 hi YcmErrorSection ctermbg=52 cterm=NONE
 hi YcmWarningSection ctermbg=94 cterm=NONE
 
+hi link cDefine PreProc
+hi link cInclude PreProc
+hi link cPrecondit PreProc
+
+hi! link FoldColumn LineNr
+
 set cursorline
+set relativenumber number
+
+autocmd FocusLost,WinLeave,InsertEnter * set norelativenumber number
+autocmd FocusGained,WinEnter,InsertLeave * set relativenumber number
+
+set fillchars+=vert:\ " comment
+
+nnoremap <leader>si :call SyntaxItem()<CR>
+function! SyntaxItem()
+  echo synIDattr(synID(line("."), col("."), 1), "name")
+endfunction
 
 nnoremap j gj
 nnoremap k gk
@@ -126,7 +151,12 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
+autocmd FileType markdown setlocal cino=+0
 autocmd FileType make setlocal noexpandtab
+autocmd FileType vim setlocal fdc=1
+autocmd FileType vim setlocal foldlevel=0
+autocmd FileType vim setlocal foldmethod=marker
+
 map <silent> <leader>so :source $MYVIMRC<cr>
 
 nmap <silent> <leader>cf :call FormatAll()<CR>
@@ -139,6 +169,10 @@ function! FormatAll()
 endfunction
 
 " Alt typically emulated as <Esc>
+nnoremap <silent> <M-h> :bprevious<CR>
+nnoremap <silent> <M-j> :bfirst<CR>
+nnoremap <silent> <M-k> :blast<CR>
+nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
@@ -158,6 +192,9 @@ nnoremap <silent> <leader>h :tabprevious<CR>
 nnoremap <silent> <leader>j :tabfirst<CR>
 nnoremap <silent> <leader>k :tablast<CR>
 nnoremap <silent> <leader>l :tabnext<CR>
+nnoremap <silent> <M-<> :tabm -1<CR>
+nnoremap <silent> <M->> :tabm +1<CR>
+nnoremap <C-M-n> :tabnew<Space>
 nnoremap <silent> <Esc>< :tabm -1<CR>
 nnoremap <silent> <Esc>> :tabm +1<CR>
 nnoremap <Esc><C-n> :tabnew<Space>
@@ -183,9 +220,6 @@ noremap - <C-W>-
 noremap = <C-W>=
 
 nmap <leader>o :on<CR><leader>t
-
-" filetype plugin indent on
-syntax on
 
 " set foldmethod=indent
 set foldmethod=syntax
@@ -215,20 +249,12 @@ vnoremap <C-c> "+y
 " Normal paste
 nnoremap <Esc><C-v> "+p
 
-" Show whitespace
-" MUST be inserted BEFORE the colorscheme command
-" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-" au InsertLeave * match ExtraWhitespace /\s\+$/
-" highlight ExtraWhitespace ctermbg=red guibg=red
-
-" set nowrap
 set number
-set t_Co=256
 set tw=80
 set fo-=t
 set fo+=c
 set colorcolumn=+1,+41
-highlight ColorColumn ctermbg=234
+highlight ColorColumn guibg=#202020 ctermbg=234
 
 set hlsearch
 set incsearch
@@ -270,20 +296,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme="badwolfarch"
+" let g:airline_theme="badwolfarch"
 let g:airline_detect_modified = 1
 
 let g:airline_powerline_fonts = 1
 " Powerline
 " yaourt -S python-powerline-git
 " let $PYTHONPATH='/usr/lib/python3.4/site-packages'
-" set laststatus=2
-" set noshowmode
-" set encoding=utf-8
-set term=xterm-256color
-set termencoding=utf-8
 " set guifont=Inconsolata\ for\ Powerline:h15
-" set t_Co=256
 " python3 from powerline.vim import setup as powerline_setup
 " python3 powerline_setup()
 " python3 del powerline_setup
