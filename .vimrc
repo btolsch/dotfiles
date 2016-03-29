@@ -22,6 +22,8 @@ Plugin 'benmills/vimux'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-obsession'
 
 call vundle#end()
 
@@ -204,6 +206,9 @@ inoremap <Esc>h <C-o>h
 inoremap <Esc>j <C-o>j
 inoremap <Esc>k <C-o>k
 inoremap <Esc>l <C-o>l
+
+noremap <leader>d "_d
+noremap <leader>D "_D
 
 " Faster scrolling with cursor in the middle
 " nnoremap <C-x> LztM
