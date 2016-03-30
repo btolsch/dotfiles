@@ -44,7 +44,8 @@ hi Normal guifg=#b5b5b5 guibg=NONE guisp=#202020 gui=NONE ctermfg=249 ctermbg=NO
 "hi Underlined -- no settings --
 "hi TabLine -- no settings --
 "hi clear -- no settings --
-hi IncSearch guifg=NONE guibg=#136e75 guisp=#136e75 gui=NONE ctermfg=NONE ctermbg=6 cterm=NONE
+hi Search guifg=#1f1f1f guibg=#b2d631 guisp=#136e75 gui=NONE ctermfg=234 ctermbg=149 cterm=NONE
+hi IncSearch guifg=#1f1f1f guibg=#18b7c2 guisp=#136e75 gui=NONE ctermfg=NONE ctermbg=6 cterm=NONE
 hi SpecialComment guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
 hi Typedef guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Title guifg=#f6f3e8 guibg=NONE guisp=NONE gui=bold ctermfg=230 ctermbg=NONE cterm=bold
@@ -54,8 +55,8 @@ hi Include guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE
 hi StatusLineNC guifg=#939395 guibg=#303030 guisp=#303030 gui=NONE ctermfg=246 ctermbg=236 cterm=NONE
 " hi NonText guifg=#808080 guibg=#202020 guisp=#202020 gui=NONE ctermfg=8 ctermbg=234 cterm=NONE
 hi NonText guifg=#808080 guibg=NONE guisp=#202020 gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
-hi DiffChange guibg=NONE gui=NONE ctermbg=NONE cterm=NONE
-hi DiffText guifg=NONE guibg=#1859a8 guisp=#0c2b52 gui=NONE ctermfg=NONE ctermbg=25 cterm=NONE
+hi DiffChange guifg=#b5b5b5 guibg=#0a2e61 guisp=#0a2e61 gui=NONE ctermfg=249 ctermbg=17 cterm=NONE
+hi DiffText guifg=#b5b5b5 guibg=#0f4ca8 guisp=#0f4ca8 gui=NONE ctermfg=249 ctermbg=25 cterm=NONE
 hi Debug guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
 hi PMenuSbar guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Identifier guifg=#b1d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
@@ -65,6 +66,8 @@ hi StorageClass guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg
 hi Todo guifg=#a8a8a8 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
 hi Special guifg=#b2d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
 hi LineNr guifg=#4d4d4d guibg=#2b2b2b guisp=#202020 gui=NONE ctermfg=239 ctermbg=234 cterm=NONE
+hi CursorLineNr guifg=#b2d631 guibg=#2b2b2b guisp=#202020 gui=NONE ctermfg=149 ctermbg=235 cterm=NONE
+hi CursorLine guifg=NONE guibg=#2b2b2b guisp=NONE gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi StatusLine guifg=#d3d3d5 guibg=#303030 guisp=#303030 gui=NONE ctermfg=188 ctermbg=236 cterm=NONE
 hi Label guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi PMenuSel guifg=#000000 guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=NONE ctermbg=149 cterm=NONE
@@ -77,11 +80,11 @@ hi Number guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE 
 hi Boolean guifg=#b1d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
 hi Operator guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi CursorLine guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
-hi DiffDelete guifg=NONE guibg=#4d0404 guisp=#4d0404 gui=NONE ctermfg=NONE ctermbg=52 cterm=NONE
+hi DiffDelete guifg=#1f1f1f guibg=#a81414 guisp=#a81414 gui=NONE ctermfg=234 ctermbg=124 cterm=NONE
 hi CursorColumn guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Define guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
-hi Function guifg=#ffff00 guibg=NONE guisp=NONE gui=NONE ctermfg=11 ctermbg=NONE cterm=NONE
-hi PreProc guifg=#aeb361 guibg=NONE guisp=NONE gui=NONE ctermfg=131 ctermbg=NONE cterm=NONE
+hi Function guifg=#dbdb00 guibg=NONE guisp=NONE gui=NONE ctermfg=184 ctermbg=NONE cterm=NONE
+hi PreProc guifg=#aeb361 guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=NONE cterm=NONE
 hi Visual guifg=#faf4c6 guibg=#3c414c guisp=#3c414c gui=NONE ctermfg=230 ctermbg=239 cterm=NONE
 hi VertSplit guifg=#444444 guibg=#303030 guisp=#303030 gui=NONE ctermfg=238 ctermbg=236 cterm=NONE
 hi Exception guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
@@ -98,10 +101,17 @@ hi MatchParen guifg=#d0ffc0 guibg=#202020 guisp=#202020 gui=bold ctermfg=193 cte
 hi Repeat guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Structure guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Macro guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
-hi DiffAdd guifg=NONE guibg=#546b00 guisp=#546b00 gui=NONE ctermfg=NONE ctermbg=58 cterm=NONE
+hi DiffAdd guifg=#1f1f1f guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=234 ctermbg=149 cterm=NONE
 hi cursorim guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 hi pythonimport guifg=#009000 guibg=NONE guisp=NONE gui=NONE ctermfg=28 ctermbg=NONE cterm=NONE
 hi pythonexception guifg=#f00000 guibg=NONE guisp=NONE gui=NONE ctermfg=196 ctermbg=NONE cterm=NONE
 hi pythonbuiltinfunction guifg=#009000 guibg=NONE guisp=NONE gui=NONE ctermfg=28 ctermbg=NONE cterm=NONE
 hi pythonoperator guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi pythonexclass guifg=#009000 guibg=NONE guisp=NONE gui=NONE ctermfg=28 ctermbg=NONE cterm=NONE
+hi CtrlPBufferHid guifg=#b5b5b5 guibg=NONE guisp=#202020 gui=NONE ctermfg=249 ctermbg=NONE cterm=NONE
+hi CtrlPBufferHidMod guifg=#dbdb00 guibg=NONE guisp=NONE gui=NONE ctermfg=184 ctermbg=NONE cterm=NONE
+hi CtrlPBufferVis guifg=#1265e2 guibg=NONE guisp=NONE gui=NONE ctermfg=26 ctermbg=NONE cterm=NONE
+hi CtrlPBufferVisMod guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
+hi CtrlPBufferCur guifg=#b2d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
+hi CtrlPBufferCurMod guifg=#6000af guibg=NONE guisp=NONE gui=NONE ctermfg=55 ctermbg=NONE cterm=NONE
+hi CtrlPBufferPath guifg=#3c414c guibg=NONE guisp=#3c414c gui=NONE ctermfg=239 ctermbg=NONE cterm=NONE

@@ -5,7 +5,7 @@ filetype off " required by vundle
 let g:powerline_pycmd = 'py3'
 
 " badwolfarch airline theme, not in a git repo so can't use Plugin
-set rtp+=~/dotfiles/badwolfarch-airline-theme
+set rtp+=~/dotfiles/custom-airline-themes
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -30,6 +30,8 @@ call vundle#end()
 nnoremap ; :
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+filetype plugin on
+syntax on
 colorscheme BusyBee_modified
 
 let mapleader = ","
@@ -82,10 +84,14 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
 
+let g:ctrlp_open_multiple_files = 'i'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_match_current_file = 1
+
+let g:airline_theme = 'dark_modified'
+
 set timeoutlen=150 ttimeoutlen=0
 
-filetype plugin on
-syntax on
 set omnifunc=syntaxcomplete#Complete
 
 " TODO: Possibly use the same idea for vimux make (<leader>vm).
@@ -109,10 +115,6 @@ hi MBEVisibleActiveChanged ctermfg=53
 
 hi Visual ctermbg=8 cterm=NONE
 hi Folded ctermbg=0
-hi CursorLine ctermbg=234 cterm=NONE
-hi CursorLineNr guifg=#b2d631 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
-hi Pmenu ctermbg=235 ctermfg=246 cterm=NONE
-hi PmenuSel ctermbg=238 ctermfg=246 cterm=NONE
 
 hi YcmErrorLine ctermbg=52 cterm=NONE
 hi YcmWarningLine ctermbg=94 cterm=NONE
@@ -153,7 +155,7 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
-autocmd FileType markdown setlocal cino=+0
+autocmd FileType markdown setlocal nocindent smartindent autoindent
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldlevel=0
@@ -213,6 +215,34 @@ noremap <leader>D "_D
 " Faster scrolling with cursor in the middle
 " nnoremap <C-x> LztM
 " nnoremap <C-c> HzbM
+
+nnoremap <M-j> 5j
+nnoremap <M-k> 5k
+noremap <C-M-e> 5<C-e>
+noremap <C-M-y> 5<C-y>
+
+inoremap <M-h> <C-o>h
+inoremap <M-j> <C-o>j
+inoremap <M-k> <C-o>k
+inoremap <M-l> <C-o>l
+
+inoremap <M-b> <C-o>b
+inoremap <M-e> <C-o>e
+inoremap <M-o> <C-o>o
+inoremap <M-O> <C-o>O
+
+nnoremap <silent> ]d :YcmCompleter Goto<cr>
+nnoremap <silent> [d :YcmCompleter GotoImprecise<cr>
+
+nmap <M-1> <Plug>AirlineSelectTab1
+nmap <M-2> <Plug>AirlineSelectTab2
+nmap <M-3> <Plug>AirlineSelectTab3
+nmap <M-4> <Plug>AirlineSelectTab4
+nmap <M-5> <Plug>AirlineSelectTab5
+nmap <M-6> <Plug>AirlineSelectTab6
+nmap <M-7> <Plug>AirlineSelectTab7
+nmap <M-8> <Plug>AirlineSelectTab8
+nmap <M-9> <Plug>AirlineSelectTab9
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j

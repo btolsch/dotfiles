@@ -1,11 +1,11 @@
-let s:N1 = [ '#141413' , '#aeee00' , 232 , 27 ] " blackestgravel & lime
-let s:N2 = [ '#f4cf86' , '#45413b' , 222 , 238 ] " dirtyblonde    & deepgravel
-let s:N3 = [ '#8cffba' , '#242321' , 25 , 235 ] " saltwatertaffy & darkgravel
+let s:N1 = [ '#141413' , '#1265e2' , 232 , 27 ] " blackestgravel & lime
+let s:N2 = [ '#aaaaaa' , '#45413b' , 222 , 238 ] " dirtyblonde    & deepgravel
+let s:N3 = [ '#aeee00' , '#242321' , 25 , 235 ] " saltwatertaffy & darkgravel
 let s:N4 = [ '#666462' , 241 ]                   " mediumgravel
 
 let s:I1 = [ '#141413' , '#0a9dff' , 232 , 39  ] " blackestgravel & tardis
-let s:I2 = [ '#f4cf86' , '#005fff' , 222 , 27  ] " dirtyblonde    & facebook
-let s:I3 = [ '#0a9dff' , '#242321' , 39  , 235 ] " tardis         & darkgravel
+let s:I2 = [ '#333333' , '#005fff' , 222 , 27  ] " dirtyblonde    & facebook
+let s:I3 = [ '#aeee00' , '#242321' , 39  , 235 ] " tardis         & darkgravel
 
 let s:V1 = [ '#141413' , '#ffa724' , 232 , 214 ] " blackestgravel & orange
 let s:V2 = [ '#000000' , '#fade3e' , 16  , 221 ] " coal           & dalespale
