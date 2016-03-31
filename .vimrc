@@ -243,6 +243,8 @@ nmap <M-7> <Plug>AirlineSelectTab7
 nmap <M-8> <Plug>AirlineSelectTab8
 nmap <M-9> <Plug>AirlineSelectTab9
 
+nnoremap <C-n> :CtrlPBuffer<cr>
+
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j
 noremap <A-n> <C-w><

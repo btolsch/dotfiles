@@ -80,7 +80,8 @@ hi Number guifg=#ff9800 guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE 
 hi Boolean guifg=#b1d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE cterm=NONE
 hi Operator guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi CursorLine guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
-hi DiffDelete guifg=#1f1f1f guibg=#a81414 guisp=#a81414 gui=NONE ctermfg=234 ctermbg=124 cterm=NONE
+hi DiffDelete guifg=#2e2e2e guibg=#591500 guisp=#591500 gui=NONE ctermfg=236 ctermbg=52 cterm=NONE
+" hi DiffDelete guifg=#1f1f1f guibg=#a81414 guisp=#a81414 gui=NONE ctermfg=234 ctermbg=124 cterm=NONE
 hi CursorColumn guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Define guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
 hi Function guifg=#dbdb00 guibg=NONE guisp=NONE gui=NONE ctermfg=184 ctermbg=NONE cterm=NONE
@@ -101,7 +102,8 @@ hi MatchParen guifg=#d0ffc0 guibg=#202020 guisp=#202020 gui=bold ctermfg=193 cte
 hi Repeat guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Structure guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Macro guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
-hi DiffAdd guifg=#1f1f1f guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=234 ctermbg=149 cterm=NONE
+hi DiffAdd guifg=NONE guibg=#224700 guisp=#224700 gui=NONE ctermfg=NONE ctermbg=22 cterm=NONE
+" hi DiffAdd guifg=#1f1f1f guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=234 ctermbg=149 cterm=NONE
 hi cursorim guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 hi pythonimport guifg=#009000 guibg=NONE guisp=NONE gui=NONE ctermfg=28 ctermbg=NONE cterm=NONE
 hi pythonexception guifg=#f00000 guibg=NONE guisp=NONE gui=NONE ctermfg=196 ctermbg=NONE cterm=NONE
