@@ -23,10 +23,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-obsession'
+Plugin 'jceb/vim-hier'
 
 call vundle#end()
 
 nnoremap ; :
+vnoremap ; :
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 filetype plugin on
@@ -39,17 +41,12 @@ let mapleader = ","
 " ;     :nohl
 " c-m   clear, redraw, make
 " c-n   redraw
+" bd    delete current buffer but don't close window
 " bs    bufdo vimgrepadd @pattern@g | cw
 " so    source .vimrc
 " cf    clang format
-" g     buffers and select buffer by number
-" f     MBE forward
-" b     MBE backward
-" d     MBE delete buffer
-" t     MBE toggle
-" e     MBE focus
-" m     max (width or height)
-" n     max (other one)
+" m     max height
+" n     max width
 " h     tab previous
 " j     tab first
 " k     tab last
@@ -69,6 +66,7 @@ let mapleader = ","
 " wb    <c-w>b
 " wp    <c-w>p
 " pc    close preview window
+" ws    delete trailing whitespace
 
 nnoremap <leader>w <c-w>v<c-w>l
 nnoremap <leader>v V']
@@ -86,6 +84,7 @@ let g:python3_host_prog = '/usr/bin/python'
 let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_current_file = 1
+let g:ctrlp_switch_buffer = 0
 
 let g:airline_theme = 'dark_modified'
 
@@ -103,17 +102,7 @@ endif
 nnoremap <leader><c-m> :silent !clear<cr>:redraw!<cr>:make<space>
 nnoremap <leader><c-n> :redraw!<cr>
 
-nnoremap <leader>bs :execute "MBEClose"<bar>cex []<bar>execute 'bufdo vimgrepadd @@g %'<bar>cw<s-left><s-left><right>
-
-hi MBENormal               ctermfg=7
-hi MBEChanged              ctermfg=9
-hi MBEVisibleNormal        ctermfg=3
-hi MBEVisibleChanged       ctermfg=166
-hi MBEVisibleActiveNormal  ctermfg=27
-hi MBEVisibleActiveChanged ctermfg=53
-
-hi Visual ctermbg=8 cterm=NONE
-hi Folded ctermbg=0
+nnoremap <leader>bs :cex []<bar>execute 'bufdo vimgrepadd @@g %'<bar>cw<s-left><s-left><right>
 
 hi YcmErrorLine ctermbg=52 cterm=NONE
 hi YcmWarningLine ctermbg=94 cterm=NONE
@@ -123,6 +112,8 @@ hi YcmWarningSection ctermbg=94 cterm=NONE
 hi link cDefine PreProc
 hi link cInclude PreProc
 hi link cPrecondit PreProc
+
+hi link pythonInclude PreProc
 
 hi! link FoldColumn LineNr
 
@@ -176,17 +167,18 @@ nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-j> :bfirst<CR>
 nnoremap <silent> <M-k> :blast<CR>
 nnoremap <silent> <M-l> :bnext<CR>
+nnoremap <silent> <M-;> :b#<cr>
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
-nnoremap <leader>g :buffers<CR>:b<space>
-
-nnoremap <silent> <leader>f :MBEbf<CR>
-nnoremap <silent> <leader>b :MBEbb<CR>
-nnoremap <silent> <leader>d :MBEbd<space>
-nnoremap <silent> <leader>t :MBEToggle<CR>
-nnoremap <silent> <leader>e :MBEFocus<CR>
+nnoremap <silent> <Esc>; :b#<cr>
+nnoremap <leader>bd :bnext<cr>:bd #<cr>
+nnoremap <silent> [q :cprev<cr>
+nnoremap <silent> ]q :cnext<cr>
+nnoremap <silent> <leader>co :copen<cr>
+nnoremap <silent> <leader>cc :cclose<cr>
+nnoremap <silent> <leader>cw :cw<cr>
 
 nnoremap <silent> <leader>m <C-w>_
 nnoremap <silent> <leader>n <C-w>\|
@@ -197,12 +189,17 @@ nnoremap <silent> <leader>k :tablast<CR>
 nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
-nnoremap <C-M-n> :tabnew<Space>
+nnoremap <C-M-n> <C-w>s<C-w>T
 nnoremap <silent> <Esc>< :tabm -1<CR>
 nnoremap <silent> <Esc>> :tabm +1<CR>
-nnoremap <Esc><C-n> :tabnew<Space>
+nnoremap <Esc><C-n> <C-w>s<C-w>T
 
 " Insert home key motion with Alt
+inoremap <M-h> <C-o>h
+inoremap <M-j> <C-o>j
+inoremap <M-k> <C-o>k
+inoremap <M-l> <C-o>l
+
 inoremap <Esc>h <C-o>h
 inoremap <Esc>j <C-o>j
 inoremap <Esc>k <C-o>k
@@ -220,18 +217,16 @@ nnoremap <M-k> 5k
 noremap <C-M-e> 5<C-e>
 noremap <C-M-y> 5<C-y>
 
-inoremap <M-h> <C-o>h
-inoremap <M-j> <C-o>j
-inoremap <M-k> <C-o>k
-inoremap <M-l> <C-o>l
-
-inoremap <M-b> <C-o>b
-inoremap <M-e> <C-o>e
 inoremap <M-o> <C-o>o
 inoremap <M-O> <C-o>O
+inoremap <M-a> <C-o>a
+inoremap <M-A> <C-o>A
+inoremap <M-p> <C-o>p
+inoremap <M-P> <C-o>P
 
-nnoremap <silent> ]d :YcmCompleter Goto<cr>
-nnoremap <silent> [d :YcmCompleter GotoImprecise<cr>
+nnoremap <silent> ]d :YcmCompleter GoTo<cr>
+nnoremap <silent> [d :YcmCompleter GoToImprecise<cr>
+nnoremap <silent> [D :YcmCompleter GoToDeclaration<cr>
 
 nmap <M-1> <Plug>AirlineSelectTab1
 nmap <M-2> <Plug>AirlineSelectTab2
@@ -244,6 +239,7 @@ nmap <M-8> <Plug>AirlineSelectTab8
 nmap <M-9> <Plug>AirlineSelectTab9
 
 nnoremap <C-n> :CtrlPBuffer<cr>
+nnoremap <C-c> :CtrlPCurWD<cr>
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j
@@ -255,7 +251,7 @@ noremap + <C-W>+
 noremap - <C-W>-
 noremap = <C-W>=
 
-nmap <leader>o :on<CR><leader>t
+nmap <leader>o :on<cr>
 
 " set foldmethod=indent
 set foldmethod=syntax
@@ -267,7 +263,7 @@ nnoremap <space> za
 set bs=indent,eol,start
 
 " remove trailing space
-nnoremap <leader>w :%s/\s\+$//g<CR>
+nnoremap <leader>ws :%s/\s\+$//g<CR>
 
 " Visual mode sort
 vnoremap <leader>s :sort<CR>
@@ -290,7 +286,6 @@ set tw=80
 set fo-=t
 set fo+=c
 set colorcolumn=+1,+41
-highlight ColorColumn guibg=#202020 ctermbg=234
 
 set hlsearch
 set incsearch

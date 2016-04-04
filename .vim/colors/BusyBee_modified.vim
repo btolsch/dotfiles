@@ -68,6 +68,7 @@ hi Special guifg=#b2d631 guibg=NONE guisp=NONE gui=NONE ctermfg=149 ctermbg=NONE
 hi LineNr guifg=#4d4d4d guibg=#2b2b2b guisp=#202020 gui=NONE ctermfg=239 ctermbg=234 cterm=NONE
 hi CursorLineNr guifg=#b2d631 guibg=#2b2b2b guisp=#202020 gui=NONE ctermfg=149 ctermbg=235 cterm=NONE
 hi CursorLine guifg=NONE guibg=#2b2b2b guisp=NONE gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
+hi ColorColumn guifg=NONE guibg=#2b2b2b guisp=NONE gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi StatusLine guifg=#d3d3d5 guibg=#303030 guisp=#303030 gui=NONE ctermfg=188 ctermbg=236 cterm=NONE
 hi Label guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi PMenuSel guifg=#000000 guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=NONE ctermbg=149 cterm=NONE
@@ -85,7 +86,7 @@ hi DiffDelete guifg=#2e2e2e guibg=#591500 guisp=#591500 gui=NONE ctermfg=236 cte
 hi CursorColumn guifg=NONE guibg=#202020 guisp=#202020 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Define guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
 hi Function guifg=#dbdb00 guibg=NONE guisp=NONE gui=NONE ctermfg=184 ctermbg=NONE cterm=NONE
-hi PreProc guifg=#aeb361 guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=NONE cterm=NONE
+hi PreProc guifg=#628db3 guibg=NONE guisp=NONE gui=NONE ctermfg=67 ctermbg=NONE cterm=NONE
 hi Visual guifg=#faf4c6 guibg=#3c414c guisp=#3c414c gui=NONE ctermfg=230 ctermbg=239 cterm=NONE
 hi VertSplit guifg=#444444 guibg=#303030 guisp=#303030 gui=NONE ctermfg=238 ctermbg=236 cterm=NONE
 hi Exception guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
