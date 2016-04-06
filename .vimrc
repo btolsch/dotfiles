@@ -168,12 +168,13 @@ nnoremap <silent> <M-j> :bfirst<CR>
 nnoremap <silent> <M-k> :blast<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
+noremap <C-w>; <C-w>p
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
 nnoremap <silent> <Esc>; :b#<cr>
-nnoremap <leader>bd :bnext<cr>:bd #<cr>
+nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
 nnoremap <silent> [q :cprev<cr>
 nnoremap <silent> ]q :cnext<cr>
 nnoremap <silent> <leader>co :copen<cr>
