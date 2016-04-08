@@ -67,6 +67,9 @@ let mapleader = ","
 " wp    <c-w>p
 " pc    close preview window
 " ws    delete trailing whitespace
+" gs    :Gstatus
+" gd    :Gdiff
+" gdp   :Gdiff for some commit
 
 nnoremap <leader>w <c-w>v<c-w>l
 nnoremap <leader>v V']
@@ -241,6 +244,10 @@ nmap <M-9> <Plug>AirlineSelectTab9
 
 nnoremap <C-n> :CtrlPBuffer<cr>
 nnoremap <C-c> :CtrlPCurWD<cr>
+
+nnoremap <silent> <leader>gs :Gstatus<cr><C-w>j
+nnoremap <silent> <leader>gd :Gdiff<cr>
+nnoremap <leader>gdp :Gdiff<space>
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j
