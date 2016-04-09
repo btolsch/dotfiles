@@ -245,7 +245,7 @@ nmap <M-9> <Plug>AirlineSelectTab9
 nnoremap <C-n> :CtrlPBuffer<cr>
 nnoremap <C-c> :CtrlPCurWD<cr>
 
-nnoremap <silent> <leader>gs :Gstatus<cr><C-w>j
+nnoremap <silent> <leader>gs :Gstatus<cr><C-w>P
 nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <leader>gdp :Gdiff<space>
 
