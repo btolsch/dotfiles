@@ -171,7 +171,6 @@ nnoremap <silent> <M-j> :bfirst<CR>
 nnoremap <silent> <M-k> :blast<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
-noremap <C-w>; <C-w>p
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>j :bfirst<CR>
 nnoremap <silent> <Esc>k :blast<CR>
@@ -258,6 +257,7 @@ noremap <Esc>m <C-w>>
 noremap + <C-W>+
 noremap - <C-W>-
 noremap = <C-W>=
+noremap <C-w>; <C-w>p
 
 nmap <leader>o :on<cr>
 
