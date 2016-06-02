@@ -103,7 +103,7 @@ hi MatchParen guifg=#d0ffc0 guibg=#202020 guisp=#202020 gui=bold ctermfg=193 cte
 hi Repeat guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Structure guifg=#7e8aa2 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Macro guifg=#faf4c6 guibg=NONE guisp=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
-hi DiffAdd guifg=NONE guibg=#224700 guisp=#224700 gui=NONE ctermfg=NONE ctermbg=22 cterm=NONE
+hi DiffAdd guifg=#b5b5b5 guibg=#224700 guisp=#224700 gui=NONE ctermfg=249 ctermbg=22 cterm=NONE
 " hi DiffAdd guifg=#1f1f1f guibg=#b2d631 guisp=#b2d631 gui=NONE ctermfg=234 ctermbg=149 cterm=NONE
 hi cursorim guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 hi pythonimport guifg=#009000 guibg=NONE guisp=NONE gui=NONE ctermfg=28 ctermbg=NONE cterm=NONE
