@@ -29,6 +29,8 @@ call vundle#end()
 
 nnoremap ; :
 vnoremap ; :
+nnoremap : ;
+vnoremap : ;
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 filetype plugin on
@@ -90,6 +92,7 @@ let g:ctrlp_match_current_file = 1
 let g:ctrlp_switch_buffer = 0
 
 let g:airline_theme = 'dark_modified'
+let g:airline#extensions#ycm#enabled = 1
 
 set timeoutlen=150 ttimeoutlen=0
 
