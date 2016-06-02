@@ -238,7 +238,7 @@ mode "vnc-pass-through" {
 }
 bindsym $mod+t mode "vnc-pass-through"
 
-for_window [class="^.*"] border pixel 1pixel
+for_window [class="^.*"] border pixel 1
 
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable

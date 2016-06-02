@@ -291,6 +291,7 @@ nnoremap <Esc><C-v> "+p
 
 set number
 set tw=80
+autocmd FileType gitcommit setlocal tw=72
 set fo-=t
 set fo+=c
 set colorcolumn=+1,+41

@@ -5,3 +5,4 @@ export PYTHONPATH=$HOME/caffe-orig/python:$PYTHONPATH
 export LESS='-x 4 -R'
 export EDITOR=vim
 export TERMINAL=st
+export GTEST_COLOR=yes

@@ -48,9 +48,7 @@ ${endif}
 "icon": "$HOME/.icons/dzen2/net_up_01.xbm", "separator_block_width": 21}, \
 ${endif}
 \
-{"name": "rootfree", "full_text": "/ ${fs_free /} ${fs_free_perc /}%", "separator": false}, \
-\
-{"name": "homefree", "full_text": "/home ${fs_free /home} ${fs_free_perc /home}%", "separator": true, \
+{"name": "rootfree", "full_text": "/ ${fs_free /} ${fs_free_perc /}%", "separator": true, \
 "separator_block_width": 21}, \
 \
 {"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", \
