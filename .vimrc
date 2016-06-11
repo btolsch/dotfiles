@@ -159,8 +159,8 @@ autocmd FileType vim setlocal foldmethod=marker
 
 map <silent> <leader>so :source $MYVIMRC<cr>
 
-nmap <silent> <leader>cf :call FormatAll()<CR>
-vmap <silent> <leader>cf :pyf /usr/share/clang/clang-format.py<CR>
+nnoremap <silent> <leader>cf :call FormatAll()<CR>
+vnoremap <silent> <leader>cf :pyf /usr/share/clang/clang-format.py<CR>
 " imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
 
 function! FormatAll()
