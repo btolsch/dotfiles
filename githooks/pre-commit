@@ -1,20 +1,25 @@
 #!/bin/sh
 
 root=$(git root)
+tmpdir=$root/._tmp
+mirror=$root/._mirror
 
-exec 1>&2
+set -e
 
-ninja -C $root/build
-if [ $? != 0 ]; then
-  exit 1
-fi
+git checkout-index --prefix=$mirror/ -af
 
-$root/build/mannequin/mannequin_test_asan
-if [ $? != 0 ]; then
-  exit 1
-fi
+git diff-index --cached --name-only --diff-filter=D -z HEAD | \
+    (cd $mirror && xargs -0 rm -f --)
 
-$root/build/xix/xix_test_asan
-if [ $? != 0 ]; then
-  exit 1
-fi
+rsync -rlpgoD0 -c --size-only --delete --exclude=build/ $mirror/ $tmpdir/
+
+cd $tmpdir
+mkdir -p build
+cd build
+cmake -GNinja ..
+nice -n 20 ninja
+
+mannequin/mannequin_test_asan
+xix/xix_test_asan
+
+exit 0
