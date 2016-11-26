@@ -24,6 +24,9 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-obsession'
 Plugin 'jceb/vim-hier'
+Plugin 'b4winckler/vim-angry'
+Plugin 'tpope/vim-commentary'
+Plugin 'Skyfold/vim-ranger'
 
 call vundle#end()
 
@@ -32,7 +35,9 @@ vnoremap ; :
 nnoremap : ;
 vnoremap : ;
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set matchpairs+=<:>
+
+set termguicolors
 filetype plugin on
 syntax on
 colorscheme BusyBee_modified
@@ -41,43 +46,53 @@ let mapleader = ","
 " Leader keybindings
 "
 " ;     :nohl
-" c-m   clear, redraw, make
-" c-n   redraw
 " bd    delete current buffer but don't close window
 " bs    bufdo vimgrepadd @pattern@g | cw
-" so    source .vimrc
+" cc    cclose
 " cf    clang format
-" m     max height
-" n     max width
+" co    copen
+" cw    cw
+" d     "_d
+" D     "_D
+" e     edit %:h
+" gd    :Gdiff
+" gdp   :Gdiff for some commit
+" gs    :Gstatus
 " h     tab previous
 " j     tab first
 " k     tab last
 " l     tab next
-" o     only + MBE window
+" m     max height
+" c-m   clear, redraw, make
+" n     max width
+" c-n   redraw
+" o     only
+" pc    close preview window
+" r     edit .
 " s     sort lines
-" vl    vimux run last command
-" vq    vimux close runner
-" vc    vimux interrupt runner
-" vm    vimux run make
-" vp    vimux prompt command
-" vz    vimux zoom runner
-" vo    vimux open runner select
+" si    echo syntaxId
+" so    source .vimrc
 " tl    c-p and enter in runner
-" w     open vertical split window
 " v     select recently pasted text
+" vc    vimux interrupt runner
+" vl    vimux run last command
+" vm    vimux run make
+" vo    vimux open runner select
+" vp    vimux prompt command
+" vq    vimux close runner
+" vz    vimux zoom runner
+" w     open vertical split window
 " wb    <c-w>b
 " wp    <c-w>p
-" pc    close preview window
 " ws    delete trailing whitespace
-" gs    :Gstatus
-" gd    :Gdiff
-" gdp   :Gdiff for some commit
 
 nnoremap <leader>w <c-w>v<c-w>l
 nnoremap <leader>v V']
 nnoremap <leader>wb <c-w>b
 nnoremap <leader>wp <c-w>p
 nnoremap <leader>pc :pc<cr>
+nnoremap <leader>e :edit %:h<cr>
+nnoremap <leader>r :edit .<cr>
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
@@ -151,7 +166,8 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
-autocmd FileType markdown setlocal nocindent smartindent autoindent
+autocmd FileType text setlocal nocindent autoindent fo=t
+autocmd FileType markdown setlocal nocindent autoindent fo=t
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldlevel=0
@@ -195,7 +211,7 @@ nnoremap <silent> <leader>k :tablast<CR>
 nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
-nnoremap <C-M-n> <C-w>s<C-w>T
+nnoremap <C-M-n> :tab split<cr>
 nnoremap <silent> <Esc>< :tabm -1<CR>
 nnoremap <silent> <Esc>> :tabm +1<CR>
 nnoremap <Esc><C-n> <C-w>s<C-w>T
