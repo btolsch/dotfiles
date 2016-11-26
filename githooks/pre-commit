@@ -9,13 +9,12 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-# TODO asan tests when arch pushes fixed glibc/clang
-$root/build/mannequin/mannequin_test
+$root/build/mannequin/mannequin_test_asan
 if [ $? != 0 ]; then
   exit 1
 fi
 
-$root/build/xix/xix_test
+$root/build/xix/xix_test_asan
 if [ $? != 0 ]; then
   exit 1
 fi
