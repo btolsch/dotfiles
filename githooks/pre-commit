@@ -1,0 +1,21 @@
+#!/bin/sh
+
+root=$(git root)
+
+exec 1>&2
+
+ninja -C $root/build
+if [ $? != 0 ]; then
+  exit 1
+fi
+
+# TODO asan tests when arch pushes fixed glibc/clang
+$root/build/mannequin/mannequin_test
+if [ $? != 0 ]; then
+  exit 1
+fi
+
+$root/build/xix/xix_test
+if [ $? != 0 ]; then
+  exit 1
+fi

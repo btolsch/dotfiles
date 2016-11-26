@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+root=$(git root)
+
+for f in $(git diff --cached --name-only); do
+  if echo $f | sed -n '/^third_party/q0; /\.\(cpp\|h\)$/q1'; then
+    continue;
+  fi
+  diff -q <(clang-format -style=file < <(git show :$f)) <(git show :$f)
+  if [ $? != 0 ]; then
+    echo "# Needs format: $f" >> $1
+  fi
+done
