@@ -330,14 +330,14 @@ set nowritebackup
 set noswapfile
 
 " Vimux
-map <leader>vl :VimuxRunLastCommand<CR>
-map <leader>vq :VimuxCloseRunner<CR>
-map <leader>vc :VimuxInterruptRunner<CR>
-map <leader>vm :VimuxRunCommand("make")<CR>
-map <leader>vp :VimuxPromptCommand<CR>
-map <leader>vz :VimuxZoomRunner<CR>
-map <leader>vo :let g:VimuxRunnerIndex =<space>
-map <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
+noremap <leader>vl :VimuxRunLastCommand<CR>
+noremap <leader>vq :VimuxCloseRunner<CR>
+noremap <leader>vc :VimuxInterruptRunner<CR>
+noremap <leader>vm :VimuxRunCommand("make")<CR>
+noremap <leader>vp :VimuxPromptCommand<CR>
+noremap <leader>vz :VimuxZoomRunner<CR>
+noremap <leader>vo :let g:VimuxRunnerIndex =<space>
+noremap <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
 
 " Bufferline and Airline
 " https://github.com/bling/vim-bufferline.git
