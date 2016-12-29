@@ -172,6 +172,8 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldlevel=0
 autocmd FileType vim setlocal foldmethod=marker
+autocmd BufNewFile,BufRead /tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
+autocmd BufNewFile,BufRead ~/tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
 
 map <silent> <leader>so :source $MYVIMRC<cr>
 

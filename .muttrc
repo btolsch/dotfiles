@@ -1,0 +1,21 @@
+set realname='Brandon Tolsch'
+set imap_user=btolsch
+set folder=imaps://mail.btols.ch/
+
+set spoolfile=+INBOX
+mailboxes +INBOX
+
+set message_cachedir=~/.cache/mutt
+set header_cache=~/.cache/mutt
+
+unset imap_passive
+set imap_keepalive=300
+set mail_check=120
+
+set postponed=+Drafts
+
+set record=+Sent
+set from='btolsch@btols.ch'
+set use_from=yes
+set smtp_url='smtp://btolsch@mail.btols.ch:587/'
+set ssl_starttls=yes
