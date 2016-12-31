@@ -1,0 +1,48 @@
+# Passwords
+set my_pw_btolsch=`gpg -q --decrypt ~/.mutt/btolsch_at_btols.ch.gpg`
+set my_pw_bugzilla=`gpg -q --decrypt ~/.mutt/bugzilla_at_btols.ch.gpg`
+
+# Account hooks
+account-hook . 'unset imap_user imap_pass'
+account-hook imaps://btolsch@mail.btols.ch/ "\
+        set imap_user=btolsch imap_pass=$my_pw_btolsch"
+account-hook imaps://bugzilla@mail.btols.ch/ "\
+        set imap_user=bugzilla imap_pass=$my_pw_bugzilla"
+
+# Folders
+set folder=imaps://btolsch@mail.btols.ch/
+mailboxes =INBOX =Drafts =Sent
+folder-hook imaps://btolsch@mail.btols.ch/ "\
+        set   folder=imaps://btolsch@mail.btols.ch/ \
+              postponed=+Drafts \
+              record=+Sent \
+              smtp_url=smtp://btolsch@mail.btols.ch:587/ \
+              smtp_pass=$my_pw_btolsch \
+              from=btolsch@btols.ch \
+              realname='Brandon Tolsch'"
+set spoolfile=+INBOX
+
+set folder=imaps://bugzilla@mail.btols.ch/
+mailboxes =INBOX =Drafts =Sent
+folder-hook imaps://bugzilla@mail.btols.ch/ "\
+        set   folder=imaps://bugzilla@mail.btols.ch/ \
+              postponed=+Drafts \
+              record=+Sent \
+              smtp_url=smtp://bugzilla@mail.btols.ch:587/ \
+              smtp_pass=$my_pw_bugzilla \
+              from=bugzilla@btols.ch \
+              realname='Bugzilla'"
+
+
+set message_cachedir=~/.cache/mutt
+set header_cache=~/.cache/mutt
+
+set timeout=10
+set mail_check=5
+
+unset imap_passive
+set imap_keepalive=300
+set mail_check=120
+
+set use_from=yes
+set ssl_starttls=yes
