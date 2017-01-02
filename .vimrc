@@ -23,7 +23,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-obsession'
-Plugin 'jceb/vim-hier'
+" Plugin 'jceb/vim-hier'
 Plugin 'b4winckler/vim-angry'
 Plugin 'tpope/vim-commentary'
 Plugin 'Skyfold/vim-ranger'
@@ -97,6 +97,7 @@ nnoremap <leader>r :edit .<cr>
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
 let g:python_host_prog = '/usr/bin/python2'
