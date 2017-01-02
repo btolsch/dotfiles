@@ -27,6 +27,7 @@ Plugin 'jceb/vim-hier'
 Plugin 'b4winckler/vim-angry'
 Plugin 'tpope/vim-commentary'
 Plugin 'Skyfold/vim-ranger'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()
 
