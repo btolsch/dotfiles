@@ -30,6 +30,16 @@ Plugin 'Skyfold/vim-ranger'
 
 call vundle#end()
 
+let g:airline#extensions#wordcount#enabled = 0
+call airline#parts#define_function('obsession', 'ObsessionStatus')
+call airline#parts#define_text('obs_space', ' ')
+call airline#parts#define_condition('obs_space', 'ObsessionStatus() != ""')
+let g:airline#extensions#ycm#enabled = 1
+function! AirlineInit()
+  let g:airline_section_b = airline#section#create(['hunks', 'branch', 'obs_space', 'obsession'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
 nnoremap ; :
 vnoremap ; :
 nnoremap : ;
@@ -96,11 +106,12 @@ nnoremap <leader>r :edit .<cr>
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 
 let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_current_file = 1
@@ -176,7 +187,7 @@ autocmd FileType vim setlocal foldmethod=marker
 map <silent> <leader>so :source $MYVIMRC<cr>
 
 nnoremap <silent> <leader>cf :call FormatAll()<CR>
-vnoremap <silent> <leader>cf :pyf /usr/share/clang/clang-format.py<CR>
+vnoremap <silent> <leader>cf :pyf /usr/lib/clang-format/clang-format.py<CR>
 " imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
 
 function! FormatAll()
@@ -266,6 +277,41 @@ nnoremap <C-c> :CtrlPCurWD<cr>
 nnoremap <silent> <leader>gs :Gstatus<cr><C-w>P
 nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <leader>gdp :Gdiff<space>
+
+" nnoremap <expr> [j &diff ? ']c' : '<C-w>j'
+" nnoremap <expr> [k &diff ? '[c' : '<C-w>k'
+
+function! MoveFoldStartDown()
+  let l:line_nr = line(".")
+  let l:fold_start = foldclosed(l:line_nr)
+  if l:fold_start == -1
+    return
+  endif
+  let l:fold_end = foldclosedend(l:line_nr)
+  set foldmethod=manual
+
+  let l:new_start = l:fold_start + 5
+  execute "normal zd"
+  execute ":".l:new_start.",".l:fold_end."fold"
+  execute "normal 5j"
+endfunction
+
+function! MoveFoldEndUp()
+  let l:line_nr = line(".")
+  let l:fold_start = foldclosed(l:line_nr)
+  if l:fold_start == -1
+    return
+  endif
+  let l:fold_end = foldclosedend(l:line_nr)
+  set foldmethod=manual
+
+  let l:new_end = l:fold_end - 5
+  execute "normal zd"
+  execute ":".l:fold_start.",".l:new_end."fold"
+endfunction
+
+nnoremap <leader>- :call MoveFoldEndUp()<cr>
+nnoremap <leader>= :call MoveFoldStartDown()<cr>
 
 " map <C-k> <C-W>k
 " map <C-j> <C-W>j

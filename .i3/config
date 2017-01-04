@@ -27,17 +27,17 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # lock the screen
-bindsym $mod+o exec --no-startup-id ~/bin/lock_suspend
-bindsym $mod+Shift+o exec --no-startup-id ~/bin/i3lock
+bindsym $mod+o exec --no-startup-id ~/bin/locker.sh
+bindsym $mod+Shift+o exec --no-startup-id ~/bin/locker.sh -d
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id zsh -c "rofi -disable-history -show run"
+bindsym $mod+d exec --no-startup-id dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -200,9 +200,9 @@ client.focused          #1793d1 #1763ca #dddddd #2e9ef4
 # finds out, if available)
 bar {
 	position top
-	i3bar_command /usr/bin/i3bar-icons
-	status_command ~/bin/conkybar.sh
-	font pango:Terminess Powerline 8
+ 	i3bar_command /usr/bin/i3bar
+ 	status_command i3status
+ 	font pango:Terminess Powerline 11
 	colors {
 		separator #1793d1
 		statusline #888888

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Terminess Powerline:size=12";
+static char font[] = "Terminess Powerline:size=15";
 static int borderpx = 2;
 static char shell[] = "/bin/sh";
 static char *utmp = NULL;

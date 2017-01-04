@@ -6,9 +6,9 @@ scrot $IMAGE
 convert -blur 5x5 "$IMAGE" "$IMAGE"
 #convert -scale 10% -scale 1000% "$IMAGE" "$IMAGE"
 
-convert "$IMAGE" ~/dotfiles/mooninites.png -gravity center -composite -matte "$IMAGE"
+convert "$IMAGE" ~/chrome_icon.png -gravity center -composite -matte "$IMAGE"
 
 #BGIMAGE=~/Wallpapers/Misc/linux-www-wallpaper-hd-computer-photo-linux-wallpaper.jpg
 #convert -format "png" $BGIMAGE $IMAGE
 
-/usr/bin/i3lock $@ -u -i "$IMAGE"
+/usr/bin/i3lock $@ -i "$IMAGE"
