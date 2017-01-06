@@ -28,6 +28,7 @@ Plugin 'b4winckler/vim-angry'
 Plugin 'tpope/vim-commentary'
 Plugin 'Skyfold/vim-ranger'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 
@@ -104,11 +105,14 @@ nnoremap <leader>wp <c-w>p
 nnoremap <leader>pc :pc<cr>
 nnoremap <leader>e :edit %:h<cr>
 nnoremap <leader>r :edit .<cr>
+nnoremap <leader>le :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -120,7 +124,7 @@ let g:ctrlp_match_current_file = 1
 let g:ctrlp_switch_buffer = 0
 
 let g:airline_theme = 'dark_modified'
-let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#obsession#enabled = 1
 
 set timeoutlen=150 ttimeoutlen=0
 
@@ -181,6 +185,7 @@ set cino=N-s,g0,(0,W2s,j1,+2s
 
 autocmd FileType text setlocal nocindent autoindent fo=t
 autocmd FileType markdown setlocal nocindent autoindent fo=t
+autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldlevel=0
@@ -360,7 +365,6 @@ nnoremap <Esc><C-v> "+p
 
 set number
 set tw=80
-autocmd FileType gitcommit setlocal tw=72
 set fo-=t
 set fo+=c
 set colorcolumn=+1,+41
