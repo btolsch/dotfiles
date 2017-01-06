@@ -29,6 +29,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'Skyfold/vim-ranger'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-repeat'
 
 call vundle#end()
 
@@ -57,7 +58,7 @@ colorscheme BusyBee_modified
 let mapleader = ","
 " Leader keybindings
 "
-" ;     :nohl
+" /     :nohl
 " bd    delete current buffer but don't close window
 " bs    bufdo vimgrepadd @pattern@g | cw
 " cc    cclose
@@ -107,6 +108,10 @@ nnoremap <leader>e :edit %:h<cr>
 nnoremap <leader>r :edit .<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
+
+nmap <leader>; <Plug>(easymotion-repeat)
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
@@ -226,8 +231,6 @@ nnoremap <silent> <leader>m <C-w>_
 nnoremap <silent> <leader>n <C-w>\|
 
 nnoremap <silent> <leader>h :tabprevious<CR>
-nnoremap <silent> <leader>j :tabfirst<CR>
-nnoremap <silent> <leader>k :tablast<CR>
 nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
@@ -267,6 +270,8 @@ inoremap <M-p> <C-o>p
 inoremap <M-P> <C-o>P
 
 nnoremap <silent> ]d :YcmCompleter GoTo<cr>
+nnoremap <silent> ]p :YcmCompleter GetParent<cr>
+nnoremap <silent> ]t :YcmCompleter GetType<cr>
 nnoremap <silent> [d :YcmCompleter GoToImprecise<cr>
 nnoremap <silent> [D :YcmCompleter GoToDeclaration<cr>
 
@@ -373,7 +378,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-noremap <silent> <leader>; :nohl<CR>
+noremap <silent> <leader>/ :nohl<CR>
 
 " Line wrapping
 vmap Q gq
