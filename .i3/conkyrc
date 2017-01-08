@@ -16,19 +16,6 @@ lua_load ~/.i3/conky.lua
 
 TEXT
 [\
-${if_mpd_playing}
-{"name": "stopped", "full_text": "${mpd_status}", "separator": false}, \
-{"name": "track_no", "full_text": "${mpd_track}:", "separator": false}, \
-{"name": "artist", "full_text": "${mpd_artist} -", "separator": false}, \
-{"name": "song_title", "full_text": "${mpd_title}", "separator": true}, \
-{"name": "play_time", "full_text": "${mpd_elapsed}/${mpd_length}", "separator": false}, \
-\
-{"name": "eq", "icon_color": "\#1793d1", \
-"full_text": "", "icon": "$HOME/.icons/dzen2/eq.xbm", "separator": false}, \
-{"name": "volume", "full_text": "vol: ${mpd_vol}% ", "min_width": "vol: 100%", \
-"align": "right", "separator": false}, \
-${endif}
-\
 {"name": "battery", "full_text": "bat: ${battery_short} ${battery_time}", "min_width": "bat: 100%", \
 "align": "right", "separator": false}, \
 {"name": "logo", "icon_color": "\#1793d1", \
