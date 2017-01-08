@@ -1,5 +1,5 @@
 do
-	local grep_crap = "ip link | sed -n 's/^[0-9]:\\s\\(.*\\):/\\1/p' | sed '/\\(LOOPBACK\\|DOWN\\)/d' | cut -d ' ' -f 1"
+	local grep_crap = "ip link | sed -n 's/^[0-9]\\+:\\s\\(.*\\):/\\1/p' | sed '/\\(LOOPBACK\\|DOWN\\)/d' | cut -d ' ' -f 1"
 	function conky_if_list(index)
 		local f = io.popen(grep_crap)
 		local s = f:read("*a")

@@ -48,9 +48,7 @@ for config_dir in $config_dirs; do
 done
 
 typeset -A other_files
-other_files=("mpd.conf" ".config/mpd/"
-			 "redshift.conf" ".config/"
-             "redshift-gtk.service" ".config/systemd/user/")
+other_files=("mpd.conf" ".config/mpd/")
 for file in ${(k)other_files}; do
 	dest_file=~/$(echo ${other_files[$file]} | sed 's#^/\?\(.*[^/]\)/\?$#\1#')/$file
 	dots=$(echo ${other_files[$file]} | sed 's#[^/]*\(/\|$\)#../#g' | sed 's#/$##')

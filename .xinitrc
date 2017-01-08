@@ -1,4 +1,11 @@
+tpset() { xinput set-prop "TPPS/2 IBM TrackPoint" "$@"; }
 xrdb -load $HOME/.Xresources
 xset r rate 150 25
+tpset "Evdev Wheel Emulation" 1
+tpset "Evdev Wheel Emulation Button" 2
+tpset "Evdev Wheel Emulation Timeout" 200
+tpset "Evdev Wheel Emulation Axes" 6 7 4 5
+tpset "Device Accel Constant Deceleration" 0.4
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Accel Constant Deceleration" 20
 #setxkbmap -option grp:alt_shift_toggle us,de
 exec i3
