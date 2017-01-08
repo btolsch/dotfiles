@@ -23,7 +23,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-obsession'
-Plugin 'jceb/vim-hier'
+" Plugin 'jceb/vim-hier'
+Plugin 'b4winckler/vim-angry'
+Plugin 'tpope/vim-commentary'
+Plugin 'Skyfold/vim-ranger'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-repeat'
 
 call vundle#end()
 
@@ -32,7 +38,9 @@ vnoremap ; :
 nnoremap : ;
 vnoremap : ;
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set matchpairs+=<:>
+
+set termguicolors
 filetype plugin on
 syntax on
 colorscheme BusyBee_modified
@@ -40,48 +48,66 @@ colorscheme BusyBee_modified
 let mapleader = ","
 " Leader keybindings
 "
-" ;     :nohl
-" c-m   clear, redraw, make
-" c-n   redraw
+" /     :nohl
 " bd    delete current buffer but don't close window
 " bs    bufdo vimgrepadd @pattern@g | cw
-" so    source .vimrc
+" cc    cclose
 " cf    clang format
-" m     max height
-" n     max width
+" co    copen
+" cw    cw
+" d     "_d
+" D     "_D
+" e     edit %:h
+" gd    :Gdiff
+" gdp   :Gdiff for some commit
+" gs    :Gstatus
 " h     tab previous
 " j     tab first
 " k     tab last
 " l     tab next
-" o     only + MBE window
+" m     max height
+" c-m   clear, redraw, make
+" n     max width
+" c-n   redraw
+" o     only
+" pc    close preview window
+" r     edit .
 " s     sort lines
-" vl    vimux run last command
-" vq    vimux close runner
-" vc    vimux interrupt runner
-" vm    vimux run make
-" vp    vimux prompt command
-" vz    vimux zoom runner
-" vo    vimux open runner select
+" si    echo syntaxId
+" so    source .vimrc
 " tl    c-p and enter in runner
-" w     open vertical split window
 " v     select recently pasted text
+" vc    vimux interrupt runner
+" vl    vimux run last command
+" vm    vimux run make
+" vo    vimux open runner select
+" vp    vimux prompt command
+" vq    vimux close runner
+" vz    vimux zoom runner
+" w     open vertical split window
 " wb    <c-w>b
 " wp    <c-w>p
-" pc    close preview window
 " ws    delete trailing whitespace
-" gs    :Gstatus
-" gd    :Gdiff
-" gdp   :Gdiff for some commit
 
 nnoremap <leader>w <c-w>v<c-w>l
 nnoremap <leader>v V']
 nnoremap <leader>wb <c-w>b
 nnoremap <leader>wp <c-w>p
 nnoremap <leader>pc :pc<cr>
+nnoremap <leader>e :edit %:h<cr>
+nnoremap <leader>r :edit .<cr>
+nnoremap <leader>le :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
+
+nmap <leader>; <Plug>(easymotion-repeat)
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
@@ -92,7 +118,7 @@ let g:ctrlp_match_current_file = 1
 let g:ctrlp_switch_buffer = 0
 
 let g:airline_theme = 'dark_modified'
-let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#obsession#enabled = 1
 
 set timeoutlen=150 ttimeoutlen=0
 
@@ -151,11 +177,15 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
-autocmd FileType markdown setlocal nocindent smartindent autoindent
+autocmd FileType text setlocal nocindent autoindent fo=t
+autocmd FileType markdown setlocal nocindent autoindent fo=t
+autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldlevel=0
 autocmd FileType vim setlocal foldmethod=marker
+autocmd BufNewFile,BufRead /tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
+autocmd BufNewFile,BufRead ~/tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
 
 map <silent> <leader>so :source $MYVIMRC<cr>
 
@@ -190,12 +220,10 @@ nnoremap <silent> <leader>m <C-w>_
 nnoremap <silent> <leader>n <C-w>\|
 
 nnoremap <silent> <leader>h :tabprevious<CR>
-nnoremap <silent> <leader>j :tabfirst<CR>
-nnoremap <silent> <leader>k :tablast<CR>
 nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
-nnoremap <C-M-n> <C-w>s<C-w>T
+nnoremap <C-M-n> :tab split<cr>
 nnoremap <silent> <Esc>< :tabm -1<CR>
 nnoremap <silent> <Esc>> :tabm +1<CR>
 nnoremap <Esc><C-n> <C-w>s<C-w>T
@@ -231,6 +259,8 @@ inoremap <M-p> <C-o>p
 inoremap <M-P> <C-o>P
 
 nnoremap <silent> ]d :YcmCompleter GoTo<cr>
+nnoremap <silent> ]p :YcmCompleter GetParent<cr>
+nnoremap <silent> ]t :YcmCompleter GetType<cr>
 nnoremap <silent> [d :YcmCompleter GoToImprecise<cr>
 nnoremap <silent> [D :YcmCompleter GoToDeclaration<cr>
 
@@ -294,7 +324,6 @@ nnoremap <Esc><C-v> "+p
 
 set number
 set tw=80
-autocmd FileType gitcommit setlocal tw=72
 set fo-=t
 set fo+=c
 set colorcolumn=+1,+41
@@ -303,7 +332,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-noremap <silent> <leader>; :nohl<CR>
+noremap <silent> <leader>/ :nohl<CR>
 
 " Line wrapping
 vmap Q gq
@@ -314,14 +343,14 @@ set nowritebackup
 set noswapfile
 
 " Vimux
-map <leader>vl :VimuxRunLastCommand<CR>
-map <leader>vq :VimuxCloseRunner<CR>
-map <leader>vc :VimuxInterruptRunner<CR>
-map <leader>vm :VimuxRunCommand("make")<CR>
-map <leader>vp :VimuxPromptCommand<CR>
-map <leader>vz :VimuxZoomRunner<CR>
-map <leader>vo :let g:VimuxRunnerIndex =<space>
-map <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
+noremap <leader>vl :VimuxRunLastCommand<CR>
+noremap <leader>vq :VimuxCloseRunner<CR>
+noremap <leader>vc :VimuxInterruptRunner<CR>
+noremap <leader>vm :VimuxRunCommand("make")<CR>
+noremap <leader>vp :VimuxPromptCommand<CR>
+noremap <leader>vz :VimuxZoomRunner<CR>
+noremap <leader>vo :let g:VimuxRunnerIndex =<space>
+noremap <leader>tl :call VimuxSendKeys('c-p')<cr>:call VimuxSendKeys('enter')<cr>
 
 " Bufferline and Airline
 " https://github.com/bling/vim-bufferline.git

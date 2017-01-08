@@ -25,7 +25,8 @@ SOURCE_EXTENSIONS = [
     '.cc',
     '.c',
     '.m',
-    '.mm'
+    '.mm',
+    '_test.cpp',
 ]
 
 HEADER_EXTENSIONS = [
