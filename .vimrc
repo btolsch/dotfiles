@@ -33,16 +33,6 @@ Plugin 'tpope/vim-repeat'
 
 call vundle#end()
 
-let g:airline#extensions#wordcount#enabled = 0
-call airline#parts#define_function('obsession', 'ObsessionStatus')
-call airline#parts#define_text('obs_space', ' ')
-call airline#parts#define_condition('obs_space', 'ObsessionStatus() != ""')
-let g:airline#extensions#ycm#enabled = 1
-function! AirlineInit()
-  let g:airline_section_b = airline#section#create(['hunks', 'branch', 'obs_space', 'obsession'])
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-
 nnoremap ; :
 vnoremap ; :
 nnoremap : ;
@@ -206,7 +196,7 @@ vnoremap <silent> <leader>cf :pyf /usr/lib/clang-format/clang-format.py<CR>
 
 function! FormatAll()
   let l:lines="all"
-  pyf /usr/share/clang/clang-format.py
+  pyf /usr/lib/clang-format/clang-format.py
 endfunction
 
 " Alt typically emulated as <Esc>
