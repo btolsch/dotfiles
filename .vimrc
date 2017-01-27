@@ -230,11 +230,6 @@ inoremap <M-j> <C-o>j
 inoremap <M-k> <C-o>k
 inoremap <M-l> <C-o>l
 
-inoremap <Esc>h <C-o>h
-inoremap <Esc>j <C-o>j
-inoremap <Esc>k <C-o>k
-inoremap <Esc>l <C-o>l
-
 noremap <leader>d "_d
 noremap <leader>D "_D
 
