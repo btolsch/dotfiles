@@ -285,6 +285,8 @@ noremap <Esc>n <C-w><
 noremap <Esc>m <C-w>>
 noremap + <C-W>+
 noremap - <C-W>-
+noremap <A-+> 5<C-W>+
+noremap <A--> 5<C-W>-
 noremap = <C-W>=
 noremap <C-w>; <C-w>p
 
