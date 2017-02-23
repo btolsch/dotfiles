@@ -27,7 +27,7 @@ font pango:DejaVu Sans Mono 13
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # lock the screen
 bindsym $mod+o exec --no-startup-id ~/bin/lock_suspend
@@ -224,7 +224,7 @@ exec --no-startup-id pasystray
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
-bindsym $mod+Mod1+Return exec st-noalpha -t "st-ranger" -e /bin/zsh -c "ranger"
+bindsym $mod+Mod1+Return exec --no-startup-id st-noalpha -t "st-ranger" -e /bin/zsh -c "ranger"
 
 bindsym $mod+c exec gsimplecal
 
@@ -245,7 +245,7 @@ for_window [class="mpv"] floating enable
 for_window [class="st-256color" instance="floating"] floating enable
 for_window [window_role="pop-up"] floating enable
 
-bindsym $mod+Control+Return exec st -c floating
+bindsym $mod+Control+Return exec --no-startup-id st -c floating
 
 force_display_urgency_hint 1000 ms
 

@@ -200,13 +200,9 @@ endfunction
 
 " Alt typically emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
-nnoremap <silent> <M-j> :bfirst<CR>
-nnoremap <silent> <M-k> :blast<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
 nnoremap <silent> <Esc>h :bprevious<CR>
-nnoremap <silent> <Esc>j :bfirst<CR>
-nnoremap <silent> <Esc>k :blast<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
 nnoremap <silent> <Esc>; :b#<cr>
 nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
@@ -233,11 +229,6 @@ inoremap <M-h> <C-o>h
 inoremap <M-j> <C-o>j
 inoremap <M-k> <C-o>k
 inoremap <M-l> <C-o>l
-
-inoremap <Esc>h <C-o>h
-inoremap <Esc>j <C-o>j
-inoremap <Esc>k <C-o>k
-inoremap <Esc>l <C-o>l
 
 noremap <leader>d "_d
 noremap <leader>D "_D
@@ -289,6 +280,8 @@ noremap <Esc>n <C-w><
 noremap <Esc>m <C-w>>
 noremap + <C-W>+
 noremap - <C-W>-
+noremap <A-+> 5<C-W>+
+noremap <A--> 5<C-W>-
 noremap = <C-W>=
 noremap <C-w>; <C-w>p
 
