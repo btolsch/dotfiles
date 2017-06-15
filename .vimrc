@@ -30,6 +30,7 @@ Plugin 'Skyfold/vim-ranger'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
+Plugin 'peterhoeg/vim-qml'
 
 call vundle#end()
 
@@ -41,7 +42,7 @@ vnoremap : ;
 set matchpairs+=<:>
 
 set termguicolors
-filetype plugin on
+filetype plugin indent on
 syntax on
 colorscheme BusyBee_modified
 

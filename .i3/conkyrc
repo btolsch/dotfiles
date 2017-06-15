@@ -43,7 +43,7 @@ ${endif}
 {"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", \
 "min_width": "cpu: 100%", "align": "right", "separator": false}, \
 \
-{"name": "cpu_temp", "full_text": "temp: ${exec sensors | grep -A 4 'Core 0:' | cut -c18-21 | sed '/^\$/d' | paste -d' ' -s}", \
+{"name": "cpu_temp", "full_text": "temp: ${exec sensors | grep -A 2 'Core 0:' | cut -c18-21 | sed '/^\$/d' | paste -d' ' -s}", \
 "separator": true, "separator_block_width": 21}, \
 #{"name": "gpu_temp", "full_text": "gpu temp: ${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}", 
 #"separator": true, "separator_block_width": 21}, 
