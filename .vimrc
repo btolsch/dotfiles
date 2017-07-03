@@ -26,7 +26,9 @@ Plugin 'tpope/vim-obsession'
 " Plugin 'jceb/vim-hier'
 Plugin 'b4winckler/vim-angry'
 Plugin 'tpope/vim-commentary'
-Plugin 'Skyfold/vim-ranger'
+"Plugin 'Mizuchi/vim-ranger'
+Plugin 'rbgrouleff/bclose.vim'
+Plugin 'francoiscabrol/ranger.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
@@ -95,8 +97,8 @@ nnoremap <leader>v V']
 nnoremap <leader>wb <c-w>b
 nnoremap <leader>wp <c-w>p
 nnoremap <leader>pc :pc<cr>
-nnoremap <leader>e :edit %:h<cr>
-nnoremap <leader>r :edit .<cr>
+nnoremap <leader>e :Ranger<cr>
+" nnoremap <leader>r :edit .<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 
@@ -104,10 +106,12 @@ nmap <leader>; <Plug>(easymotion-repeat)
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
 
+let g:ranger_map_keys = 0
+
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
@@ -187,6 +191,7 @@ autocmd FileType vim setlocal foldlevel=0
 autocmd FileType vim setlocal foldmethod=marker
 autocmd BufNewFile,BufRead /tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
 autocmd BufNewFile,BufRead ~/tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
+autocmd BufNewFile,BufRead *.vs,*.gs,*.fs set filetype=glsl
 
 map <silent> <leader>so :source $MYVIMRC<cr>
 
