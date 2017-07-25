@@ -115,7 +115,7 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_show_hidden = 1
