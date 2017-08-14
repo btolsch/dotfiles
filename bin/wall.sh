@@ -7,5 +7,6 @@ if [[ $file ]]; then
 		gsettings set org.gnome.desktop.background picture-uri file://$file
 	fi
 	DISPLAY=:0 feh --bg-scale $file
+	DISPLAY=:20 feh --bg-scale $file
 	#ln -sf $file /usr/share/slim/themes/default/background.jpg
 fi
