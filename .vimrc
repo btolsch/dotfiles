@@ -33,6 +33,9 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
 
 call vundle#end()
 
@@ -92,7 +95,7 @@ let mapleader = ","
 " wp    <c-w>p
 " ws    delete trailing whitespace
 
-nnoremap <leader>w <c-w>v<c-w>l
+nnoremap <leader>s <c-w>v<c-w>l
 nnoremap <leader>v V']
 nnoremap <leader>wb <c-w>b
 nnoremap <leader>wp <c-w>p
@@ -102,9 +105,38 @@ nnoremap <leader>e :Ranger<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 
+" incsearch.vim x fuzzy x vim-easymotion
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzy#converter()],
+  \   'modules': [incsearch#config#easymotion#module()],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
 nmap <leader>; <Plug>(easymotion-repeat)
-nmap <leader>j <Plug>(easymotion-j)
-nmap <leader>k <Plug>(easymotion-k)
+map  <leader>j <Plug>(easymotion-bd-jk)
+map          / <Plug>(easymotion-sn)
+omap         / <Plug>(easymotion-tn)
+map  <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
+map  <leader>t <Plug>(easymotion-bd-t)
+map          f <Plug>(easymotion-bd-fl)
+map          t <Plug>(easymotion-bd-tl)
+map  <leader>h <Plug>(easymotion-lineanywhere)
+map  <leader>l <Plug>(easymotion-lineanywhere)
+map  <leader>w <Plug>(easymotion-bd-w)
+nmap <leader>w <Plug>(easymotion-overwin-w)
+
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+let g:EasyMotion_startofline = 0
 
 let g:ranger_map_keys = 0
 
@@ -115,7 +147,7 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_show_hidden = 1
@@ -207,9 +239,13 @@ endfunction
 " Alt typically emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
+nnoremap <silent> <M-j> :tabprevious<CR>
+nnoremap <silent> <M-k> :tabnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
+nnoremap <silent> <Esc>j :tabprevious<CR>
+nnoremap <silent> <Esc>k :tabnext<CR>
 nnoremap <silent> <Esc>; :b#<cr>
 nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
 nnoremap <silent> [q :cprev<cr>
@@ -221,8 +257,6 @@ nnoremap <silent> <leader>cw :cw<cr>
 nnoremap <silent> <leader>m <C-w>_
 nnoremap <silent> <leader>n <C-w>\|
 
-nnoremap <silent> <leader>h :tabprevious<CR>
-nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
 nnoremap <C-M-n> :tab split<cr>
