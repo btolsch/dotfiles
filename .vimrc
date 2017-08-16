@@ -277,8 +277,6 @@ noremap <leader>D "_D
 " nnoremap <C-x> LztM
 " nnoremap <C-c> HzbM
 
-nnoremap <M-j> 5j
-nnoremap <M-k> 5k
 noremap <C-M-e> 5<C-e>
 noremap <C-M-y> 5<C-y>
 
