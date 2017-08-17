@@ -99,7 +99,6 @@ alias fuck='sudo $(fc -ln -1)'
 alias dus="du -xh --max-depth=2 | sort -rh | less"
 alias -s cpp=vim
 alias -s h=vim
-alias -s py=python
 
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" sudo-command-line

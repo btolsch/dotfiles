@@ -1,20 +1,21 @@
-background no
-out_to_x no
-own_window no
-out_to_console yes
-update_interval 0.5
-total_run_times 0
-net_avg_samples 10
+conky.config = {
+  background = false,
+  out_to_x = false,
+  own_window = false,
+  out_to_console = true,
+  update_interval = 0.5,
+  total_run_times = 0,
+  net_avg_samples = 10,
+  
+  if_up_strictness = address,
+  
+  short_units = true,
+  use_spacer = left,
+  
+  lua_load = '~/.i3/conky.lua'
+}
 
-# Network interface must have an ip address to be considered up
-if_up_strictness address
-
-short_units yes
-use_spacer left
-
-lua_load ~/.i3/conky.lua
-
-TEXT
+conky.text = [[
 [\
 ${if_mpd_playing}
 {"name": "stopped", "full_text": "${mpd_status}", "separator": false}, \
@@ -54,10 +55,8 @@ ${endif}
 {"name": "cpu", "color": "\#888888", "full_text": "cpu: ${cpu}%", \
 "min_width": "cpu: 100%", "align": "right", "separator": false}, \
 \
-{"name": "cpu_temp", "full_text": "temp: ${exec sensors | grep -A 4 'Core 0:' | cut -c18-21 | sed '/^\$/d' | paste -d' ' -s}", \
+{"name": "cpu_temp", "full_text": "temp: ${exec sensors | grep -A 4 'Core 0:' | cut -c17-20 | sed '/^\$/d' | paste -d' ' -s}", \
 "separator": true, "separator_block_width": 21}, \
-#{"name": "gpu_temp", "full_text": "gpu temp: ${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}", 
-#"separator": true, "separator_block_width": 21}, 
 \
 {"name": "mem", "full_text": "mem: ${mem}/${memmax} ${memperc}%", \
 "min_width": "mem: 10.00G/10.00G 100%", "align": "right", "separator": true, \
@@ -69,3 +68,6 @@ ${endif}
 \
 {"name": "time", "full_text": "${time %-l:%M %p}", "separator": false}\
 ],
+]]
+-- {"name": "gpu_temp", "full_text": "gpu temp: ${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}", 
+-- "separator": true, "separator_block_width": 21}, 

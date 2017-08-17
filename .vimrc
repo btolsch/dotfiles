@@ -26,10 +26,16 @@ Plugin 'tpope/vim-obsession'
 " Plugin 'jceb/vim-hier'
 Plugin 'b4winckler/vim-angry'
 Plugin 'tpope/vim-commentary'
-Plugin 'Skyfold/vim-ranger'
+"Plugin 'Mizuchi/vim-ranger'
+Plugin 'rbgrouleff/bclose.vim'
+Plugin 'francoiscabrol/ranger.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
 
 call vundle#end()
 
@@ -41,7 +47,7 @@ vnoremap : ;
 set matchpairs+=<:>
 
 set termguicolors
-filetype plugin on
+filetype plugin indent on
 syntax on
 colorscheme BusyBee_modified
 
@@ -89,19 +95,50 @@ let mapleader = ","
 " wp    <c-w>p
 " ws    delete trailing whitespace
 
-nnoremap <leader>w <c-w>v<c-w>l
+nnoremap <leader>s <c-w>v<c-w>l
 nnoremap <leader>v V']
 nnoremap <leader>wb <c-w>b
 nnoremap <leader>wp <c-w>p
 nnoremap <leader>pc :pc<cr>
-nnoremap <leader>e :edit %:h<cr>
-nnoremap <leader>r :edit .<cr>
+nnoremap <leader>e :Ranger<cr>
+" nnoremap <leader>r :edit .<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 
+" incsearch.vim x fuzzy x vim-easymotion
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzy#converter()],
+  \   'modules': [incsearch#config#easymotion#module()],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
 nmap <leader>; <Plug>(easymotion-repeat)
-nmap <leader>j <Plug>(easymotion-j)
-nmap <leader>k <Plug>(easymotion-k)
+map  <leader>j <Plug>(easymotion-bd-jk)
+map          / <Plug>(easymotion-sn)
+omap         / <Plug>(easymotion-tn)
+map  <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
+map  <leader>t <Plug>(easymotion-bd-t)
+map          f <Plug>(easymotion-bd-fl)
+map          t <Plug>(easymotion-bd-tl)
+map  <leader>h <Plug>(easymotion-lineanywhere)
+map  <leader>l <Plug>(easymotion-lineanywhere)
+map  <leader>w <Plug>(easymotion-bd-w)
+nmap <leader>w <Plug>(easymotion-overwin-w)
+
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+let g:EasyMotion_startofline = 0
+
+let g:ranger_map_keys = 0
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
@@ -188,6 +225,7 @@ autocmd FileType vim setlocal foldmethod=marker
 autocmd BufNewFile,BufRead /tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
 autocmd BufNewFile,BufRead ~/tmp/mutt* setlocal autoindent nocindent filetype=mail tw=80 digraph
 autocmd BufNewFile,BufRead /tmp/cl_description* setlocal filetype=gitcommit
+autocmd BufNewFile,BufRead *.vs,*.gs,*.fs set filetype=glsl
 
 map <silent> <leader>so :source $MYVIMRC<cr>
 
@@ -203,9 +241,13 @@ endfunction
 " Alt typically emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
+nnoremap <silent> <M-j> :tabprevious<CR>
+nnoremap <silent> <M-k> :tabnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
 nnoremap <silent> <Esc>h :bprevious<CR>
 nnoremap <silent> <Esc>l :bnext<CR>
+nnoremap <silent> <Esc>j :tabprevious<CR>
+nnoremap <silent> <Esc>k :tabnext<CR>
 nnoremap <silent> <Esc>; :b#<cr>
 nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
 nnoremap <silent> [q :cprev<cr>
@@ -217,8 +259,6 @@ nnoremap <silent> <leader>cw :cw<cr>
 nnoremap <silent> <leader>m <C-w>_
 nnoremap <silent> <leader>n <C-w>\|
 
-nnoremap <silent> <leader>h :tabprevious<CR>
-nnoremap <silent> <leader>l :tabnext<CR>
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
 nnoremap <C-M-n> :tab split<cr>
@@ -239,8 +279,6 @@ noremap <leader>D "_D
 " nnoremap <C-x> LztM
 " nnoremap <C-c> HzbM
 
-nnoremap <M-j> 5j
-nnoremap <M-k> 5k
 noremap <C-M-e> 5<C-e>
 noremap <C-M-y> 5<C-y>
 
