@@ -119,8 +119,8 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 nmap <leader>;         <Plug>(easymotion-repeat)
-map  <leader><leader>j <Plug>(easymotion-bd-jk)
-map  <leader>j         <Plug>(easymotion-sol-bd-jk)
+map  <leader><leader>j <Plug>(easymotion-sol-bd-jk)
+map  <leader>j         <Plug>(easymotion-bd-jk)
 map          /         <Plug>(easymotion-sn)
 omap         /         <Plug>(easymotion-tn)
 map  <leader>f         <Plug>(easymotion-bd-f)
@@ -293,6 +293,7 @@ nnoremap <silent> ]p :YcmCompleter GetParent<cr>
 nnoremap <silent> ]t :YcmCompleter GetType<cr>
 nnoremap <silent> [d :YcmCompleter GoToImprecise<cr>
 nnoremap <silent> [D :YcmCompleter GoToDeclaration<cr>
+nnoremap <silent> <leader>x :YcmCompleter FixIt<cr>
 
 nmap <M-1> <Plug>AirlineSelectTab1
 nmap <M-2> <Plug>AirlineSelectTab2
