@@ -118,19 +118,20 @@ endfunction
 
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
-nmap <leader>; <Plug>(easymotion-repeat)
-map  <leader>j <Plug>(easymotion-bd-jk)
-map          / <Plug>(easymotion-sn)
-omap         / <Plug>(easymotion-tn)
-map  <leader>f <Plug>(easymotion-bd-f)
-nmap <leader>f <Plug>(easymotion-overwin-f)
-map  <leader>t <Plug>(easymotion-bd-t)
-map          f <Plug>(easymotion-bd-fl)
-map          t <Plug>(easymotion-bd-tl)
-map  <leader>h <Plug>(easymotion-lineanywhere)
-map  <leader>l <Plug>(easymotion-lineanywhere)
-map  <leader>w <Plug>(easymotion-bd-w)
-nmap <leader>w <Plug>(easymotion-overwin-w)
+nmap <leader>;         <Plug>(easymotion-repeat)
+map  <leader><leader>j <Plug>(easymotion-sol-bd-jk)
+map  <leader>j         <Plug>(easymotion-bd-jk)
+map          /         <Plug>(easymotion-sn)
+omap         /         <Plug>(easymotion-tn)
+map  <leader>f         <Plug>(easymotion-bd-f)
+nmap <leader>f         <Plug>(easymotion-overwin-f)
+map  <leader>t         <Plug>(easymotion-bd-t)
+map          f         <Plug>(easymotion-bd-fl)
+map          t         <Plug>(easymotion-bd-tl)
+map  <leader>h         <Plug>(easymotion-lineanywhere)
+map  <leader>l         <Plug>(easymotion-lineanywhere)
+map  <leader>w         <Plug>(easymotion-bd-w)
+nmap <leader>w         <Plug>(easymotion-overwin-w)
 
 let g:EasyMotion_use_upper = 1
 let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
@@ -294,6 +295,7 @@ nnoremap <silent> ]p :YcmCompleter GetParent<cr>
 nnoremap <silent> ]t :YcmCompleter GetType<cr>
 nnoremap <silent> [d :YcmCompleter GoToImprecise<cr>
 nnoremap <silent> [D :YcmCompleter GoToDeclaration<cr>
+nnoremap <silent> <leader>x :YcmCompleter FixIt<cr>
 
 nmap <M-1> <Plug>AirlineSelectTab1
 nmap <M-2> <Plug>AirlineSelectTab2
