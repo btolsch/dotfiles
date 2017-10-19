@@ -158,6 +158,7 @@ let g:ctrlp_switch_buffer = 0
 let g:airline_theme = 'dark_modified'
 let g:airline#extensions#obsession#enabled = 1
 
+set previewheight=25
 set timeoutlen=150 ttimeoutlen=0
 
 set omnifunc=syntaxcomplete#Complete
