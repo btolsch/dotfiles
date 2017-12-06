@@ -7,5 +7,6 @@ tpset "Evdev Wheel Emulation Timeout" 200
 tpset "Evdev Wheel Emulation Axes" 6 7 4 5
 tpset "Device Accel Constant Deceleration" 0.4
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Accel Constant Deceleration" 20
+xinput set-prop "Synaptics TM2668-002" "Device Accel Constant Deceleration" 20
 #setxkbmap -option grp:alt_shift_toggle us,de
 exec i3
