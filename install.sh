@@ -51,20 +51,22 @@ for config_dir in $config_dirs; do
 done
 
 typeset -A other_files
-other_files=("mpd.conf" ".config/mpd/"
-             "redshift.conf" ".config/"
-             "redshift-gtk.service" ".config/systemd/user/")
+other_files=("mpd.conf" ".config/mpd/mpd.conf"
+             "redshift.conf" ".config/redshift.conf"
+             "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
+             ".vim" ".config/nvim"
+             ".vimrc" ".config/nvim/init.vim")
 for file in ${(k)other_files}; do
-  dest_file=~/$(echo ${other_files[$file]} | sed 's#^/\?\(.*[^/]\)/\?$#\1#')/$file
-  dots=$(echo ${other_files[$file]} | sed 's#[^/]*\(/\|$\)#../#g' | sed '#/$#d')
+  dest_file=~/${other_files[$file]}
+  rel_file=$(realpath $dotfiles_dir/$file --relative-to=$(dirname ~/${other_files[$file]}))
   if [[ ! -e $dest_file ]]; then
     mkdir -p $(dirname $dest_file)
-    ln -s $dots/$rel/$file $dest_file
+    ln -s $rel_file $dest_file
   elif [[ ! -L $dest_file ]]; then
     echo "$dest_file exists and is not a link"
     if [[ -n "$1" ]]; then
       echo "overwriting $dest_file with link"
-      ln -sf $dots/$rel/$file $dest_file
+      ln -sf $rel_file $dest_file
     fi
   fi
 done
