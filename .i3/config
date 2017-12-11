@@ -244,6 +244,7 @@ for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="st-256color" instance="floating"] floating enable
 for_window [window_role="pop-up"] floating enable
+for_window [title="Ozone X11"] floating enable
 
 bindsym $mod+Control+Return exec --no-startup-id st -c floating
 

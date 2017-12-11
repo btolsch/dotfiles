@@ -240,17 +240,12 @@ function! FormatAll()
   pyf /usr/lib/clang-format/clang-format.py
 endfunction
 
-" Alt typically emulated as <Esc>
+" Alt sometimes emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-j> :tabprevious<CR>
 nnoremap <silent> <M-k> :tabnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
-nnoremap <silent> <Esc>h :bprevious<CR>
-nnoremap <silent> <Esc>l :bnext<CR>
-nnoremap <silent> <Esc>j :tabprevious<CR>
-nnoremap <silent> <Esc>k :tabnext<CR>
-nnoremap <silent> <Esc>; :b#<cr>
 nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
 nnoremap <silent> [q :cprev<cr>
 nnoremap <silent> ]q :cnext<cr>
@@ -264,9 +259,6 @@ nnoremap <silent> <leader>n <C-w>\|
 nnoremap <silent> <M-<> :tabm -1<CR>
 nnoremap <silent> <M->> :tabm +1<CR>
 nnoremap <C-M-n> :tab split<cr>
-nnoremap <silent> <Esc>< :tabm -1<CR>
-nnoremap <silent> <Esc>> :tabm +1<CR>
-nnoremap <Esc><C-n> <C-w>s<C-w>T
 
 " Insert home key motion with Alt
 inoremap <M-h> <C-o>h
@@ -354,8 +346,6 @@ nnoremap <leader>= :call MoveFoldStartDown()<cr>
 " map <C-j> <C-W>j
 noremap <A-n> <C-w><
 noremap <A-m> <C-w>>
-noremap <Esc>n <C-w><
-noremap <Esc>m <C-w>>
 noremap + <C-W>+
 noremap - <C-W>-
 noremap <A-+> 5<C-W>+
@@ -391,7 +381,7 @@ vnoremap < <gv
 vnoremap <C-c> "+y
 
 " Normal paste
-nnoremap <Esc><C-v> "+p
+nnoremap <C-M-v> "+p
 
 set number
 set tw=80
