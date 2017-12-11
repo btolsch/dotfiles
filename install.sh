@@ -22,7 +22,7 @@ for file in $(ls -d $dotfiles_dir/.* | grep -v ".git" | grep -v ".config"); do
     ln -s ${rel}/${file} ~/$file
   elif [ ! -L ~/$file ]; then
     echo "~/$file exists and is not a link"
-    if [ "$1" != "0" ]; then
+    if [ -n "$1" -a "$1" != "0" ]; then
       echo "overwriting ~/$file with link"
       rm -rf ~/$file
       ln -sf $rel/$file ~/$file
@@ -42,7 +42,7 @@ for config_dir in $config_dirs; do
     ln -s ../$rel/$config_dir ~/.config/$config_dir
   elif [ ! -L ~/.config/powerline ]; then
     echo "~/.config/$config_dir exists and is not a link"
-    if [ "$1" != "0" ]; then
+    if [ -n "$1" -a "$1" != "0" ]; then
       echo "overwriting ~/.config/$config_dir with link"
       rm -rf ~/.config/$config_dir
       ln -sf ../$rel/$config_dir ~/.config/$config_dir
@@ -64,7 +64,7 @@ for file in ${(k)other_files}; do
     ln -s $rel_file $dest_file
   elif [[ ! -L $dest_file ]]; then
     echo "$dest_file exists and is not a link"
-    if [[ -n "$1" ]]; then
+    if [[ -n "$1" -a "$1" != 0 ]]; then
       echo "overwriting $dest_file with link"
       ln -sf $rel_file $dest_file
     fi

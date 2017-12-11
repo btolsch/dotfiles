@@ -8,7 +8,7 @@ for file in $dotfiles_dir/bin/*; do
     ln -s ../$rel/$file ~/$file
   elif [ ! -L ~/$file ]; then
     echo "~/$file exists and is not a link"
-    if [ "$1" != "0" ]; then
+    if [ -n "$1" -a "$1" != "0" ]; then
       echo "overwriting ~/$file with link"
       rm -rf ~/$file
       ln -sf ../$rel/$file ~/$file
