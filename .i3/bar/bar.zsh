@@ -5,6 +5,7 @@ BAR_DIR=$(dirname $(realpath $0))
 . $BAR_DIR/common.sh
 
 (while :; do
+  BAT=$($BAR_DIR/battery.zsh)
   MUSIC=$($BAR_DIR/music.zsh)
   DROPBOX=$($HOME/bin/dropbox.py status)
   PACMAN=$($BAR_DIR/pacman.sh)
@@ -16,7 +17,7 @@ BAR_DIR=$(dirname $(realpath $0))
   MEM="$(echo ${MEM_FIELDS[1]} | numfmt --to=si --format='%.2f') ${MEM_FIELDS[2]}%"
   TIME=$(date +"%m.%d.%y %I:%M %p")
 
-  echo -en "%{r}$MUSIC"
+  echo -en "%{r}$MUSIC $BAT"
   echo -en " %{F$BLUE}\ue0aa%{F-} $DROPBOX"
   echo -en " %{F$BLUE}\ue00f%{F-} $PACMAN"
   echo -en " %{F$BLUE}\ue19c%{F-} $NET_INFO"
