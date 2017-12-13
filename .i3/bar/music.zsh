@@ -6,7 +6,7 @@ BAR_DIR=$(dirname $(realpath $0))
 
 MPC_LINES=$(mpc status)
 MPC_LINES=(${(f)MPC_LINES})
-if [ ${#MPC_LINES} -eq 1 ]; then
+if [ ${#MPC_LINES} -le 1 ]; then
   exit
 fi
 if echo ${MPC_LINES[2]} | grep -q '^\[playing\]'; then
