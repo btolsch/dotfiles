@@ -196,23 +196,12 @@ mode "move" {
 bindsym $mod+m mode "move"
 
 client.focused          #1793d1 #1763ca #dddddd #2e9ef4
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	position top
-	i3bar_command /usr/bin/i3bar-icons
-	status_command ~/bin/conkybar.sh
-	font pango:Terminess Powerline 13
-	colors {
-		separator #1793d1
-		statusline #888888
-		focused_workspace #0f70bf #052c57 #aaaaaa
-	}
-}
 
 bindsym $mod+b bar mode invisible
 bindsym $mod+Shift+b bar mode dock
 
+exec --no-startup-id zsh -c "~/.i3/bar/bar.zsh"
+exec --no-startup-id stalonetray
 exec --no-startup-id dunst
 exec --no-startup-id compton -b
 exec --no-startup-id conky
