@@ -10,6 +10,8 @@ Probably not an exhaustive list...
  - tmux
  - compton
  - neovim
+ - lemonbar with xft and xbm support ([my fork](https://github.com/btolsch/bar))
+ - [wschirp](https://github.com/btolsch/wschirp)
 
 ## Install
 
