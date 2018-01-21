@@ -12,7 +12,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
@@ -36,6 +35,7 @@ Plugin 'peterhoeg/vim-qml'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-easymotion.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'Shougo/denite.nvim'
 
 call vundle#end()
 
@@ -105,6 +105,26 @@ nnoremap <leader>e :Ranger<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+call denite#custom#option('_', 'highlight_matched_char', 'Number')
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+  \ ['git', 'ls-files', '-co', '--exclude-standard'])
+nnoremap <space>p :Denite file_rec<cr>
+nnoremap <space>n :Denite buffer<cr>
+nnoremap <space>s :DeniteProjectDir file_rec/git<cr>
+
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
@@ -144,7 +164,7 @@ let g:ranger_map_keys = 0
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:python_host_prog = '/usr/bin/python2'
@@ -272,6 +292,8 @@ inoremap <M-j> <C-o>j
 inoremap <M-k> <C-o>k
 inoremap <M-l> <C-o>l
 
+noremap <leader>c "_c
+noremap <leader>C "_C
 noremap <leader>d "_d
 noremap <leader>D "_D
 
