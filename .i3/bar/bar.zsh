@@ -4,13 +4,22 @@ BAR_DIR=$(dirname $0)
 
 . $BAR_DIR/common.sh
 
+MPSTAT_FILE=$(mktemp -u)
+mkfifo $MPSTAT_FILE
+exec 3<>$MPSTAT_FILE
+unlink $MPSTAT_FILE
+
+mpstat 1 >&3 &
+
 (while :; do
+  MPSTAT_NEXT=$(nbline <&3)
+  MPSTAT_LINE=$([ ${#MPSTAT_NEXT} -eq 0 ] && echo "$MPSTAT_LINE" || echo "$MPSTAT_NEXT")
   MUSIC=$($BAR_DIR/music.zsh)
   DROPBOX=$($HOME/bin/dropbox.py status)
   PACMAN=$($BAR_DIR/pacman.sh)
   NET_INFO=$($BAR_DIR/network.sh | paste -sd " $SEP ")
   DISKS=$($BAR_DIR/disk.sh | paste -sd " $SEP ")
-  CPU="$(printf "%.0f" $(mpstat | awk '/all/ {print 100 - $NF}'))% $SEP $(cat /proc/loadavg | cut -f 1-3 -d ' ')"
+  CPU="$(printf "%.0f" $(echo \"$MPSTAT_LINE\" | awk '/all/ {print 100 - $NF}'))% $SEP $(cat /proc/loadavg | cut -f 1-3 -d ' ')"
   MEM_FIELDS=$(free -b | awk '/Mem/ {x=$2-$NF; print x; printf "%.0f\n", 100*x/$2}')
   MEM_FIELDS=(${(f)MEM_FIELDS})
   MEM="$(echo ${MEM_FIELDS[1]} | numfmt --to=si --format='%.2f') ${MEM_FIELDS[2]}%"
