@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-BAR_DIR=$(dirname $(realpath $0))
+BAR_DIR=$(dirname $0)
 
 . $BAR_DIR/common.sh
 

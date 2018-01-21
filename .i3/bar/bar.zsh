@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-BAR_DIR=$(dirname $(realpath $0))
+BAR_DIR=$(dirname $0)
 
 . $BAR_DIR/common.sh
 
@@ -28,7 +28,7 @@ mpstat 1 >&3 &
 
   echo -en "%{r}$MUSIC $BAT"
   echo -en " %{F$BLUE}\ue0aa%{F-} $DROPBOX"
-  echo -en " %{F$BLUE}\ue00f%{F-} $PACMAN"
+  echo -en " %{A:$BAR_DIR/dzen/pacman.sh:}%{F$BLUE}\ue00f%{F-} $PACMAN%{A}"
   echo -en " %{F$BLUE}\ue19c%{F-} $NET_INFO"
   echo -en " %{F$BLUE}\ue147%{F-} $DISKS"
   echo -en " %{F$BLUE}\ue026%{F-}$CPU"
