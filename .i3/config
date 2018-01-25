@@ -223,6 +223,7 @@ exec --no-startup-id udiskie -2 --tray
 exec_always --no-startup-id ~/bin/autostart.sh
 #exec_always --no-startup-id nm-applet
 exec --no-startup-id pasystray
+exec_always --no-startup-id /usr/share/goobuntu-indicator/goobuntu_indicator.py
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
