@@ -4,7 +4,7 @@ BAR_DIR=$(dirname $0)
 
 . $BAR_DIR/common.sh
 
-MPC_LINES=$(mpc status)
+MPC_LINES=$(mpc status 2>/dev/null)
 MPC_LINES=(${(f)MPC_LINES})
 if [ ${#MPC_LINES} -le 1 ]; then
   exit
