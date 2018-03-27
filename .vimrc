@@ -121,7 +121,7 @@ call denite#custom#option('_', 'highlight_matched_char', 'Number')
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
   \ ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <space>p :Denite file_rec<cr>
+nnoremap <space>p :DeniteBufferDir file_rec<cr>
 nnoremap <space>n :Denite buffer<cr>
 nnoremap <space>s :DeniteProjectDir file_rec/git<cr>
 
