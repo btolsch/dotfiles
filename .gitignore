@@ -1,5 +1,5 @@
 .vim/.netrwhist
-.vim/bundle/**
+.vim/plugged/**
 .vim/init.vim
 __pycache__/**
 .ncmpcpp/error.log
