@@ -99,6 +99,7 @@ alias fuck='sudo $(fc -ln -1)'
 alias dus="du -xh --max-depth=2 | sort -rh | less"
 alias -s cpp=vim
 alias -s h=vim
+unalias fd
 
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" sudo-command-line
@@ -109,3 +110,49 @@ setopt extended_glob
 stty -ixon
 
 [[ -f ~/bin/zbell.sh ]] && source ~/bin/zbell.sh
+
+[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
+fzf-cd-all-widget() {
+  local old="$FZF_ALT_C_COMMAND"
+  FZF_ALT_C_COMMAND="fd --type d --hidden --follow"
+  fzf-cd-widget
+  FZF_ALT_C_COMMAND="$old"
+}
+
+zle -N fzf-cd-all-widget
+bindkey "\ex" fzf-cd-all-widget
+
+is_in_git_repo() {
+  git rev-parse &>/dev/null
+}
+
+fco() {
+  is_in_git_repo || return
+  local tags branches target
+  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  branches=$(
+    git branch --all | grep -v HEAD | sed 's/^ *//' | sed 's#remotes/##' |
+    sort -u | awk '{print "\x1b[33;1mbranch\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$tags"; echo "$branches") |
+    fzf --ansi +m -d "\t" -n 2 -1 -q "$*") || return
+  git checkout $(echo "$target" | awk '{print $2}')
+}
+
+fgst() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf -m --ansi -n 2..,.. \
+    --preview 'NAME="$(cut -c4- <<< {}) &&
+               (git diff --color=always "$NAME" | sed 1,4d; cat "$NAME") | head -200' |
+  cut -c4-
+}
+
+fgb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort | fzf --ansi \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(cut -c3- <<< {} | cut -d" " -f1) -200' |
+  cut -c3- | cut -d" " -f1 | sed '#^remotes/##'
+}
