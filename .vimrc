@@ -6,6 +6,7 @@ let g:powerline_pycmd = 'py3'
 
 " badwolfarch airline theme, not in a git repo so can't use Plugin
 set rtp+=~/dotfiles/custom-airline-themes
+set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.vim/plugged')
 
@@ -35,7 +36,7 @@ Plug 'peterhoeg/vim-qml'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'Shougo/denite.nvim'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -115,25 +116,10 @@ call deoplete#custom#option('camel_case', 'v:true')
 call deoplete#custom#option('ignore_case', 'v:true')
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-j>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-k>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
-call denite#custom#option('_', 'highlight_matched_char', 'Number')
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-  \ ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <space>p :DeniteBufferDir file_rec<cr>
-nnoremap <space>n :Denite buffer<cr>
-nnoremap <space>s :DeniteProjectDir file_rec/git<cr>
+nnoremap <space>p :FZF<cr>
+nnoremap <space>n :Buffers<cr>
+nnoremap <space>s :GFiles<cr>
+nnoremap <space>gs :GFiles?<cr>
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
@@ -191,6 +177,10 @@ hi link cPrecondit PreProc
 hi link pythonInclude PreProc
 
 hi! link FoldColumn LineNr
+
+hi link qfFileName PreProc
+hi link qfLineNr Number
+hi link QuickFixLine CursorLine
 
 set cursorline
 set relativenumber number
