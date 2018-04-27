@@ -15,7 +15,7 @@ let g:colors_name = "BusyBee_modified"
 "hi TabLineSel -- no settings --
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
-"hi ErrorMsg -- no settings --
+hi ErrorMsg guifg=#bb0000 guibg=NONE
 "hi Ignore -- no settings --
 "hi Normal guifg=#b5b5b5 guibg=#202020 guisp=#202020 gui=NONE ctermfg=249 ctermbg=234 cterm=NONE
 hi Normal guifg=#b5b5b5 guibg=NONE guisp=#202020 gui=NONE ctermfg=249 ctermbg=NONE cterm=NONE
