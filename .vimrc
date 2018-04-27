@@ -105,10 +105,14 @@ nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
+nnoremap <silent> <leader>qb :call LanguageClient#cquery_base()<cr>
+nnoremap <silent> <leader>qd :call LanguageClient#cquery_derived()<cr>
+nnoremap <silent> <leader>qv :call LanguageClient#cquery_vars()<cr>
+nnoremap <silent> <leader>qc :call LanguageClient#cquery_callers()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 
-let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log'] }
+let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'] }
 let g:LanguageClient_loadSettings = 1
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('camel_case', 'v:true')
