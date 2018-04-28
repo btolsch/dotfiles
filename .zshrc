@@ -1,5 +1,5 @@
 if [[ "$(tty)" = "/dev/tty1" ]]; then
-	startx && exit
+  startx && exit
 fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -52,13 +52,13 @@ plugins=(archlinux common-aliases git lol nyan pip python rand-quote sudo system
 #remove lwd from shell spawned by ranger to preserve ranger-given working-dir
 #'two levels' because ranger->zsh->tmux->zsh
 if ps -o  pid,comm x | grep $PPID | grep -q 'ranger'; then
-	touch ~/.ranger_parent
+  touch ~/.ranger_parent
 else
-	if [[ -a ~/.ranger_parent ]]; then
-		rm -f ~/.ranger_parent
-	else
-		plugins+=(last-working-dir)
-	fi
+  if [[ -a ~/.ranger_parent ]]; then
+    rm -f ~/.ranger_parent
+  else
+    plugins+=(last-working-dir)
+  fi
 fi
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
@@ -114,15 +114,25 @@ stty -ixon
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-fzf-cd-all-widget() {
+fzf-cd-cur-widget() {
   local old="$FZF_ALT_C_COMMAND"
-  FZF_ALT_C_COMMAND="fd --type d --hidden --follow"
+  FZF_ALT_C_COMMAND="fd -I --type d --hidden --follow"
   fzf-cd-widget
   FZF_ALT_C_COMMAND="$old"
 }
 
-zle -N fzf-cd-all-widget
-bindkey "\ex" fzf-cd-all-widget
+zle -N fzf-cd-cur-widget
+bindkey "\ex" fzf-cd-cur-widget
+
+fzf-cd-git-widget() {
+  local old="$FZF_ALT_C_COMMAND"
+  FZF_ALT_C_COMMAND="git ls-tree -r -d --name-only HEAD"
+  fzf-cd-widget
+  FZF_ALT_C_COMMAND="$old"
+}
+
+zle -N fzf-cd-git-widget
+bindkey "\es" fzf-cd-git-widget
 
 is_in_git_repo() {
   git rev-parse &>/dev/null
@@ -145,7 +155,7 @@ fgst() {
   is_in_git_repo || return
   git -c color.status=always status --short |
   fzf -m --ansi -n 2..,.. \
-    --preview 'NAME="$(cut -c4- <<< {}) &&
+    --preview 'NAME="$(cut -c4- <<< {})" &&
                (git diff --color=always "$NAME" | sed 1,4d; cat "$NAME") | head -200' |
   cut -c4-
 }
