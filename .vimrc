@@ -121,10 +121,10 @@ call deoplete#custom#option('camel_case', 'v:true')
 call deoplete#custom#option('ignore_case', 'v:true')
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-nnoremap <space>p :FZF<cr>
+nnoremap <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <space>n :Buffers<cr>
-nnoremap <space>s :GFiles<cr>
-nnoremap <space>gs :GFiles?<cr>
+nnoremap <space>s :GFiles!<cr>
+nnoremap <space>gs :GFiles!?<cr>
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
