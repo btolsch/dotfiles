@@ -114,17 +114,30 @@ nnoremap <silent> <leader>qc :call LanguageClient#cquery_callers()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 
+call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
+function! ModifyAirlineSections()
+  let g:airline_section_x = airline#section#create_right(['LCStatus', 'tagbar', 'filetype'])
+endfunction
+autocmd User AirlineAfterInit call ModifyAirlineSections()
+
 let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'] }
 let g:LanguageClient_loadSettings = 1
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('camel_case', 'v:true')
 call deoplete#custom#option('ignore_case', 'v:true')
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+inoremap <expr><esc> deoplete#close_popup()."\<esc>"
+inoremap <expr><C-space> deoplete#manual_complete([])
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><bs>  deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><cr> deoplete#close_popup() . "\<cr>"
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
 nnoremap <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <space>n :Buffers<cr>
-nnoremap <space>s :GFiles!<cr>
+nnoremap <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <space>gs :GFiles!?<cr>
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
