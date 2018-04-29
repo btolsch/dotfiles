@@ -141,12 +141,12 @@ is_in_git_repo() {
 fco() {
   is_in_git_repo || return
   local tags branches target
-  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  tags=$(git tag | awk '{print "\x1b[32;1mtag\x1b[m\t" $1}') || return
   branches=$(
     git branch --all | grep -v HEAD | sed 's/^ *//' | sed 's#remotes/##' |
-    sort -u | awk '{print "\x1b[33;1mbranch\x1b[m\t" $1}') || return
+    sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
   target=$(
-    (echo "$tags"; echo "$branches") |
+    (echo "$branches"; echo "$tags") |
     fzf --ansi +m -d "\t" -n 2 -1 -q "$*") || return
   git checkout $(echo "$target" | awk '{print $2}')
 }
