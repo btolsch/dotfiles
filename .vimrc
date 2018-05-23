@@ -132,10 +132,10 @@ inoremap <expr><bs>  deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><cr> deoplete#close_popup() . "\<cr>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
-nnoremap <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
-nnoremap <space>n :Buffers<cr>
-nnoremap <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
-nnoremap <space>gs :GFiles!?<cr>
+nnoremap <silent> <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
+nnoremap <silent> <space>n :Buffers<cr>
+nnoremap <silent> <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
+nnoremap <silent> <space>gs :GFiles!?<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
 
 " incsearch.vim x fuzzy x vim-easymotion
