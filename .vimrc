@@ -229,7 +229,9 @@ set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
 autocmd FileType text setlocal nocindent autoindent fo=t
+autocmd FileType txt call deoplete#disable()
 autocmd FileType markdown setlocal nocindent autoindent fo=t
+autocmd FileType markdown call deoplete#disable()
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
