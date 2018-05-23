@@ -132,7 +132,7 @@ nnoremap <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --
 nnoremap <space>n :Buffers<cr>
 nnoremap <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <space>gs :GFiles!?<cr>
-inoremap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-f> <plug>(fzf-complete-path)
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
