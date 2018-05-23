@@ -118,8 +118,7 @@ autocmd User AirlineAfterInit call ModifyAirlineSections()
 let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log'] }
 let g:LanguageClient_loadSettings = 1
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('camel_case', 'v:true')
-call deoplete#custom#option('ignore_case', 'v:true')
+call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 inoremap <expr><esc> deoplete#close_popup()."\<esc>"
 inoremap <expr><C-space> deoplete#manual_complete([])
