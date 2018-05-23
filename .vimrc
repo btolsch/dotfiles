@@ -113,6 +113,8 @@ nnoremap <silent> <leader>qv :call LanguageClient#cquery_vars()<cr>
 nnoremap <silent> <leader>qc :call LanguageClient#cquery_callers()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
+nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
+inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
 
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
