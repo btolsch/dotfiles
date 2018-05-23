@@ -108,6 +108,8 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
+nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
+inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
 
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
