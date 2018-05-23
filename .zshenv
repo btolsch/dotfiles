@@ -6,6 +6,7 @@ export GYP_DEFINES="buildtype=Official branding=Chrome"
 export TERMINAL=st
 export GTEST_COLOR=yes
 export GYP_CHROMIUM_NO_ACTION=1
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 
 export FZF_DEFAULT_COMMAND='
   (git ls-tree --name-only -r HEAD ||
