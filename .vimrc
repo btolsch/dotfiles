@@ -117,7 +117,7 @@ function! ModifyAirlineSections()
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
-let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log'] }
+let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'] }
 let g:LanguageClient_loadSettings = 1
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('camel_case', v:true)
