@@ -93,6 +93,7 @@ source $HOME/.zshenv
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias glggo="git log --graph --pretty=oneline --abbrev-commit"
 alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 alias rem="rm -rI"
 alias fuck='sudo $(fc -ln -1)'
