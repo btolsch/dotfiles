@@ -20,7 +20,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-surround'
@@ -109,7 +111,6 @@ nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
-inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
 
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
@@ -117,16 +118,11 @@ function! ModifyAirlineSections()
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
-let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'] }
+set completefunc=LanguageClient#complete
+let g:LanguageClient_serverCommands = { 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'],
+                                      \ 'cpp': ['/home/btolsch/opt/cquery/build/debug/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'] }
 let g:LanguageClient_loadSettings = 1
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('camel_case', v:true)
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-inoremap <expr><esc> deoplete#close_popup()."\<esc>"
-inoremap <expr><C-space> deoplete#manual_complete([])
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><bs>  deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><cr> deoplete#close_popup() . "\<cr>"
+let g:LanguageClient_loggingLevel = 'DEBUG'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
 nnoremap <silent> <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
@@ -134,6 +130,13 @@ nnoremap <silent> <space>n :Buffers<cr>
 nnoremap <silent> <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <silent> <space>gs :GFiles!?<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
+
+imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_cr)" : "\<CR>")
+imap <expr> <Plug>(expand_or_cr) (cm#completed_is_snippet() ? "\<C-U>" : "\<CR>")
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+inoremap <silent> <C-U> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
