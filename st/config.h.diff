@@ -1,0 +1,69 @@
+--- config.def.h	2018-06-14 21:35:22.113742401 -0700
++++ config.h	2018-06-14 21:12:59.156781065 -0700
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Terminess Powerline:size=12";
+ static int borderpx = 2;
+ 
+ /*
+@@ -87,32 +87,31 @@
+ 
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+-	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
+-
+-	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
+-
+-	[255] = 0,
+-
+-	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
+-	"black",
++  /* 8 normal colors */
++  "#1c1c1c",
++  "#a80a0a",
++  "#b2d631",
++  "#ffb964",
++  "#506ba1",
++  "#8787af",
++  "#668799",
++  "#888888",
++
++  /* 8 bright colors */
++  "#404040",
++  "#a80a0a",
++  "#b2d631",
++  "#fad07a",
++  "#506ba1",
++  "#c6b6ee",
++  "#3bc1ff",
++  "#e8e8e8",
++
++  [255] = 0,
++
++  /* more colors can be added after 255 to use with DefaultXX */
++  "#888888",
++  "#000000",
+ };
+ 
+ 
