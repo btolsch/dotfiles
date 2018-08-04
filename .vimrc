@@ -21,7 +21,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-surround'
@@ -114,7 +116,6 @@ nnoremap <silent> <leader>qc :call LanguageClient#cquery_callers()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
-inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
 
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
@@ -122,23 +123,29 @@ function! ModifyAirlineSections()
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
-let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'] }
+set completefunc=LanguageClient#complete
+let g:LanguageClient_serverCommands = { 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'],
+                                      \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'] }
 let g:LanguageClient_loadSettings = 1
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('camel_case', v:true)
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-inoremap <expr><esc> deoplete#close_popup()."\<esc>"
-inoremap <expr><C-space> deoplete#manual_complete([])
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><bs>  deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><cr> deoplete#close_popup() . "\<cr>"
+let g:LanguageClient_loggingLevel = 'DEBUG'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
 nnoremap <silent> <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <silent> <space>n :Buffers<cr>
 nnoremap <silent> <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <silent> <space>gs :GFiles!?<cr>
+nnoremap <space>a :Ag<space>
 imap <c-x><c-f> <plug>(fzf-complete-path)
+
+set shortmess+=c
+let g:cm_matcher = {'module': 'cm_matchers.fuzzy_matcher', 'case': 'smartcase'}
+
+imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_cr)" : "\<CR>")
+imap <expr> <Plug>(expand_or_cr) (cm#completed_is_snippet() ? "\<C-U>" : "\<CR>")
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+inoremap <silent> <C-U> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
@@ -159,10 +166,10 @@ map  <leader>j         <Plug>(easymotion-bd-jk)
 map          /         <Plug>(easymotion-sn)
 omap         /         <Plug>(easymotion-tn)
 map  <leader>f         <Plug>(easymotion-bd-f)
-nmap <leader>f         <Plug>(easymotion-overwin-f)
-map  <leader>t         <Plug>(easymotion-bd-t)
-map          f         <Plug>(easymotion-bd-fl)
-map          t         <Plug>(easymotion-bd-tl)
+nmap <leader>f<leader> <Plug>(easymotion-overwin-f)
+map  <leader>t<leader> <Plug>(easymotion-bd-t)
+map  <leader>f         <Plug>(easymotion-bd-fl)
+map  <leader>t         <Plug>(easymotion-bd-tl)
 map  <leader>h         <Plug>(easymotion-lineanywhere)
 map  <leader>l         <Plug>(easymotion-lineanywhere)
 map  <leader>w         <Plug>(easymotion-bd-w)
@@ -229,10 +236,11 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
+autocmd FileType markdown call cm#disable_for_buffer()
+autocmd FileType text call cm#disable_for_buffer()
+autocmd FileType gitcommit call cm#disable_for_buffer()
 autocmd FileType text setlocal nocindent autoindent fo=t
-autocmd FileType txt call deoplete#disable()
 autocmd FileType markdown setlocal nocindent autoindent fo=t
-autocmd FileType markdown call deoplete#disable()
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
 autocmd FileType make setlocal noexpandtab
 autocmd FileType vim setlocal fdc=1
@@ -246,12 +254,12 @@ autocmd BufNewFile,BufRead *.vs,*.gs,*.fs set filetype=glsl
 map <silent> <leader>so :source $MYVIMRC<cr>
 
 nnoremap <silent> <leader>cf :call FormatAll()<CR>
-vnoremap <silent> <leader>cf :pyf /usr/lib/clang-format/clang-format.py<CR>
+vnoremap <silent> <leader>cf :pyf /usr/local/google/home/btolsch/code/chromium/src/buildtools/clang_format/script/clang-format.py<CR>
 " imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
 
 function! FormatAll()
   let l:lines="all"
-  pyf /usr/lib/clang-format/clang-format.py
+  pyf /usr/local/google/home/btolsch/code/chromium/src/buildtools/clang_format/script/clang-format.py
 endfunction
 
 " Alt sometimes emulated as <Esc>

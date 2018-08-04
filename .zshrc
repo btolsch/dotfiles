@@ -168,3 +168,11 @@ fgb() {
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(cut -c3- <<< {} | cut -d" " -f1) -200' |
   cut -c3- | cut -d" " -f1 | sed '#^remotes/##'
 }
+
+stopwatch() {
+  date1=$(date +%s)
+  while true; do
+    echo -ne "$(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r"
+    sleep 0.1
+  done
+}
