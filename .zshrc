@@ -93,6 +93,7 @@ source $HOME/.zshenv
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias glggo="git log --graph --pretty=oneline --abbrev-commit"
 alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=.hg"
 alias rem="rm -rI"
 alias fuck='sudo $(fc -ln -1)'
@@ -165,4 +166,12 @@ fgb() {
   git branch -a --color=always | grep -v '/HEAD\s' | sort | fzf --ansi \
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(cut -c3- <<< {} | cut -d" " -f1) -200' |
   cut -c3- | cut -d" " -f1 | sed '#^remotes/##'
+}
+
+stopwatch() {
+  date1=$(date +%s)
+  while true; do
+    echo -ne "$(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r"
+    sleep 0.1
+  done
 }
