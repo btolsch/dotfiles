@@ -140,10 +140,10 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 set shortmess+=c
 let g:cm_matcher = {'module': 'cm_matchers.fuzzy_matcher', 'case': 'smartcase'}
 
-imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_cr)" : "\<CR>")
-imap <expr> <Plug>(expand_or_cr) (cm#completed_is_snippet() ? "\<C-U>" : "\<CR>")
+imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_close)" : "\<CR>")
+imap <expr> <Plug>(expand_or_close) (cm#completed_is_snippet() ? "\<C-J>" : "\<C-Y>")
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-inoremap <silent> <C-U> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+inoremap <silent> <C-J> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
@@ -262,7 +262,6 @@ function! FormatAll()
   pyf /usr/local/google/home/btolsch/code/chromium/src/buildtools/clang_format/script/clang-format.py
 endfunction
 
-" Alt sometimes emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-j> :tabprevious<CR>
