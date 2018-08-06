@@ -108,6 +108,10 @@ nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
+nnoremap <silent> <leader>qb :call LanguageClient#cquery_base()<cr>
+nnoremap <silent> <leader>qd :call LanguageClient#cquery_derived()<cr>
+nnoremap <silent> <leader>qv :call LanguageClient#cquery_vars()<cr>
+nnoremap <silent> <leader>qc :call LanguageClient#cquery_callers()<cr>
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
@@ -131,10 +135,13 @@ nnoremap <silent> <space>s :call fzf#vim#gitfiles('', {'options': '--preview "ca
 nnoremap <silent> <space>gs :GFiles!?<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
 
-imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_cr)" : "\<CR>")
-imap <expr> <Plug>(expand_or_cr) (cm#completed_is_snippet() ? "\<C-U>" : "\<CR>")
+set shortmess+=c
+let g:cm_matcher = {'module': 'cm_matchers.fuzzy_matcher', 'case': 'smartcase'}
+
+imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_close)" : "\<CR>")
+imap <expr> <Plug>(expand_or_close) (cm#completed_is_snippet() ? "\<C-J>" : "\<C-Y>")
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-inoremap <silent> <C-U> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+inoremap <silent> <C-J> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
@@ -157,10 +164,10 @@ map  <leader>j         <Plug>(easymotion-bd-jk)
 map          /         <Plug>(easymotion-sn)
 omap         /         <Plug>(easymotion-tn)
 map  <leader>f         <Plug>(easymotion-bd-f)
-nmap <leader>f         <Plug>(easymotion-overwin-f)
-map  <leader>t         <Plug>(easymotion-bd-t)
-map          f         <Plug>(easymotion-bd-fl)
-map          t         <Plug>(easymotion-bd-tl)
+nmap <leader>f<leader> <Plug>(easymotion-overwin-f)
+map  <leader>t<leader> <Plug>(easymotion-bd-t)
+map  <leader>f         <Plug>(easymotion-bd-fl)
+map  <leader>t         <Plug>(easymotion-bd-tl)
 map  <leader>h         <Plug>(easymotion-lineanywhere)
 map  <leader>l         <Plug>(easymotion-lineanywhere)
 map  <leader>w         <Plug>(easymotion-bd-w)
@@ -227,6 +234,9 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
+autocmd FileType markdown call cm#disable_for_buffer()
+autocmd FileType text call cm#disable_for_buffer()
+autocmd FileType gitcommit call cm#disable_for_buffer()
 autocmd FileType text setlocal nocindent autoindent fo=t
 autocmd FileType markdown setlocal nocindent autoindent fo=t
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
@@ -249,13 +259,11 @@ function! FormatAll()
   pyf /usr/share/clang/clang-format.py
 endfunction
 
-" Alt typically emulated as <Esc>
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-j> :tabprevious<CR>
 nnoremap <silent> <M-k> :tabnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
-" nnoremap <silent> <leader>bd :bnext<cr>:bd #<cr>
 nnoremap <silent> [q :cprev<cr>
 nnoremap <silent> ]q :cnext<cr>
 nnoremap <silent> <leader>co :copen<cr>
