@@ -47,6 +47,12 @@ vnoremap ; :
 nnoremap : ;
 vnoremap : ;
 
+inoremap `  ->
+inoremap `` `
+
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+
 set matchpairs+=<:>
 
 set termguicolors
@@ -282,6 +288,9 @@ inoremap <M-h> <C-o>h
 inoremap <M-j> <C-o>j
 inoremap <M-k> <C-o>k
 inoremap <M-l> <C-o>l
+
+inoremap <c-a> <c-o>^
+inoremap <c-e> <c-o>$
 
 noremap <leader>c "_c
 noremap <leader>C "_C

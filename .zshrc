@@ -168,6 +168,18 @@ fgb() {
   cut -c3- | cut -d" " -f1 | sed '#^remotes/##'
 }
 
+fgrep() {
+  is_in_git_repo || return
+  git grep $@ | fzf | cut -f1 -d:
+}
+
+fvigrep() {
+  files=$(fgrep $@)
+  if [ -n "$files" ]; then
+    vi -c "/$@" $files
+  fi
+}
+
 stopwatch() {
   date1=$(date +%s)
   while true; do
