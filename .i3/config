@@ -231,7 +231,7 @@ for_window [class="^.*"] border pixel 1
 
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
-for_window [class="st-256color" instance="floating"] floating enable
+for_window [instance="st-256color" class="floating"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 bindsym $mod+Control+Return exec --no-startup-id st -c floating
