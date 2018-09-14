@@ -52,8 +52,9 @@ done
 
 typeset -A other_files
 other_files=("mpd.conf" ".config/mpd/mpd.conf"
-             "redshift.conf" ".config/redshift.conf"
+             "redshift.conf" ".config/redshift/redshift.conf"
              "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
+             "redshift-gtk.service.d" ".config/systemd/user/redshift-gtk.service.d"
              ".vim" ".config/nvim"
              ".vimrc" ".config/nvim/init.vim")
 for file in ${(k)other_files}; do
@@ -64,7 +65,7 @@ for file in ${(k)other_files}; do
     ln -s $rel_file $dest_file
   elif [[ ! -L $dest_file ]]; then
     echo "$dest_file exists and is not a link"
-    if [[ -n "$1" -a "$1" != 0 ]]; then
+    if [ -n "$1" -a "$1" != 0 ]; then
       echo "overwriting $dest_file with link"
       ln -sf $rel_file $dest_file
     fi
