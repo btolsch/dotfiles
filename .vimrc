@@ -20,7 +20,12 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
@@ -128,6 +133,9 @@ function! ModifyAirlineSections()
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
 set completefunc=LanguageClient#complete
 let g:LanguageClient_serverCommands = { 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'],
                                       \ 'cpp': ['/home/btolsch/opt/cquery/build/debug/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'] }
@@ -142,12 +150,9 @@ nnoremap <silent> <space>gs :GFiles!?<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
 
 set shortmess+=c
-let g:cm_matcher = {'module': 'cm_matchers.fuzzy_matcher', 'case': 'smartcase'}
 
-imap <expr> <CR> (pumvisible() ? "\<C-Y>\<Plug>(expand_or_close)" : "\<CR>")
-imap <expr> <Plug>(expand_or_close) (cm#completed_is_snippet() ? "\<C-J>" : "\<C-Y>")
-let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-inoremap <silent> <C-J> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+let g:UltiSnipsExpandTrigger = "<C-J>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
@@ -240,9 +245,9 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
-autocmd FileType markdown call cm#disable_for_buffer()
-autocmd FileType text call cm#disable_for_buffer()
-autocmd FileType gitcommit call cm#disable_for_buffer()
+autocmd FileType markdown call ncm2#disable_for_buffer()
+autocmd FileType text call ncm2#disable_for_buffer()
+autocmd FileType gitcommit call ncm2#disable_for_buffer()
 autocmd FileType text setlocal nocindent autoindent fo=t
 autocmd FileType markdown setlocal nocindent autoindent fo=t
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
