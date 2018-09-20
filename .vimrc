@@ -20,7 +20,14 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-surround'
@@ -117,16 +124,13 @@ function! ModifyAirlineSections()
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
+set completefunc=LanguageClient#complete
 let g:LanguageClient_serverCommands = { 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/home/btolsch/.cache/cquery"}'] }
+" let g:LanguageClient_serverCommands = { 'cpp': ['/home/btolsch/code/crows/a.out'] }
 let g:LanguageClient_loadSettings = 1
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('camel_case', v:true)
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-inoremap <expr><esc> deoplete#close_popup()."\<esc>"
-inoremap <expr><C-space> deoplete#manual_complete([])
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><bs>  deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><cr> deoplete#close_popup() . "\<cr>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
 nnoremap <silent> <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
@@ -134,6 +138,13 @@ nnoremap <silent> <space>n :Buffers<cr>
 nnoremap <silent> <space>s :call fzf#vim#gitfiles('', {'options': '--preview "cat {} \| head -200"'}, 1)<cr>
 nnoremap <silent> <space>gs :GFiles!?<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
+
+set shortmess+=c
+
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+let g:UltiSnipsExpandTrigger = "<C-J>"
+let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
@@ -224,6 +235,9 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
+autocmd FileType markdown call ncm2#disable_for_buffer()
+autocmd FileType text call ncm2#disable_for_buffer()
+autocmd FileType gitcommit call ncm2#disable_for_buffer()
 autocmd FileType text setlocal nocindent autoindent fo=t
 autocmd FileType markdown setlocal nocindent autoindent fo=t
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
