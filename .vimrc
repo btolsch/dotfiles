@@ -44,6 +44,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'https://gn.googlesource.com/gn', { 'rtp': 'tools/gn/misc/vim' }
 
 call plug#end()
 
@@ -269,6 +270,8 @@ function! FormatAll()
   let l:lines="all"
   pyf /usr/share/clang/clang-format.py
 endfunction
+
+nnoremap <silent> <leader>gf :pyf /usr/local/google/home/btolsch/.vim/plugged/gn/tools/gn/misc/vim/gn-format.py<cr>
 
 inoremap <c-b> TODO(btolsch):<space>
 
