@@ -260,7 +260,8 @@ function! FormatAll()
   pyf /usr/share/clang/clang-format.py
 endfunction
 
-" Alt typically emulated as <Esc>
+inoremap <c-b> TODO(btolsch):<space>
+
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-j> :tabprevious<CR>
