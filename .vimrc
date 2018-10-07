@@ -129,6 +129,16 @@ inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
 
+nn <silent> xb :call LanguageClient#findLocations({'method': '$ccls/inheritance'})<cr>
+nn <silent> XB :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'levels': 3})<cr>
+nn <silent> xd :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'derived': v:true})<cr>
+nn <silent> XD :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'derived': v:true, 'levels': 3})<cr>
+nn <silent> xc :call LanguageClient#findLocations({'method': '$ccls/call'})<cr>
+nn <silent> XC :call LanguageClient#findLocations({'method': '$ccls/call', 'callee': v:true})<cr>
+nn <silent> xt :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 2})<cr>
+nn <silent> xf :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 3})<cr>
+nn <silent> xm :call LanguageClient#findLocations({'method': '$ccls/member'})<cr>
+
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
   let g:airline_section_x = airline#section#create_right(['LCStatus', 'tagbar', 'filetype'])
@@ -139,8 +149,8 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 set completefunc=LanguageClient#complete
-let g:LanguageClient_serverCommands = { 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'],
-                                      \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory": "/usr/local/google/home/btolsch/.cache/cquery"}'] }
+let g:LanguageClient_serverCommands = { 'c': ['ccls', '--log-file=/tmp/ccls.log'],
+                                      \ 'cpp': ['ccls', '--log-file=/tmp/ccls.log'] }
 let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
