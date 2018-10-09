@@ -1,0 +1,39 @@
+snippet nss
+namespace ${1:_name_} {
+
+$0
+
+}  // namespace $1
+endsnippet
+
+snippet anss
+namespace {
+
+$0
+
+}  // namespace
+endsnippet
+
+snippet inc
+#include "${1:_file_}"$0
+endsnippet
+
+snippet cls
+class ${1:_name_} {
+public:$0
+private:
+};
+endsnippet
+
+snippet stu
+struct ${1:_name_} {
+$0
+};
+endsnippet
+
+snippet ifnd
+#ifndef ${1:GUARD_NAME}`!p t[1] = t[1].upper().replace(" ", "_")`
+#define $1
+$0
+#endif  // $1
+endsnippet
