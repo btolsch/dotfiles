@@ -53,8 +53,8 @@ vnoremap ; :
 nnoremap : ;
 vnoremap : ;
 
-inoremap `  ->
-inoremap `` `
+nnoremap n nzz
+nnoremap N Nzz
 
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -308,6 +308,9 @@ inoremap <M-h> <C-o>h
 inoremap <M-j> <C-o>j
 inoremap <M-k> <C-o>k
 inoremap <M-l> <C-o>l
+
+inoremap <c-a> <c-o>^
+inoremap <c-e> <c-o>$
 
 inoremap <c-a> <c-o>^
 inoremap <c-e> <c-o>$
