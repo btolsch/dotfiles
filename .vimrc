@@ -131,6 +131,7 @@ nn <silent> XC :call LanguageClient#findLocations({'method': '$ccls/call', 'call
 nn <silent> xt :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 2})<cr>
 nn <silent> xf :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 3})<cr>
 nn <silent> xm :call LanguageClient#findLocations({'method': '$ccls/member'})<cr>
+nn <silent> xr :call LanguageClient#textDocument_rename()<cr>
 
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
