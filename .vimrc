@@ -140,6 +140,8 @@ nn <silent> xf :call LanguageClient#findLocations({'method': '$ccls/member', 'ki
 nn <silent> xm :call LanguageClient#findLocations({'method': '$ccls/member'})<cr>
 nn <silent> xr :call LanguageClient#textDocument_rename()<cr>
 
+om <leader>a aa
+
 call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
 function! ModifyAirlineSections()
   let g:airline_section_x = airline#section#create_right(['LCStatus', 'tagbar', 'filetype'])
