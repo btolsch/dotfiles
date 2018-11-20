@@ -30,8 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id st
 
 # lock the screen
-bindsym $mod+o exec --no-startup-id ~/bin/locker.sh
-bindsym $mod+Shift+o exec --no-startup-id ~/bin/locker.sh -d
+bindsym $mod+o exec --no-startup-id cinnamon-screensaver-command --lock
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -136,13 +135,17 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up 1
-bindsym XF86AudioLowerVolume exec pulseaudio-ctl down 1
-bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioPlay exec mpc toggle
 bindsym $mod+XF86AudioPlay exec xdotool key --window "$(xdotool search --class mpv)" p
+
+bindsym $mod+KP_Add exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+KP_Subtract exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 bindsym XF86MonBrightnessUp exec sudo ~/bin/brightness.sh inc
 bindsym XF86MonBrightnessDown exec sudo ~/bin/brightness.sh dec
@@ -213,17 +216,14 @@ bar {
 bindsym $mod+b bar mode invisible
 bindsym $mod+Shift+b bar mode dock
 
-exec --no-startup-id zsh -c "~/.i3/bar/bar.zsh"
-exec --no-startup-id stalonetray
-exec --no-startup-id dunst
 exec --no-startup-id compton -b
-exec --no-startup-id conky
-exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id udiskie -2 --tray
+exec --no-startup-id dex --autostart --environment x-cinnamon
+exec --no-startup-id dex /usr/share/applications/cinnamon-screensaver.desktop
 exec_always --no-startup-id ~/bin/autostart.sh
 #exec_always --no-startup-id nm-applet
 exec --no-startup-id pasystray
-exec_always --no-startup-id /usr/share/goobuntu-indicator/goobuntu_indicator.py
+#exec_always --no-startup-id /usr/share/goobuntu-indicator/goobuntu_indicator.py
 
 bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
 
