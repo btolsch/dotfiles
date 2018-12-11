@@ -119,6 +119,7 @@ nnoremap <leader>pc :pc<cr>
 nnoremap <leader>e :Ranger<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
+nnoremap <leader>p :set paste!<cr>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
 nnoremap <silent> <leader>qb :call LanguageClient#cquery_base()<cr>
