@@ -1,2 +1,2 @@
 #!/bin/bash
-su - btolsch -c 'DISPLAY=:0 xset r rate 150 25'
+su btolsch -c 'pgrep -x xset &>/dev/null || DISPLAY=:0 xset r rate 150 25'
