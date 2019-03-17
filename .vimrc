@@ -121,6 +121,7 @@ inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
 inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
+nnoremap <silent> <leader>p :set paste!<cr>
 
 nn <silent> xb :call LanguageClient#findLocations({'method': '$ccls/inheritance'})<cr>
 nn <silent> XB :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'levels': 3})<cr>
@@ -281,6 +282,7 @@ endfunction
 nnoremap <silent> <leader>gf :pyf /usr/local/google/home/btolsch/.vim/plugged/gn/tools/gn/misc/vim/gn-format.py<cr>
 
 inoremap <c-b> TODO(btolsch):<space>
+inoremap <c-v> NOTE(btolsch):<space>
 
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
