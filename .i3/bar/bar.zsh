@@ -35,10 +35,8 @@ mpstat 1 >&3 &
   echo -e " %{F$BLUE}\ue265%{F-} $TIME %{F$BLUE}%{I$DOTFILES_DIR/icons/arch_10x10.xbm}%{F-}"
   sleep 0.5
 done
-) | wschirp | (
+) | wschirp |
+lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
 while read TURTLE; do
-  echo "$TURTLE"
-done) | lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
-while read TURTLE; do
-  eval "$TURTLE"
+  eval "$TURTLE" &> /dev/null
 done)
