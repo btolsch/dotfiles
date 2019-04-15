@@ -38,7 +38,7 @@ done
 ) | wschirp | (
 while read TURTLE; do
   echo "$TURTLE"
-done) | lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Wuncon Siji:size=8" | wsfilter | (
+done) | lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
 while read TURTLE; do
   eval "$TURTLE"
 done)
