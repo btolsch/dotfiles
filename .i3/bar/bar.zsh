@@ -40,7 +40,7 @@ while :; do
   sleep 0.5
 done
 ) | wschirp |
-lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=13" -f "Wuncon Siji:size=13" | wsfilter | (
+lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
 while read TURTLE; do
   eval "$TURTLE" &>/dev/null
 done)
