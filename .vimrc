@@ -16,16 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-ultisnips'
+Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
@@ -115,41 +106,41 @@ nnoremap <leader>pc :pc<cr>
 nnoremap <leader>e :Ranger<cr>
 nnoremap <leader>le :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
-nnoremap <silent> <leader>r :call LanguageClient#textDocument_references()<cr>
+nnoremap <silent> K :call CocAction('doHover')<cr>
+inoremap <silent> <c-k> <c-o>:call CocActionAsync('showSignatureHelp')<cr>
+nmap <silent> <leader>r <Plug>(coc-references)
 inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
-nnoremap <silent> <leader>sh :call LanguageClient#textDocument_signatureHelp()<cr>
-inoremap <silent> <c-k> <c-o>:call LanguageClient#textDocument_signatureHelp()<cr>
+nnoremap <silent> <leader>sh :call CocActionAsync('showSignatureHelp')<cr>
 nnoremap <silent> <leader>p :set paste!<cr>
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-nn <silent> xb :call LanguageClient#findLocations({'method': '$ccls/inheritance'})<cr>
-nn <silent> XB :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'levels': 3})<cr>
-nn <silent> xd :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'derived': v:true})<cr>
-nn <silent> XD :call LanguageClient#findLocations({'method': '$ccls/inheritance', 'derived': v:true, 'levels': 3})<cr>
-nn <silent> xc :call LanguageClient#findLocations({'method': '$ccls/call'})<cr>
-nn <silent> XC :call LanguageClient#findLocations({'method': '$ccls/call', 'callee': v:true})<cr>
-nn <silent> xt :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 2})<cr>
-nn <silent> xf :call LanguageClient#findLocations({'method': '$ccls/member', 'kind': 3})<cr>
-nn <silent> xm :call LanguageClient#findLocations({'method': '$ccls/member'})<cr>
-nn <silent> xr :call LanguageClient#textDocument_rename()<cr>
+nn <silent> xb :call CocLocationsAsync('ccls', '$ccls/inheritance')<cr>
+nn <silent> XB :call CocLocationsAsync('ccls', '$ccls/inheritance', {'levels': 3})<cr>
+nn <silent> xd :call CocLocationsAsync('ccls', '$ccls/inheritance', {'derived': v:true})<cr>
+nn <silent> XD :call CocLocationsAsync('ccls', '$ccls/inheritance', {'derived': v:true}, 'levels': 3)<cr>
+nn <silent> xc :call CocLocationsAsync('ccls', '$ccls/call')<cr>
+nn <silent> XC :call CocLocationsAsync('ccls', '$ccls/call', {'callee': v:true})<cr>
+nn <silent> xt :call CocLocationsAsync('ccls', '$ccls/member', {'kind': 2})<cr>
+nn <silent> xf :call CocLocationsAsync('ccls', '$ccls/member', {'kind': 3})<cr>
+nn <silent> xm :call CocLocationsAsync('ccls', '$ccls/member')<cr>
+nmap <silent> xr <Plug>(coc-rename)
 
 om <leader>a aa
 
-call airline#parts#define_function('LCStatus', 'LanguageClient_serverStatusMessage')
+autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+call airline#parts#define_function('cocstatus', 'coc#status')
 function! ModifyAirlineSections()
-  let g:airline_section_x = airline#section#create_right(['LCStatus', 'tagbar', 'filetype'])
+  let g:airline_section_x = airline#section#create_right(['cocstatus', 'tagbar', 'filetype'])
 endfunction
 autocmd User AirlineAfterInit call ModifyAirlineSections()
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
-set completefunc=LanguageClient#complete
-let g:LanguageClient_serverCommands = { 'c': ['ccls', '--log-file=/tmp/ccls.log', '--init={"cacheDirectory": "/home/btolsch/.cache/ccls"}'],
-                                      \ 'cpp': ['ccls', '--log-file=/tmp/ccls.log', '--init={"cacheDirectory": "/home/btolsch/.cache/ccls"}'] }
-" let g:LanguageClient_serverCommands = { 'cpp': ['/home/btolsch/code/crows/a.out'] }
-let g:LanguageClient_loadSettings = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 && &buftype == '' | pclose | endif
 
 nnoremap <silent> <space>p :call fzf#vim#files(expand('%:p:h'), {'source': 'fd -t f -I --hidden --follow', 'options': '--preview "cat {} \| head -200"'}, 1)<cr>
@@ -160,7 +151,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 
 set shortmess+=c
 
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 let g:UltiSnipsExpandTrigger = "<C-J>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
@@ -254,9 +245,9 @@ set expandtab
 set cindent
 set cino=N-s,g0,(0,W2s,j1,+2s
 
-autocmd FileType markdown call ncm2#disable_for_buffer()
-autocmd FileType text call ncm2#disable_for_buffer()
-autocmd FileType gitcommit call ncm2#disable_for_buffer()
+" autocmd FileType markdown call ncm2#disable_for_buffer()
+" autocmd FileType text call ncm2#disable_for_buffer()
+" autocmd FileType gitcommit call ncm2#disable_for_buffer()
 autocmd FileType text setlocal nocindent autoindent fo=t
 autocmd FileType markdown setlocal nocindent autoindent fo=t
 autocmd FileType gitcommit setlocal tw=72 nocindent autoindent fo=t
@@ -331,7 +322,7 @@ inoremap <M-A> <C-o>A
 inoremap <M-p> <C-o>p
 inoremap <M-P> <C-o>P
 
-nnoremap <silent> [d :call LanguageClient#textDocument_definition()<cr>
+nmap <silent> [d <Plug>(coc-definition)
 
 nmap <M-1> <Plug>AirlineSelectTab1
 nmap <M-2> <Plug>AirlineSelectTab2
