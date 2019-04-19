@@ -1,4 +1,4 @@
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH:$HOME/code/depot_tools
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/bin:$PATH:$HOME/code/depot_tools
 export LESS='-x 4 -R'
 export EDITOR=vim
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
