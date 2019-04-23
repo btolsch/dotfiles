@@ -118,8 +118,8 @@ inoremap <silent> <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent> <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 nnoremap <silent> <leader>sh :call CocActionAsync('showSignatureHelp')<cr>
 nnoremap <silent> <leader>p :set paste!<cr>
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> [q <Plug>(coc-diagnostic-prev)
+nmap <silent> ]q <Plug>(coc-diagnostic-next)
 
 nn <silent> xb :call CocLocationsAsync('ccls', '$ccls/inheritance')<cr>
 nn <silent> XB :call CocLocationsAsync('ccls', '$ccls/inheritance', {'levels': 3})<cr>
@@ -286,8 +286,8 @@ nnoremap <silent> <M-l> :bnext<CR>
 nnoremap <silent> <M-j> :tabprevious<CR>
 nnoremap <silent> <M-k> :tabnext<CR>
 nnoremap <silent> <M-;> :b#<cr>
-nnoremap <silent> [q :cprev<cr>
-nnoremap <silent> ]q :cnext<cr>
+" nnoremap <silent> [q :cprev<cr>
+" nnoremap <silent> ]q :cnext<cr>
 nnoremap <silent> <leader>co :copen<cr>
 nnoremap <silent> <leader>cc :cclose<cr>
 nnoremap <silent> <leader>cw :cw<cr>
