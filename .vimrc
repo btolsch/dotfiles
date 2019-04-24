@@ -130,6 +130,11 @@ nn <silent> xf :call CocLocationsAsync('ccls', '$ccls/member', {'kind': 3})<cr>
 nn <silent> xm :call CocLocationsAsync('ccls', '$ccls/member')<cr>
 nmap <silent> xr <Plug>(coc-rename)
 
+nn <silent> xh :call CocLocations('ccls', '$ccls/navigate', {'direction': 'L'})<cr>
+nn <silent> xj :call CocLocations('ccls', '$ccls/navigate', {'direction': 'D'})<cr>
+nn <silent> xk :call CocLocations('ccls', '$ccls/navigate', {'direction': 'U'})<cr>
+nn <silent> xl :call CocLocations('ccls', '$ccls/navigate', {'direction': 'R'})<cr>
+
 om <leader>a aa
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
