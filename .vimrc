@@ -228,6 +228,9 @@ hi link qfFileName PreProc
 hi link qfLineNr Number
 hi link QuickFixLine CursorLine
 
+set updatetime=1000
+hi CocHighlightText gui=underline cterm=underline
+
 set cursorline
 set relativenumber number
 
