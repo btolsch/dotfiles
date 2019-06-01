@@ -211,7 +211,8 @@ exec_always --no-startup-id ~/bin/autostart.sh
 #exec_always --no-startup-id nm-applet
 exec --no-startup-id pasystray
 
-bindsym $mod+Shift+Return exec --no-startup-id google-chrome-stable
+bindsym $mod+Shift+Return exec --no-startup-id firefox
+bindsym $mod+Ctrl+Shift+Return exec --no-startup-id google-chrome-stable
 
 bindsym $mod+Mod1+Return exec --no-startup-id st-noalpha -t "st-ranger" -e /bin/zsh -c "ranger"
 
