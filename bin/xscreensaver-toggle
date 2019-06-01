@@ -2,10 +2,10 @@
 if ps cux | grep -q "xscreensaver$"; then
 	xscreensaver-command -exit
 	xautolock -disable
-	notify-send --urgency low "screensaver disabled"
+	notify-send --urgency low -t 1500 "screensaver disabled"
 else
 	xscreensaver -no-splash &
 	xautolock -enable
 	disown
-	notify-send --urgency low "screensaver enabled"
+	notify-send --urgency low -t 1500 "screensaver enabled"
 fi
