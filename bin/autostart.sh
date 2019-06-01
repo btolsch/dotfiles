@@ -1,7 +1,6 @@
 #!/bin/sh
 [[ -f /usr/bin/VBoxClient-all ]] && /usr/bin/VBoxClient-all
 source ~/.fehbg
-xset r rate 150 25
 xinput set-prop 14 268 2
 systemctl --user start redshift-gtk
 # Don't run xscreensaver on chrome remote desktop
