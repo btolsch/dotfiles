@@ -115,6 +115,11 @@ bindkey -a "^S" sudo-command-line
 bindkey "^?" backward-delete-char
 setopt extended_glob
 
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
 stty -ixon
 
 [[ -f ~/bin/zbell.sh ]] && source ~/bin/zbell.sh
@@ -197,4 +202,8 @@ stopwatch() {
 
 psforest() {
   ps ux --forest | less
+}
+
+path() {
+  echo $PATH | tr : '\n'
 }
