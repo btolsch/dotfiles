@@ -1,2 +1,8 @@
 Xcursor.theme: Oxygen_Zion
 rofi.terminal: st
+rofi.font: Terminess Powerline Regular 12
+rofi.color-enabled: true
+rofi.color-window: argb:ff000000, argb:ff000000, #1793d1
+rofi.color-normal: argb:00000000, #1793d1, argb:80333333, #1793d1, #000000
+rofi.color-active: argb:00000000, #00ff00, argb:00000000, #16ea46, #000000
+rofi.color-urgent: argb:00000000, #268bd2, argb:00000000, #ce24ce, #000000
