@@ -102,6 +102,13 @@ alias -s cpp=vim
 alias -s h=vim
 unalias fd
 
+expand-alias() {
+  zle _expand_alias
+  zle self-insert
+}
+zle -N expand-alias
+bindkey -M main ' ' expand-alias
+
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" sudo-command-line
 bindkey -a "^S" sudo-command-line
