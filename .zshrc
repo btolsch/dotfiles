@@ -103,7 +103,9 @@ alias -s h=vim
 unalias fd
 
 expand-alias() {
-  zle _expand_alias
+  if echo "$LBUFFER" | sed -n '/^\.\+$/q0;q1'; then
+    zle _expand_alias
+  fi
   zle self-insert
 }
 zle -N expand-alias
