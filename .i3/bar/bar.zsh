@@ -11,6 +11,8 @@ unlink $MPSTAT_FILE
 
 mpstat 1 >&3 &
 
+GEOMETRY=$(xrandr | grep primary | awk '{ print $4 }' | sed 's/x[0-9]\++/x18+/')
+
 (while :; do
   MPSTAT_NEXT=$(nbline <&3)
   MPSTAT_LINE=$([ ${#MPSTAT_NEXT} -eq 0 ] && echo "$MPSTAT_LINE" || echo "$MPSTAT_NEXT")
@@ -36,7 +38,7 @@ mpstat 1 >&3 &
   sleep 0.5
 done
 ) | wschirp |
-lemonbar -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
+lemonbar -g $GEOMETRY -F "#888888" -B "#000000" -u 2 -f "Terminess Powerline:size=8" -f "Siji:size=8" | wsfilter | (
 while read TURTLE; do
   eval "$TURTLE" &> /dev/null
 done)
