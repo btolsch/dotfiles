@@ -187,3 +187,7 @@ stopwatch() {
     sleep 0.1
   done
 }
+
+psforest() {
+  ps ux --forest | less
+}
