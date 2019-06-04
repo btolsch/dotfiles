@@ -101,6 +101,7 @@ alias dus="du -xh --max-depth=2 | sort -rh | less"
 alias -s cpp=vim
 alias -s h=vim
 unalias fd
+alias np=ncmpcpp
 
 expand-alias() {
   if echo "$LBUFFER" | sed -n '/^\.\+$/q0;q1'; then
