@@ -102,6 +102,7 @@ alias -s cpp=vim
 alias -s h=vim
 unalias fd
 alias np=ncmpcpp
+alias pacls="pacman -Ql"
 
 expand-alias() {
   if echo "$LBUFFER" | sed -n '/^\.\+$/q0;q1'; then
