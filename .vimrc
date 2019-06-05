@@ -280,8 +280,8 @@ endfunction
 
 nnoremap <silent> <leader>gf :pyf /usr/local/google/home/btolsch/.vim/plugged/gn/tools/gn/misc/vim/gn-format.py<cr>
 
-inoremap <c-b> TODO(btolsch):<space>
-inoremap <c-v> NOTE(btolsch):<space>
+inoremap <c-c> TODO(btolsch):<space>
+inoremap <c-b> NOTE(btolsch):<space>
 
 nnoremap <silent> <M-h> :bprevious<CR>
 nnoremap <silent> <M-l> :bnext<CR>
