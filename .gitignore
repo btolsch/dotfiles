@@ -3,3 +3,4 @@
 .vim/init.vim
 __pycache__/**
 .ncmpcpp/error.log
+platform/
