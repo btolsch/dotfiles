@@ -39,16 +39,18 @@ for script in $(ls $dotfiles_dir | grep -E ".install\.sh"); do
 done
 
 typeset -A other_files
-other_files=("mpd.conf" ".config/mpd/mpd.conf"
-             "redshift.conf" ".config/redshift/redshift.conf"
-             "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
-             "redshift-gtk.service.d" ".config/systemd/user/redshift-gtk.service.d"
-             "bspwmrc" ".config/bspwm/bspwmrc"
-             "sxhkd/normal" ".config/sxhkd/sxhkdrc"
-             "powerline" ".config/powerline"
-             "icons" ".icons/dzen2"
-             ".vim" ".config/nvim"
-             ".vimrc" ".config/nvim/init.vim")
+other_files=(
+    ".vim" ".config/nvim"
+    ".vimrc" ".config/nvim/init.vim"
+    "bspwmrc" ".config/bspwm/bspwmrc"
+    "icons" ".icons/dzen2"
+    "mpd.conf" ".config/mpd/mpd.conf"
+    "powerline" ".config/powerline"
+    "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
+    "redshift-gtk.service.d" ".config/systemd/user/redshift-gtk.service.d"
+    "redshift.conf" ".config/redshift/redshift.conf"
+    "sxhkd/normal" ".config/sxhkd/sxhkdrc"
+)
 for file in ${(k)other_files}; do
   dest_file=~/${other_files[$file]}
   rel_file=$(realpath $dotfiles_dir/$file --relative-to=$(dirname ~/${other_files[$file]}))
