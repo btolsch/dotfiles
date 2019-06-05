@@ -1,8 +1,5 @@
 #! /bin/sh
 
-bspc monitor -d 1 2 3 4 5
-bspc monitor next -d 6 7 8 9 0
-
 normal="#cccccc"
 focused="#1793d1"
 active="#1763ca"

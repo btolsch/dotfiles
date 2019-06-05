@@ -30,9 +30,9 @@ typeset -A other_files
 other_files=(
     ".vim" ".config/nvim"
     ".vimrc" ".config/nvim/init.vim"
-    "bspwmrc" ".config/bspwm/bspwmrc"
     "icons" ".icons/dzen2"
     "mpd.conf" ".config/mpd/mpd.conf"
+    "platform/bspwmrc" ".config/bspwm/bspwmrc"
     "powerline" ".config/powerline"
     "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
     "redshift-gtk.service.d" ".config/systemd/user/redshift-gtk.service.d"
