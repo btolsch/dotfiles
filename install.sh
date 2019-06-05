@@ -51,6 +51,9 @@ other_files=(
     "redshift.conf" ".config/redshift/redshift.conf"
     "sxhkd/normal" ".config/sxhkd/sxhkdrc"
 )
+for file in bin/*; do
+  other_files[$file]=$file
+done
 for file in ${(k)other_files}; do
   dest_file=~/${other_files[$file]}
   rel_file=$(realpath $dotfiles_dir/$file --relative-to=$(dirname ~/${other_files[$file]}))
