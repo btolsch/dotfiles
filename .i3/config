@@ -203,16 +203,12 @@ client.focused          #1793d1 #1763ca #dddddd #2e9ef4
 bindsym $mod+b bar mode invisible
 bindsym $mod+Shift+b bar mode dock
 
-exec --no-startup-id zsh -c "~/.i3/bar/bar.zsh"
+exec --no-startup-id zsh -c "~/dotfiles/lemonbar/i3/bar.zsh"
 exec --no-startup-id stalonetray
 exec --no-startup-id dunst
 exec --no-startup-id compton -b
-exec --no-startup-id conky
-exec --no-startup-id xscreensaver -nosplash
-exec --no-startup-id udiskie -2 --tray
-exec_always --no-startup-id ~/bin/autostart.sh
-#exec_always --no-startup-id nm-applet
 exec --no-startup-id pasystray
+exec_always --no-startup-id ~/bin/autostart.sh
 
 bindsym $mod+Shift+Return exec --no-startup-id firefox
 bindsym $mod+Ctrl+Shift+Return exec --no-startup-id google-chrome-stable
@@ -238,7 +234,7 @@ for_window [class="mpv"] floating enable
 for_window [class="st-256color" instance="floating"] floating enable
 for_window [window_role="pop-up"] floating enable
 
-bindsym $mod+Control+Return exec --no-startup-id st -c floating
+bindsym $mod+Control+Return exec --no-startup-id st -c floating tmux new-session
 
 force_display_urgency_hint 1000 ms
 

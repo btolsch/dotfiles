@@ -30,7 +30,7 @@ for file in $(ls -d $dotfiles_dir/.* | grep -v ".git" | grep -v ".config"); do
   fi
 done
 
-for script in $(ls $dotfiles_dir | grep -E ".install\.sh"); do
+for script in $(ls $dotfiles_dir | grep -E ".install\.sh" | grep -v slim); do
   echo "running $script"
   . $dotfiles_dir/$script $2
 done
@@ -55,6 +55,8 @@ other_files=("mpd.conf" ".config/mpd/mpd.conf"
              "redshift.conf" ".config/redshift/redshift.conf"
              "redshift-gtk.service" ".config/systemd/user/redshift-gtk.service"
              "redshift-gtk.service.d" ".config/systemd/user/redshift-gtk.service.d"
+             "bspwmrc" ".config/bspwm/bspwmrc"
+             "sxhkd/normal" ".config/sxhkd/sxhkdrc"
              ".vim" ".config/nvim"
              ".vimrc" ".config/nvim/init.vim")
 for file in ${(k)other_files}; do
