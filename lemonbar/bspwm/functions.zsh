@@ -38,38 +38,38 @@ on_bspwm_report() {
   DESKTOP_INDEX=1
   MONITOR_COUNT=0
   WS="%{+u}"
-  IFS=':' array=($(bspc wm --get-status))
-  for item in "${array[@]}"; do
-    name=${item#?}
-    maybe_m=$(echo $item | sed -n 's/^.*\(.\)\(HDMI\|DVI\|eDP\|DP-\?[0-9]\).*$/\1/p')
-    if [ "$maybe_m" = "m" ]; then
+  IFS=':' ARRAY=($(bspc wm --get-status))
+  for ITEM in "${ARRAY[@]}"; do
+    NAME=${ITEM#?}
+    MAYBE_M=$(echo $ITEM | sed -n 's/^.*\(m\|M\)\(HDMI\|DVI\|e\?DP-\?[0-9]\).*$/\1/p')
+    if [ "$MAYBE_M" = "m" ]; then
       FOCUSED="cccccc"
       MONITOR_COUNT=$((MONITOR_COUNT+1))
-    elif [ "$maybe_m" = "M" ]; then
+    elif [ "$MAYBE_M" = "M" ]; then
       FOCUSED="0f70bf"
       MONITOR_COUNT=$((MONITOR_COUNT+1))
-    elif [ "$item" = "LT" -o "$item" = "LM" ]; then
+    elif [ "$ITEM" = "LT" -o "$ITEM" = "LM" ]; then
       WS="${WS}%{S+}"
     else
       DESK=""
-      case $item in
+      case $ITEM in
         O*) # focused occupied
-          DESK="%{U#$FOCUSED} ${name} "
+          DESK="%{U#$FOCUSED} ${NAME} "
         ;;
         F*) # focused free
-          DESK="%{U#$FOCUSED} ${name} "
+          DESK="%{U#$FOCUSED} ${NAME} "
         ;;
         U*) # focused urgent
-          DESK="%{U#$FOCUSED} ${name} "
+          DESK="%{U#$FOCUSED} ${NAME} "
         ;;
         o*) # occupied
-          DESK="%{U#888888} ${name} "
+          DESK="%{U#888888} ${NAME} "
         ;;
         f*) # free
-          DESK="%{U#000000} ${name} "
+          DESK="%{U#000000} ${NAME} "
         ;;
         u*) # urgent
-          DESK="%{U#bf700f} ${name} "
+          DESK="%{U#bf700f} ${NAME} "
         ;;
       esac
       if [ -n "$DESK" ]; then
@@ -90,7 +90,7 @@ pre_render() {
 }
 
 render_left() {
-  echo -n "${WS}"
+  echo -n "${WS}$1"
 }
 
 render_right() {
@@ -102,7 +102,7 @@ render_right() {
     echo -en " %{F$BLUE}\ue147%{F-} $DISKS"
     echo -en " %{F$BLUE}\ue026%{F-}$CPU"
     echo -en " %{F$BLUE}\ue021%{F-}$MEM"
-    echo -en " %{A:$BAR_BASE_DIR/dzen/cal.sh:}%{F$BLUE}\ue265%{F-} $TIME%{A} %{A:$BAR_DIR/sxhkd/pass-through-toggle.sh:}%{F$LOGO_COLOR}%{I$DOTFILES_DIR/icons/arch_10x10.xbm}%{F-}%{A}"
+    echo -en " %{A:$BAR_BASE_DIR/dzen/cal.sh:}%{F$BLUE}\ue265%{F-} $TIME%{A} $2%{A:$BAR_DIR/sxhkd/pass-through-toggle.sh:}%{F$LOGO_COLOR}%{I$DOTFILES_DIR/icons/arch_10x10.xbm}%{F-}%{A}"
   done
   echo
 }
