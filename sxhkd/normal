@@ -24,8 +24,10 @@ super + shift + Escape
 #
 
 # quit/restart bspwm
-super + alt + {q,r}
-  bspc {quit,wm -r}
+super + alt + r
+  bspc wm -r
+super + alt + q
+  pidof -x bar.zsh &> /dev/null && kill -9 -- -$(cat /proc/$(pgrep bar.zsh | head -1)/stat | awk '\{ print $5 \}'); bspc quit
 
 # close and kill
 super + {_,shift + }q
