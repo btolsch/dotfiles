@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 normal="#cccccc"
 focused="#1793d1"
