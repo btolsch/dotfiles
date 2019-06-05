@@ -64,7 +64,7 @@ for file in ${(k)other_files}; do
   elif [[ "$(readlink -f $dest_file)" != "$(realpath $file)" ]]; then
     echo "$dest_file exists, and is a link, but points somewhere else"
     if [ -n "$1" -a "$1" != 0 ]; then
-      echo "overwriting $dest_file with link"
+      echo "overwriting $dest_file with different link"
       ln -sf $rel_file $dest_file
     fi
   fi
