@@ -166,3 +166,6 @@ super + shift + g : {plus,minus}
 
 super + alt + t
   ~/dotfiles/generic/lemonbar/sxhkd/pass-through-toggle.sh
+
+super + ctrl + s
+  ~/bin/xscreensaver-toggle &>/dev/null
