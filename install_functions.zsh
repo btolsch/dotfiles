@@ -17,15 +17,15 @@ symlink_install() {
   elif [ ! -L $dest_file ]; then
     echo "$dest_file exists and is not a link"
     if [ -n "$override" -a "$override" != 0 ]; then
-      echo "overwriting $dest_file with link"
-      ln -sf $rel_file $dest_file
+      echo "overwriting $dest_file with link ($rel_file)"
+      ln -snf $rel_file $dest_file
     fi
   # !resolves && paths differ
   elif [ "$(readlink -f $dest_file)" != "$(realpath $file)" ]; then
-    echo "$dest_file exists, and is a link, but points somewhere else"
+    echo "$dest_file exists, and is a link, but points somewhere else ($(readlink -f $dest_file) vs. $rel_file)"
     if [ -n "$override" -a "$override" != 0 ]; then
-      echo "overwriting $dest_file with different link"
-      ln -sf $rel_file $dest_file
+      echo "overwriting $dest_file with different link ($rel_file)"
+      ln -snf $rel_file $dest_file
     fi
   else
     echo "okay: $dest_file"

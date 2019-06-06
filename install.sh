@@ -2,8 +2,11 @@
 #override existing non-link regular files with first argument ($1)
 #sub-scripts get passed second argument ($2) as their arg
 
-dotfiles_dir=$(dirname $(realpath $0))
-pushd $dotfiles_dir
+SELF_DIR=$(dirname $(realpath $0))
+pushd $SELF_DIR
+
+PLATFORM_REL_PREFIX=$(realpath --relative-to=$SELF_DIR $HOME/dotfiles)
+OVERRIDE=${1:-0}
 
 source install_functions.zsh
 
@@ -11,6 +14,21 @@ for script in $(ls | grep -E ".install\.sh"); do
   echo "running $script"
   source $script $2
 done
+
+batch_dict_symlink_install() {
+  local -A files
+  files=($@)
+  for file in ${(k)files}; do
+    if [ "${platform_symlink_files[$file]}" = "" ]; then
+      dest_file=~/${files[$file]}
+      symlink_install $dest_file $file $OVERRIDE
+    fi
+  done
+}
+
+batch_symlink_install() {
+  batch_dict_symlink_install $(paste -d ' ' <(echo $@ | tr ' ' '\n') <(echo $@ | tr ' ' '\n') | tr '\n' ' ')
+}
 
 typeset -A other_files
 other_files=(
@@ -23,27 +41,12 @@ other_files=(
     "redshift.conf" ".config/redshift/redshift.conf"
     "sxhkd/normal" ".config/sxhkd/sxhkdrc"
 )
-for file in $(ls -d .* | grep -v ".git"); do
-  if [ "${platform_symlink_files[$file]}" = "" ]; then
-    dest_file=~/$file
-    symlink_install $dest_file $file $1
-  fi
-done
-for file in bin/*; do
-  if [ "${platform_symlink_files[$file]}" = "" ]; then
-    dest_file=~/$file
-    symlink_install $dest_file $file $1
-  fi
-done
-for file in ${(k)other_files}; do
-  if [ "${platform_symlink_files[$file]}" = "" ]; then
-    dest_file=~/${other_files[$file]}
-    symlink_install $dest_file $file $1
-  fi
-done
+batch_symlink_install $(ls -d .* | grep -v ".git")
+batch_symlink_install bin/*
+batch_dict_symlink_install ${(kv)other_files}
 for file in ${(k)platform_symlink_files}; do
   dest_file=~/${platform_symlink_files[$file]}
-  symlink_install $dest_file ${platform_symlink_prefix[$file]}/$file $1
+  symlink_install $dest_file $PLATFORM_REL_PREFIX/${platform_symlink_prefix[$file]}/$file $1
 done
 
 popd
