@@ -5,40 +5,12 @@
 dotfiles_dir=$(dirname $(realpath $0))
 pushd $dotfiles_dir
 
+source install_functions.zsh
+
 for script in $(ls | grep -E ".install\.sh"); do
   echo "running $script"
   source $script $2
 done
-
-get_rel_path() {
-  realpath $1 --relative-to=$(dirname $2)
-}
-
-symlink_install() {
-  dest_file=$1
-  rel_file=$2
-  override=$3
-  if [ ! -e $dest_file -a ! -L $dest_file ]; then
-    mkdir -p $(dirname $dest_file)
-    ln -s $rel_file $dest_file
-  # resolves
-  elif [ ! -L $dest_file ]; then
-    echo "$dest_file exists and is not a link"
-    if [ -n "$override" -a "$override" != 0 ]; then
-      echo "overwriting $dest_file with link"
-      ln -sf $rel_file $dest_file
-    fi
-  # !resolves && paths differ
-  elif [ "$(readlink -f $dest_file)" != "$(realpath $file)" ]; then
-    echo "$dest_file exists, and is a link, but points somewhere else"
-    if [ -n "$override" -a "$override" != 0 ]; then
-      echo "overwriting $dest_file with different link"
-      ln -sf $rel_file $dest_file
-    fi
-  else
-    echo "okay: $dest_file"
-  fi
-}
 
 typeset -A other_files
 other_files=(
