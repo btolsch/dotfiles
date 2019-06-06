@@ -5,7 +5,7 @@ filetype off " required by vundle
 let g:powerline_pycmd = 'py3'
 
 " badwolfarch airline theme, not in a git repo so can't use Plugin
-set rtp+=~/dotfiles/custom-airline-themes
+set rtp+=~/.config/nvim/custom-airline-themes
 set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.vim/plugged')
