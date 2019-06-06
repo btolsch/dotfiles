@@ -30,7 +30,7 @@ bspc rule -a Pavucontrol state=floating rectangle=780x680
 xsetroot -cursor_name left_ptr
 
 pidof -x sxhkd &> /dev/null || sxhkd &
-pidof -x bar.zsh &> /dev/null || ~/dotfiles/platform/lemonbar/bspwm/bar.zsh &
+kill-lemonbar.sh; ~/dotfiles/lemonbar/bspwm/bar.zsh &
 pidof -x dunst &> /dev/null || dunst &
 pidof -x pasystray &> /dev/null || pasystray &
 pidof -x compton &> /dev/null || compton -b

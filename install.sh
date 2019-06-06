@@ -19,7 +19,6 @@ symlink_install() {
   rel_file=$2
   override=$3
   if [ ! -e $dest_file -a ! -L $dest_file ]; then
-    echo "!resolves && !L: $dest_file"
     mkdir -p $(dirname $dest_file)
     ln -s $rel_file $dest_file
   # resolves
@@ -53,9 +52,11 @@ other_files=(
     "sxhkd/normal" ".config/sxhkd/sxhkdrc"
 )
 for file in $(ls -d .* | grep -v ".git" | grep -v ".config"); do
-  dest_file=~/$file
-  rel_file=$(get_rel_path $file $dest_file)
-  symlink_install $dest_file $rel_file $1
+  if [ "${platform_symlink_files[$file]}" = "" ]; then
+    dest_file=~/$file
+    rel_file=$(get_rel_path $file $dest_file)
+    symlink_install $dest_file $rel_file $1
+  fi
 done
 for file in bin/*; do
   dest_file=~/$file
@@ -63,9 +64,11 @@ for file in bin/*; do
   symlink_install $dest_file $rel_file $1
 done
 for file in ${(k)other_files}; do
-  dest_file=~/${other_files[$file]}
-  rel_file=$(get_rel_path $file $dest_file)
-  symlink_install $dest_file $rel_file $1
+  if [ "${platform_symlink_files[$file]}" = "" ]; then
+    dest_file=~/${other_files[$file]}
+    rel_file=$(get_rel_path $file $dest_file)
+    symlink_install $dest_file $rel_file $1
+  fi
 done
 
 popd

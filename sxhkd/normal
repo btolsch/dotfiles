@@ -17,17 +17,15 @@ super + Escape
   pkill -USR1 -x sxhkd
 
 super + shift + Escape
-  pidof -x bar.zsh &> /dev/null && kill -9 -- -$(cat /proc/$(pgrep bar.zsh | head -1)/stat | awk '\{ print $5 \}'); ~/dotfiles/lemonbar/bspwm/bar.zsh&
+  kill-lemonbar.sh; ~/dotfiles/lemonbar/bspwm/bar.zsh&
 
 #
 # bspwm hotkeys
 #
 
 # quit/restart bspwm
-super + alt + r
-  bspc wm -r
-super + alt + q
-  pidof -x bar.zsh &> /dev/null && kill -9 -- -$(cat /proc/$(pgrep bar.zsh | head -1)/stat | awk '\{ print $5 \}'); bspc quit
+super + alt + {q,r}
+  bspc wm {quit,-r}
 
 # close and kill
 super + {_,shift + }q
