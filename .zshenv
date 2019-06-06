@@ -1,5 +1,5 @@
 export CUDA_HOME=/opt/cuda
-export LD_LIBRARY_PATH=$CUDA_HOME/lib64
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$CUDA_HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/code/esp-projects/tools/xtensa-esp32-elf/bin:$PATH
 export PYTHONPATH=$HOME/caffe-orig/python:$PYTHONPATH
 export LESS='-x 4 -R'
