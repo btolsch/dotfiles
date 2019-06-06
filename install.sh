@@ -23,7 +23,7 @@ other_files=(
     "redshift.conf" ".config/redshift/redshift.conf"
     "sxhkd/normal" ".config/sxhkd/sxhkdrc"
 )
-for file in $(ls -d .* | grep -v ".git" | grep -v ".config"); do
+for file in $(ls -d .* | grep -v ".git"); do
   if [ "${platform_symlink_files[$file]}" = "" ]; then
     dest_file=~/$file
     rel_file=$(get_rel_path $file $dest_file)
