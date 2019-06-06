@@ -90,6 +90,10 @@ pre_render() {
 }
 
 render_left() {
+  local BG_RED=$(((BAR_WARNING_LEVEL * 0x88) / 100))
+  local BG_GREEN=$(((BAR_WARNING_LEVEL * 0x0) / 100))
+  local BG_BLUE=$(((BAR_WARNING_LEVEL * 0x1e) / 100))
+  echo -en "%{B$(printf "#%02x%02x%02x" $BG_RED $BG_GREEN $BG_BLUE)}"
   echo -n "${WS}$1"
 }
 
