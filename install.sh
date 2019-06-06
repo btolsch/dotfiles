@@ -26,21 +26,24 @@ other_files=(
 for file in $(ls -d .* | grep -v ".git"); do
   if [ "${platform_symlink_files[$file]}" = "" ]; then
     dest_file=~/$file
-    rel_file=$(get_rel_path $file $dest_file)
-    symlink_install $dest_file $rel_file $1
+    symlink_install $dest_file $file $1
   fi
 done
 for file in bin/*; do
-  dest_file=~/$file
-  rel_file=$(get_rel_path $file $dest_file)
-  symlink_install $dest_file $rel_file $1
+  if [ "${platform_symlink_files[$file]}" = "" ]; then
+    dest_file=~/$file
+    symlink_install $dest_file $file $1
+  fi
 done
 for file in ${(k)other_files}; do
   if [ "${platform_symlink_files[$file]}" = "" ]; then
     dest_file=~/${other_files[$file]}
-    rel_file=$(get_rel_path $file $dest_file)
-    symlink_install $dest_file $rel_file $1
+    symlink_install $dest_file $file $1
   fi
+done
+for file in ${(k)platform_symlink_files}; do
+  dest_file=~/${platform_symlink_files[$file]}
+  symlink_install $dest_file ${platform_symlink_prefix[$file]}/$file $1
 done
 
 popd

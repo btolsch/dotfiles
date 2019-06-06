@@ -6,8 +6,10 @@ get_rel_path() {
 
 symlink_install() {
   dest_file=$1
-  rel_file=$2
+  file=$2
   override=$3
+
+  rel_file=$(get_rel_path $file $dest_file)
   if [ ! -e $dest_file -a ! -L $dest_file ]; then
     mkdir -p $(dirname $dest_file)
     ln -s $rel_file $dest_file
