@@ -46,7 +46,7 @@ batch_symlink_install bin/*
 batch_dict_symlink_install ${(kv)other_files}
 for file in ${(k)platform_symlink_files}; do
   dest_file=~/${platform_symlink_files[$file]}
-  symlink_install $dest_file $PLATFORM_REL_PREFIX/${platform_symlink_prefix[$file]}/$file $1
+  symlink_install $dest_file $PLATFORM_REL_PREFIX/${platform_symlink_prefixes[$file]}/$file $1
 done
 
 popd
