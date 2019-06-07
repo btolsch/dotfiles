@@ -6,7 +6,7 @@
 super + Return
   st
 super + ctrl + Return
-  st -c floating tmux new-session
+  (wid=$(bspc subscribe -c 1 node_add | awk '\{ print $5 \}'); xdotool windowmove --relative $wid 500 -300 windowsize $wid 600 700) &; st -c floating tmux new-session
 
 # program launcher
 super + d
