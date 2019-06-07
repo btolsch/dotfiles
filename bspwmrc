@@ -23,8 +23,8 @@ bspc config single_monocle              true
 bspc rule -a krita desktop='^8' follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mpv state=floating
-# TODO(btolsch): Maybe xdo/xdotool could make rectangle work?
-bspc rule -a st-256color:floating state=floating rectangle=600x700
+bspc rule -a st-256color:floating state=floating
+bspc rule -a floating:st-256color state=floating
 bspc rule -a Pavucontrol state=floating rectangle=780x680
 
 xsetroot -cursor_name left_ptr
