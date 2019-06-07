@@ -1,0 +1,2 @@
+#!/bin/zsh
+tmux has -t dropdown &>/dev/null && tmux attach-session -t dropdown || tmux new-session -s dropdown

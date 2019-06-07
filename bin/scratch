@@ -1,0 +1,2 @@
+#!/bin/zsh
+tmux has -t scratch &>/dev/null && tmux attach-session -t scratch || tmux new-session -s scratch
