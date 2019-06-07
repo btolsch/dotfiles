@@ -1,5 +1,4 @@
-SELF_DIR=$(dirname $(realpath $0))
-source $SELF_DIR/zshenv_functions.zsh
+source $HOME/dotfiles/generic/zshenv_functions.zsh
 
 export CUDA_HOME=/opt/cuda
 
