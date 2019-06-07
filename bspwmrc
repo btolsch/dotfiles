@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 normal="#cccccc"
 focused="#1793d1"
@@ -35,4 +35,4 @@ pidof -x dunst &> /dev/null || dunst &
 pidof -x pasystray &> /dev/null || pasystray &
 pidof -x compton &> /dev/null || compton -b
 
-~/bin/autostart.sh
+autostart.sh

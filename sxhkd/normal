@@ -154,7 +154,7 @@ XF86AudioPlay
   mpc toggle
 
 super + ctrl + w
-  ~/bin/wall.sh
+  wall.sh
 
 super + alt + slash
   bspc monitor -f last
@@ -166,4 +166,4 @@ super + alt + t
   ~/dotfiles/generic/lemonbar/sxhkd/pass-through-toggle.sh
 
 super + ctrl + s
-  ~/bin/xscreensaver-toggle &>/dev/null
+  xscreensaver-toggle &>/dev/null
