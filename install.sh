@@ -44,6 +44,18 @@ if [[ -n $PORTED_FILE_DICT ]]; then
       ".config/redshift/redshift.conf" "redshift.conf"
       ".config/sxhkd/sxhkdrc" "sxhkd/normal"
   )
+  if [[ ${(k)platform_symlink_files} != ${(k)platform_symlink_prefixes} ]]; then
+    echo "keys !="
+    echo FILES
+    for k in ${(k)platform_symlink_files}; do
+      echo $k: ${platform_symlink_files[$k]}
+    done
+    echo PREFIXES
+    for k in ${(k)platform_symlink_prefixes}; do
+      echo $k: ${platform_symlink_prefixes[$k]}
+    done
+    exit 1
+  fi
   batch_symlink_install $(ls -d .* | grep -v ".git")
   batch_symlink_install bin/*
   batch_dict_symlink_install ${(kv)other_files}

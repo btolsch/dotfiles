@@ -22,7 +22,7 @@ symlink_install() {
     fi
   # !resolves && paths differ
   elif [ "$(readlink -f $dest_file)" != "$(realpath $file)" ]; then
-    echo "$dest_file exists, and is a link, but points somewhere else ($(readlink -f $dest_file) vs. $rel_file)"
+    echo "$dest_file exists, and is a link, but points somewhere else ($(readlink -f $dest_file) vs. $(realpath $file) ($rel_file))"
     if [ -n "$override" -a "$override" != 0 ]; then
       echo "overwriting $dest_file with different link ($rel_file)"
       ln -snf $rel_file $dest_file
