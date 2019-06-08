@@ -30,6 +30,8 @@ batch_symlink_install() {
   batch_dict_symlink_install $(paste -d ' ' <(echo $@ | tr ' ' '\n') <(echo $@ | tr ' ' '\n') | tr '\n' ' ')
 }
 
+# TODO(btolsch): This should really be dest file first so e.g. .vim and .vimrc
+# can be linked to two places.
 typeset -A other_files
 other_files=(
     ".vim" ".config/nvim"

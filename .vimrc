@@ -270,15 +270,16 @@ autocmd BufNewFile,BufRead *.vs,*.gs,*.fs set filetype=glsl
 map <silent> <leader>so :source $MYVIMRC<cr>
 
 nnoremap <silent> <leader>cf :call FormatAll()<CR>
-vnoremap <silent> <leader>cf :pyf /usr/share/clang/clang-format.py<CR>
-" imap <silent> <C-i> <C-o>:pyf /usr/share/clang/clang-format.py<CR>
+execute 'vnoremap <silent> <leader>cf :pyf ' . clang_format_py . '<CR>'
 
+let s:clang_format_py = clang_format_py
 function! FormatAll()
   let l:lines="all"
-  pyf /usr/share/clang/clang-format.py
+  execute 'pyf ' . s:clang_format_py
 endfunction
 
-nnoremap <silent> <leader>gf :pyf /usr/local/google/home/btolsch/.vim/plugged/gn/tools/gn/misc/vim/gn-format.py<cr>
+" TODO(btolsch): This can't be how this is supposed to work.
+nnoremap <silent> <leader>gf :pyf $HOME/.vim/plugged/gn/tools/gn/misc/vim/gn-format.py<cr>
 
 inoremap <c-c> TODO(btolsch):<space>
 inoremap <c-b> NOTE(btolsch):<space>
