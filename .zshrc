@@ -48,7 +48,7 @@ ZSH_THEME="gitliorononomicon"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases git lol nyan pip python rand-quote sudo systemd tmux vi-mode)
+plugins=(archlinux common-aliases git lol pip python rand-quote sudo systemd tmux vi-mode)
 #remove lwd from shell spawned by ranger to preserve ranger-given working-dir
 #'two levels' because ranger->zsh->tmux->zsh
 if ps -o  pid,comm x | grep $PPID | grep -q 'ranger'; then
@@ -107,14 +107,11 @@ alias zshrc="vi ~/.zshrc"
 alias zshenv="vi ~/.zshenv"
 alias vimrc="vi ~/.vimrc"
 
-expand-alias() {
-  if echo "$LBUFFER" | sed -n '/^\.\+$/q0;q1'; then
-    zle _expand_alias
-  fi
-  zle self-insert
+expand-dots() {
+  [[ $LBUFFER = *.. ]] && LBUFFER+=/.. || LBUFFER+=.
 }
-zle -N expand-alias
-bindkey -M main ' ' expand-alias
+zle -N expand-dots
+bindkey . expand-dots
 
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" sudo-command-line
