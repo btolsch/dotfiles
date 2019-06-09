@@ -1,4 +1,4 @@
-source $HOME/dotfiles/generic/zshenv_functions.zsh
+source $HOME/dotfiles/base/zshenv_functions.zsh
 
 export CUDA_HOME=/opt/cuda
 
