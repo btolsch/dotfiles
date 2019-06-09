@@ -191,8 +191,8 @@ fgrep() {
 
 fvigrep() {
   files=$(fgrep $@)
-  if [ -n "$files" ]; then
-    echo "$files" | xargs vi -c "/$@"
+  if [ -n $files ]; then
+    vi -c /$@ $(echo $files)
   fi
 }
 
