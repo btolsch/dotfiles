@@ -199,7 +199,7 @@ fvigrep() {
 stopwatch() {
   date1=$(date +%s)
   while true; do
-    echo -ne "$(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r"
+    echo -ne "$(date -u --date @$(($(date +%s) - date1)) +%H:%M:%S)\r"
     sleep 0.1
   done
 }
@@ -210,4 +210,25 @@ psforest() {
 
 path() {
   echo $PATH | tr : '\n'
+}
+
+dzstopwatch() {
+  date1=$(date +%s)
+  while true; do
+    echo "$(date -u --date @$(($(date +%s) - date1)) +%H:%M:%S)"
+    sleep 0.5
+  done | dzen2 -fg "#cccccc" -bg "#000000" -x 1800 -y 18 -w 100 -h 40 -fn "Terminess Powerline:size=14"
+}
+
+dzcountdown() {
+  date1=$(date +%s)
+  target=$((date1 + $1))
+  while [[ $((target- $(date +%s))) > 0 ]]; do
+    echo "$(date -u --date @$((target - $(date +%s))) +%H:%M:%S)"
+    sleep 0.5
+  done | dzen2 -fg "#cccccc" -bg "#000000" -x 1800 -y 20 -w 100 -h 40 -fn "Terminess Powerline:size=14" -e 'button1=exit;button3=exit:1'
+}
+
+tomaten() {
+  dzcountdown $((60*25)) && (mpv ~/ffcut.webm; dzcountdown $((60*5)))
 }
