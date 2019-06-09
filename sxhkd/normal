@@ -138,11 +138,10 @@ super + c
 super + backslash
   firefox
 
-# TODO(btolsch): Showing temporary volume slider would be nice.
 XF86AudioRaiseVolume
-  pulseaudio-ctl up 1
+  pulseaudio-ctl up 1; vol_dzen $(pulseaudio-ctl current | cut -d '%' -f 1)
 XF86AudioLowerVolume
-  pulseaudio-ctl down 1
+  pulseaudio-ctl down 1; vol_dzen $(pulseaudio-ctl current | cut -d '%' -f 1)
 XF86AudioMute
   pulseaudio-ctl mute
 
