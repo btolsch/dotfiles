@@ -230,5 +230,5 @@ dzcountdown() {
 }
 
 tomaten() {
-  dzcountdown $((60*25)) && (mpv ~/ffcut.webm; dzcountdown $((60*5)))
+  dzcountdown $((60*25)) && (mpv --volume=150 ~/ffcut.webm; dzcountdown $((60*5)))
 }
