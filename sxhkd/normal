@@ -54,7 +54,7 @@ super + s
 super + {t,shift + t,f}
   bspc node -t {tiled,pseudo_tiled,'~fullscreen'}
 super + shift + space
-  bspc node -t '~{tiled,floating}'
+  bspc query -N -n focused.floating &> /dev/null && bspc node -t tiled || bspc node -t floating
 super + space
   bspc query -N -n focused.tiled >/dev/null && bspc node -f next.floating.local || bspc node -f next.tiled.local
 
